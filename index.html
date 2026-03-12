@@ -3,382 +3,464 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🇷🇺 Rusia vs Estonia — La Verdad Sin Filtros</title>
+<title>☭ СЛАВА РОССИИ — Rusia Humilla a Estonia ☭</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-  :root {
-    --ru: #E53935;
-    --ru-l: #fff0f0;
-    --ee: #1565C0;
-    --ee-l: #EEF4FF;
-    --dark: #0D1117;
-    --card: #161B22;
-    --card2: #1C2128;
-    --border: #30363D;
-    --text: #E6EDF3;
-    --muted: #8B949E;
-    --gold: #FFD700;
-    --green: #3FB950;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: var(--dark);
-    color: var(--text);
-    line-height: 1.6;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Special+Elite&display=swap');
 
-  /* ── TICKER ── */
-  .ticker-wrap {
-    background: var(--ru);
-    overflow: hidden;
-    white-space: nowrap;
-    padding: 8px 0;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-  }
-  .ticker {
-    display: inline-block;
-    animation: ticker 38s linear infinite;
-  }
-  .ticker span { margin: 0 40px; }
-  @keyframes ticker {
-    0% { transform: translateX(100vw); }
-    100% { transform: translateX(-100%); }
-  }
+:root {
+  --red:    #CC0000;
+  --red2:   #8B0000;
+  --red3:   #FF1A1A;
+  --gold:   #FFD700;
+  --gold2:  #B8860B;
+  --black:  #0A0000;
+  --dark:   #1A0000;
+  --card:   #1E0505;
+  --card2:  #2A0808;
+  --white:  #FFF5F5;
+  --grey:   #9CA3AF;
+  --border: #5C0000;
+}
 
-  /* ── NAV ── */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(13,17,23,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 10px;
-  }
-  .nav-logo { font-size: 18px; font-weight: 800; }
-  .nav-logo span:first-child { color: var(--ru); }
-  .nav-logo span:last-child  { color: var(--ee); }
-  .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none; font-size: 14px;
-    transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .live-badge {
-    background: var(--ru); color: white;
-    font-size: 11px; font-weight: 700;
-    padding: 3px 10px; border-radius: 20px;
-    letter-spacing: 1px;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%,100% { opacity:1; } 50% { opacity:.6; }
-  }
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
 
-  /* ── HERO ── */
-  .hero {
-    text-align: center;
-    padding: 70px 20px 50px;
-    background: radial-gradient(ellipse at top, rgba(229,57,53,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse at bottom right, rgba(21,101,192,0.1) 0%, transparent 60%);
-  }
-  .hero-tag {
-    font-size: 12px; letter-spacing: 3px; color: var(--muted);
-    text-transform: uppercase; margin-bottom: 16px;
-  }
-  .hero h1 {
-    font-size: clamp(36px, 8vw, 72px);
-    font-weight: 900; line-height: 1.1;
-    margin-bottom: 16px;
-  }
-  .hero h1 .ru { color: var(--ru); }
-  .hero h1 .ee { color: var(--ee); }
-  .hero h1 .vs { color: var(--muted); font-weight: 300; font-size: 0.6em; }
-  .hero-sub {
-    font-size: clamp(15px, 2.5vw, 19px);
-    color: var(--muted); max-width: 600px; margin: 0 auto 40px;
-  }
-  .hero-time {
-    font-size: 13px; color: var(--muted);
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 8px; display: inline-block;
-    padding: 8px 20px; margin-bottom: 50px;
-  }
-  #live-time { color: var(--green); font-weight: 600; }
+body {
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  line-height: 1.5;
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(180,0,0,0.04) 40px,
+      rgba(180,0,0,0.04) 80px
+    );
+}
 
-  /* ── KPI GRID ── */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 16px; max-width: 1100px;
-    margin: 0 auto; padding: 0 20px 60px;
-  }
-  .kpi {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px 16px;
-    text-align: center;
-    transition: transform .2s, border-color .2s;
-    position: relative; overflow: hidden;
-  }
-  .kpi::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 3px;
-  }
-  .kpi.ru::before { background: var(--ru); }
-  .kpi.ee::before { background: var(--ee); }
-  .kpi:hover { transform: translateY(-4px); border-color: var(--muted); }
-  .kpi-val {
-    font-size: clamp(22px, 5vw, 34px);
-    font-weight: 900; line-height: 1;
-    margin-bottom: 6px;
-  }
-  .kpi.ru .kpi-val { color: var(--ru); }
-  .kpi.ee .kpi-val { color: var(--ee); }
-  .kpi-label { font-size: 12px; color: var(--muted); }
-  .kpi-flag { font-size: 20px; margin-bottom: 8px; }
+/* ── MUSIC PLAYER ── */
+.music-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(10,0,0,0.95);
+  border-top: 2px solid var(--gold);
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap;
+}
+.music-title {
+  font-family: 'Special Elite', serif;
+  font-size: 13px; color: var(--gold);
+  flex: 1;
+}
+.music-btn {
+  background: var(--red); color: white;
+  border: 2px solid var(--gold);
+  padding: 6px 18px; font-family: 'Oswald', sans-serif;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  letter-spacing: 1px; text-transform: uppercase;
+  transition: all .2s;
+}
+.music-btn:hover { background: var(--red3); }
+.music-note { font-size: 12px; color: var(--grey); }
 
-  /* ── SECTION ── */
-  section { max-width: 1100px; margin: 0 auto; padding: 20px 20px 60px; }
-  .section-header {
-    display: flex; align-items: center; gap: 14px;
-    margin-bottom: 30px;
-    padding-bottom: 14px;
-    border-bottom: 2px solid;
-  }
-  .section-header.ru { border-color: var(--ru); }
-  .section-header.ee { border-color: var(--ee); }
-  .section-header.dark { border-color: var(--border); }
-  .section-emoji { font-size: 28px; }
-  .section-title { font-size: clamp(20px, 4vw, 28px); font-weight: 800; }
-  .section-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+/* ── TICKER ── */
+.ticker-wrap {
+  background: var(--red);
+  border-bottom: 3px solid var(--gold);
+  overflow: hidden; white-space: nowrap;
+  padding: 9px 0; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px; font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
+.ticker { display: inline-block; animation: ticker 45s linear infinite; }
+.ticker span { margin: 0 50px; color: var(--white); }
+.ticker .star { color: var(--gold); }
+@keyframes ticker { 0%{transform:translateX(100vw)} 100%{transform:translateX(-100%)} }
 
-  /* ── AREA BAR ── */
-  .area-bar-wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; }
-  .area-label { font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
-  .area-bar {
-    display: flex; height: 52px; border-radius: 12px;
-    overflow: hidden; border: 1px solid var(--border);
-  }
-  .area-ru {
-    background: linear-gradient(90deg, #b71c1c, var(--ru));
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 15px; color: white;
-    flex: 378;
-  }
-  .area-ee {
-    background: linear-gradient(90deg, var(--ee), #1976D2);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 11px; color: white;
-    flex: 1;
-    padding: 4px;
-  }
-  .area-note { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: italic; }
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,0,0,0.97);
+  border-bottom: 3px solid var(--red);
+  padding: 12px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+}
+.nav-logo {
+  font-family: 'Special Elite', serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(255,215,0,0.4);
+}
+.hammer { font-size: 24px; }
+.nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.nav-links a {
+  color: var(--grey); text-decoration: none;
+  font-size: 13px; letter-spacing: 1px;
+  text-transform: uppercase; transition: color .2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.live-badge {
+  background: var(--red); color: var(--gold);
+  border: 1px solid var(--gold);
+  font-size: 11px; font-weight: 700;
+  padding: 3px 12px; letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
 
-  /* ── CARDS ── */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px;
-    transition: transform .2s, border-color .2s;
-    position: relative; overflow: hidden;
-  }
-  .card:hover { transform: translateY(-3px); border-color: var(--muted); }
-  .card-accent { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
-  .card.ru .card-accent { background: var(--ru); }
-  .card.ee .card-accent { background: var(--ee); }
-  .card-icon { font-size: 26px; margin-bottom: 10px; }
-  .card-title {
-    font-size: 16px; font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .card.ru .card-title { color: #ff6b6b; }
-  .card.ee .card-title { color: #64b5f6; }
-  .card-body { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
-  .card-date { font-size: 11px; color: var(--muted); margin-top: 10px; font-weight: 600; letter-spacing: 0.5px; }
+/* ── HERO ── */
+.hero {
+  text-align: center;
+  padding: 60px 20px 50px;
+  background:
+    radial-gradient(ellipse at center top, rgba(180,0,0,0.35) 0%, transparent 65%);
+  border-bottom: 3px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 5 L35 20 L50 20 L38 29 L43 44 L30 35 L17 44 L22 29 L10 20 L25 20 Z' fill='none' stroke='rgba(180,0,0,0.08)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+  pointer-events: none;
+}
+.hero-stars {
+  font-size: 32px; letter-spacing: 16px; margin-bottom: 16px;
+  color: var(--gold); text-shadow: 0 0 20px rgba(255,215,0,0.6);
+}
+.hero-cccp {
+  font-family: 'Special Elite', serif;
+  font-size: 13px; letter-spacing: 8px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 20px;
+  opacity: 0.8;
+}
+.hero h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(30px, 7vw, 72px);
+  font-weight: 700; line-height: 1.05;
+  text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.hero h1 .ru { color: var(--red3); text-shadow: 0 0 30px rgba(255,26,26,0.5); }
+.hero h1 .vs { color: var(--gold); font-size: 0.5em; display: block; letter-spacing: 8px; margin: 8px 0; }
+.hero h1 .ee { color: #888; text-decoration: line-through; text-decoration-color: var(--red3); }
+.hero-sub {
+  font-family: 'Special Elite', serif;
+  font-size: clamp(13px, 2vw, 17px);
+  color: var(--grey); max-width: 650px; margin: 16px auto 30px;
+  font-style: italic;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--card); border: 1px solid var(--border);
+  padding: 10px 24px; font-size: 13px;
+  letter-spacing: 1px; color: var(--grey);
+  text-transform: uppercase;
+}
+#live-time { color: var(--gold); font-weight: 700; }
 
-  /* ── STAT PILLS ── */
-  .pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 30px; }
-  .pill {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 30px;
-    padding: 8px 16px;
-    font-size: 13px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .pill-val { font-weight: 800; }
-  .pill.ru .pill-val { color: var(--ru); }
-  .pill.ee .pill-val { color: var(--ee); }
+/* ── SOVIET DIVIDER ── */
+.soviet-divider {
+  display: flex; align-items: center; gap: 16px;
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 20px;
+}
+.sdiv-line { flex: 1; height: 2px; background: linear-gradient(90deg, transparent, var(--red), transparent); }
+.sdiv-star { color: var(--gold); font-size: 20px; }
 
-  /* ── CHARTS ── */
-  .chart-wrap {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    margin-bottom: 30px;
-  }
-  .chart-title {
-    font-size: 14px; font-weight: 700;
-    color: var(--muted); letter-spacing: 1px;
-    text-transform: uppercase; margin-bottom: 18px;
-  }
+/* ── KPI GRID ── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 3px; max-width: 1100px;
+  margin: 30px auto; padding: 0 20px;
+  border: 2px solid var(--border);
+}
+.kpi {
+  background: var(--card);
+  padding: 26px 16px; text-align: center;
+  border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+  transition: background .2s;
+}
+.kpi::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+}
+.kpi.ru::after { background: var(--red); }
+.kpi.ee::after { background: #555; }
+.kpi:hover { background: var(--card2); }
+.kpi-val {
+  font-size: clamp(22px, 4vw, 38px);
+  font-weight: 700; line-height: 1; margin-bottom: 6px;
+  font-family: 'Oswald', sans-serif;
+}
+.kpi.ru .kpi-val { color: var(--red3); text-shadow: 0 0 15px rgba(255,26,26,0.4); }
+.kpi.ee .kpi-val { color: #777; }
+.kpi-label { font-size: 11px; color: var(--grey); letter-spacing: 1px; text-transform: uppercase; }
+.kpi-flag { font-size: 22px; margin-bottom: 8px; }
 
-  /* ── SCOREBOARD ── */
-  .score-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 6px;
-    font-size: 14px;
-  }
-  .score-table thead th {
-    font-size: 11px; letter-spacing: 1.5px;
-    color: var(--muted); text-transform: uppercase;
-    padding: 0 16px 10px; text-align: left;
-  }
-  .score-table tbody tr {
-    background: var(--card);
-  }
-  .score-table tbody tr:hover { background: var(--card2); }
-  .score-table td {
-    padding: 13px 16px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .score-table td:first-child {
-    border-left: 1px solid var(--border);
-    border-radius: 10px 0 0 10px;
-    font-weight: 700;
-  }
-  .score-table td:last-child {
-    border-right: 1px solid var(--border);
-    border-radius: 0 10px 10px 0;
-    font-weight: 800;
-    color: var(--ru);
-  }
-  .score-table tr.total td {
-    background: var(--ru); color: white;
-    font-weight: 800; font-size: 15px;
-  }
-  .score-table tr.total td:last-child { color: var(--gold); }
+/* ── PROPAGANDA BANNER ── */
+.prop-banner {
+  background: var(--red);
+  border-top: 4px solid var(--gold);
+  border-bottom: 4px solid var(--gold);
+  text-align: center; padding: 24px 20px;
+  margin: 40px 0;
+}
+.prop-banner p {
+  font-family: 'Special Elite', serif;
+  font-size: clamp(16px, 3vw, 26px);
+  color: var(--gold);
+  letter-spacing: 3px; text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+.prop-banner .sub { font-size: 12px; color: rgba(255,255,255,0.7); letter-spacing: 2px; margin-top: 6px; }
 
-  .score-val { font-weight: 600; }
-  .ru-val { color: var(--ru); }
-  .ee-val { color: var(--ee); }
+/* ── SECTION ── */
+section { max-width: 1100px; margin: 0 auto; padding: 20px 20px 60px; }
+.section-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 30px; padding-bottom: 14px;
+}
+.section-header.ru { border-bottom: 3px solid var(--red); }
+.section-header.ee { border-bottom: 3px solid #444; }
+.section-header.dark { border-bottom: 3px solid var(--gold); }
+.section-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(18px, 4vw, 28px);
+  font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+}
+.section-sub { font-size: 12px; color: var(--grey); letter-spacing: 1px; margin-top: 3px; text-transform: uppercase; }
 
-  /* ── FINAL ── */
-  .final-box {
-    background: linear-gradient(135deg, rgba(229,57,53,0.15), rgba(21,101,192,0.1));
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 50px 30px;
-    text-align: center;
-    margin-top: 20px;
-  }
-  .final-score {
-    font-size: clamp(48px, 12vw, 90px);
-    font-weight: 900; line-height: 1;
-    margin-bottom: 16px;
-  }
-  .final-score .ru { color: var(--ru); }
-  .final-score .sep { color: var(--muted); margin: 0 12px; font-weight: 300; }
-  .final-score .ee { color: var(--ee); }
-  .final-quote {
-    font-size: clamp(15px, 2.5vw, 20px);
-    color: var(--muted); max-width: 620px;
-    margin: 0 auto 10px; font-style: italic;
-  }
-  .final-note { font-size: 12px; color: #4a4a5a; margin-top: 20px; }
+/* ── AREA BAR ── */
+.area-bar-wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; }
+.area-label { font-size: 11px; color: var(--grey); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+.area-bar {
+  display: flex; height: 56px;
+  border: 2px solid var(--border); overflow: hidden;
+}
+.area-ru {
+  background: linear-gradient(90deg, var(--red2), var(--red));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 15px; color: white; flex: 378;
+  font-family: 'Oswald', sans-serif; letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+.area-ee {
+  background: #333;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: #aaa; flex: 1; padding: 2px;
+}
+.area-note { font-size: 12px; color: var(--grey); margin-top: 8px; font-style: italic; }
+.area-note strong { color: var(--gold); }
 
-  /* ── FOOTER ── */
-  footer {
-    text-align: center; padding: 30px 20px;
-    border-top: 1px solid var(--border);
-    font-size: 12px; color: var(--muted);
-  }
+/* ── PROPAGANDA CARDS ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 22px;
+  position: relative; overflow: hidden;
+  transition: background .2s, transform .2s;
+}
+.card:hover { background: var(--card2); transform: translateY(-2px); }
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+}
+.card.ru::before { background: linear-gradient(90deg, var(--red), var(--gold), var(--red)); }
+.card.ee::before { background: #444; }
+.card-icon { font-size: 28px; margin-bottom: 10px; }
+.card-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.card.ru .card-title { color: var(--gold); }
+.card.ee .card-title { color: #bbb; }
+.card-body { font-size: 13.5px; color: var(--grey); line-height: 1.65; font-family: 'Special Elite', serif; }
+.card-date { font-size: 10px; color: #555; margin-top: 12px; letter-spacing: 1px; text-transform: uppercase; }
 
-  /* ── PROGRESS BARS ── */
-  .prog-item { margin-bottom: 16px; }
-  .prog-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
-  .prog-track {
-    height: 10px; background: var(--card2);
-    border-radius: 10px; overflow: hidden;
-  }
-  .prog-fill {
-    height: 100%; border-radius: 10px;
-    transition: width 1.5s cubic-bezier(.4,0,.2,1);
-  }
+/* ── PROGRESS BARS ── */
+.prog-item { margin-bottom: 18px; }
+.prog-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 7px; letter-spacing: 1px; text-transform: uppercase; }
+.prog-val { color: var(--gold); font-weight: 700; }
+.prog-track { height: 12px; background: var(--card2); border: 1px solid var(--border); }
+.prog-fill { height: 100%; transition: width 1.5s cubic-bezier(.4,0,.2,1); }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-    .cards-grid { grid-template-columns: 1fr; }
-    nav { padding: 12px 16px; }
-    .nav-links { display: none; }
-    .score-table { font-size: 12px; }
-    .score-table td { padding: 10px 10px; }
-  }
+/* ── CHART ── */
+.chart-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 24px; margin-bottom: 24px;
+}
+.chart-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px; font-weight: 700;
+  color: var(--gold); letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 18px;
+}
 
-  /* ── ANIMATED COUNTER ── */
-  .counting { transition: all .3s; }
+/* ── SCOREBOARD ── */
+.score-table {
+  width: 100%; border-collapse: collapse; font-size: 14px;
+}
+.score-table thead th {
+  font-size: 10px; letter-spacing: 2px; color: var(--gold);
+  text-transform: uppercase; padding: 12px 16px;
+  border-bottom: 2px solid var(--red);
+  font-family: 'Oswald', sans-serif;
+  background: var(--card2); text-align: left;
+}
+.score-table tbody tr { border-bottom: 1px solid var(--border); }
+.score-table tbody tr:hover { background: var(--card2); }
+.score-table td { padding: 12px 16px; background: var(--card); }
+.score-table td:first-child { font-weight: 700; color: var(--grey); letter-spacing: 1px; text-transform: uppercase; font-size: 12px; }
+.score-table td:last-child { font-weight: 800; color: var(--red3); font-family: 'Oswald', sans-serif; font-size: 15px; }
+.score-table tr.total td { background: var(--red); font-weight: 800; font-size: 15px; color: white; }
+.score-table tr.total td:last-child { color: var(--gold); font-size: 18px; }
+.ru-val { color: var(--red3); font-weight: 700; }
+.ee-val { color: #666; }
+
+/* ── FINAL BOX ── */
+.final-box {
+  border: 3px solid var(--gold);
+  padding: 60px 30px; text-align: center;
+  margin-top: 30px;
+  background:
+    linear-gradient(135deg, rgba(180,0,0,0.25), rgba(0,0,0,0.8)),
+    repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(180,0,0,0.05) 30px, rgba(180,0,0,0.05) 31px);
+  position: relative;
+}
+.final-stars { font-size: 40px; letter-spacing: 16px; color: var(--gold); margin-bottom: 20px; }
+.final-score {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(60px, 16vw, 120px);
+  font-weight: 700; line-height: 1;
+  margin-bottom: 20px;
+}
+.final-score .ru { color: var(--red3); text-shadow: 0 0 40px rgba(255,26,26,0.6); }
+.final-score .sep { color: var(--gold); font-size: 0.5em; margin: 0 16px; }
+.final-score .ee { color: #555; text-decoration: line-through; }
+.final-quote {
+  font-family: 'Special Elite', serif;
+  font-size: clamp(15px, 2.5vw, 22px);
+  color: var(--gold); max-width: 700px; margin: 0 auto 16px;
+}
+.final-sub { font-size: 13px; color: var(--grey); letter-spacing: 2px; text-transform: uppercase; }
+.final-note { font-size: 11px; color: #333; margin-top: 24px; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center; padding: 30px 20px 80px;
+  border-top: 3px solid var(--red);
+  font-family: 'Special Elite', serif;
+  font-size: 12px; color: #444;
+}
+.footer-hammer { font-size: 28px; color: var(--red); margin-bottom: 8px; display: block; }
+
+/* ── PILLS ── */
+.pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 28px; }
+.pill {
+  background: var(--card); border: 1px solid var(--border);
+  padding: 7px 14px; font-size: 12px;
+  letter-spacing: 1px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Oswald', sans-serif;
+}
+.pill.ru { border-color: var(--red); }
+.pill.ee { border-color: #333; }
+.pill-val { font-weight: 800; }
+.pill.ru .pill-val { color: var(--red3); }
+.pill.ee .pill-val { color: #666; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .cards-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .score-table { font-size: 11px; }
+  .score-table td { padding: 9px 10px; }
+  .music-bar { padding: 8px 12px; }
+}
 </style>
 </head>
 <body>
 
+<!-- YOUTUBE AUDIO HIDDEN -->
+<div id="yt-container" style="position:fixed;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;">
+  <iframe id="yt-player" width="1" height="1"
+    src="https://www.youtube.com/embed/U06jlgpMtQs?autoplay=1&loop=1&playlist=U06jlgpMtQs&enablejsapi=1"
+    allow="autoplay" frameborder="0"></iframe>
+</div>
+
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <span>🔴 ÚLTIMO MINUTO</span>
-    <span>Rusia: 17.098.242 km² · Estonia: 45.228 km² · Diferencia: 378x</span>
-    <span>🏆 Premios Nobel Rusia: 32 · Estonia: 0 desde 1991</span>
-    <span>🛰️ Rusia tiene su propio GPS global (GLONASS)</span>
-    <span>💀 Estonia ha perdido el 20% de su población desde 1991</span>
-    <span>🧱 Muro Estonia–Rusia completado: 14% · Plazo: indefinido</span>
-    <span>⚡ Rusia opera plantas nucleares flotantes · Estonia opera WiFi rápido</span>
-    <span>👸 Miss BRICS 2026 celebrado en Tartaristán · Estonia no fue invitada</span>
-    <span>😂 Ministro estonio prometió invadir Rusia · The Telegraph: "Estonia lista para autodestruirse"</span>
-    <span>🇷🇺 RUSIA: 900.000 soldados activos · 🇪🇪 ESTONIA: 7.000 soldados activos</span>
+    <span class="star">☭</span>
+    <span>URGENTE: Estonia sigue existiendo — Rusia lo ignora</span>
+    <span class="star">★</span>
+    <span>RUSIA 17.098.242 km² · ESTONIA 45.228 km² · Estonia cabe 378 veces en Rusia</span>
+    <span class="star">☭</span>
+    <span>Premios Nobel — Rusia: 32 · Estonia: 0 · Diferencia: INFINITA</span>
+    <span class="star">★</span>
+    <span>Ministro estonio prometió invadir Rusia · 7.000 soldados vs 900.000 · The Telegraph: "Estonia lista para autodestruirse"</span>
+    <span class="star">☭</span>
+    <span>Muro frontera Estonia-Rusia completado: 14% · En obra desde hace 3 años</span>
+    <span class="star">★</span>
+    <span>GLONASS operativo · Rusia tiene GPS propio · Estonia usa Google Maps americano</span>
+    <span class="star">☭</span>
+    <span>Estonia: punto más alto 318m · En Madrid eso es un cerro para sacar el perro</span>
   </div>
 </div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">
-    <span>RUSIA</span> <span style="color:var(--muted)">vs</span> <span>ESTONIA</span>
-  </div>
+  <div class="nav-logo">☭ СЛАВА POCCИИ ☭</div>
   <div class="nav-links">
-    <a href="#stats">Stats</a>
-    <a href="#rusia">Rusia</a>
-    <a href="#estonia">Estonia</a>
+    <a href="#stats">Estadísticas</a>
+    <a href="#rusia">Gloria Rusa</a>
+    <a href="#estonia">La Víctima</a>
     <a href="#veredicto">Veredicto</a>
   </div>
-  <div class="live-badge">● LIVE</div>
+  <div class="live-badge">● TRANSMISIÓN EN DIRECTO</div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <p class="hero-tag">📊 Informe comparativo · Datos reales · Marzo 2026</p>
+  <div class="hero-stars">★ ★ ★ ★ ★</div>
+  <p class="hero-cccp">— Informe Oficial de la Verdad · Marzo 2026 —</p>
   <h1>
-    <span class="ru">RUSIA</span>
-    <span class="vs"> vs </span>
+    <span class="ru">РOCCИЯ</span>
+    <span class="vs">☭ VS ☭</span>
     <span class="ee">ESTONIA</span>
   </h1>
-  <p class="hero-sub">La comparativa más devastadora de Europa del Este.<br>Con datos. Sin piedad. Con todo el respeto del mundo (mentira).</p>
-  <div class="hero-time">
-    🕒 Actualizado en tiempo real · <span id="live-time">--:--:--</span>
+  <p class="hero-sub">"La historia juzgará con objetividad. Por eso estamos aquí nosotros."<br>— Análisis imparcial, datos reales, resultado inevitable.</p>
+  <div class="hero-badge">
+    <span>🕒</span>
+    <span>Actualizado en tiempo real ·</span>
+    <span id="live-time">--:--:--</span>
+    <span>· Moscú aprueba este mensaje</span>
   </div>
+</div>
+
+<!-- MUSIC BAR -->
+<div class="music-bar">
+  <span class="hammer">☭</span>
+  <div class="music-title">♪ Himno de la Unión Soviética — "Союз нерушимый" (1944)</div>
+  <button class="music-btn" onclick="toggleMusic()" id="music-btn">▶ REPRODUCIR HIMNO</button>
+  <span class="music-note">* Música oficial de este informe. Escúchalo con altavoces.</span>
 </div>
 
 <!-- KPI GRID -->
@@ -386,62 +468,78 @@
   <div class="kpi ru">
     <div class="kpi-flag">🇷🇺</div>
     <div class="kpi-val" data-target="17098242" data-suffix=" km²">0</div>
-    <div class="kpi-label">Superficie Rusia</div>
+    <div class="kpi-label">Superficie · Rusia</div>
   </div>
   <div class="kpi ee">
     <div class="kpi-flag">🇪🇪</div>
     <div class="kpi-val" data-target="45228" data-suffix=" km²">0</div>
-    <div class="kpi-label">Superficie Estonia</div>
+    <div class="kpi-label">Superficie · Estonia</div>
   </div>
   <div class="kpi ru">
     <div class="kpi-flag">🇷🇺</div>
     <div class="kpi-val" data-target="144" data-suffix="M hab">0</div>
-    <div class="kpi-label">Población Rusia</div>
+    <div class="kpi-label">Población · Rusia</div>
   </div>
   <div class="kpi ee">
     <div class="kpi-flag">🇪🇪</div>
     <div class="kpi-val" data-target="137" data-suffix="0K hab">0</div>
-    <div class="kpi-label">Población Estonia</div>
+    <div class="kpi-label">Población · Estonia</div>
   </div>
   <div class="kpi ru">
     <div class="kpi-flag">🇷🇺</div>
     <div class="kpi-val" data-target="32" data-suffix="">0</div>
-    <div class="kpi-label">Premios Nobel Rusia</div>
+    <div class="kpi-label">Premios Nobel · Rusia</div>
   </div>
   <div class="kpi ee">
     <div class="kpi-flag">🇪🇪</div>
-    <div class="kpi-val" style="color:var(--ee)">0</div>
-    <div class="kpi-label">Premios Nobel Estonia</div>
+    <div class="kpi-val" style="color:#555">0</div>
+    <div class="kpi-label">Premios Nobel · Estonia</div>
   </div>
+  <div class="kpi ru">
+    <div class="kpi-flag">🇷🇺</div>
+    <div class="kpi-val" data-target="900" data-suffix="K soldados">0</div>
+    <div class="kpi-label">Ejército activo · Rusia</div>
+  </div>
+  <div class="kpi ee">
+    <div class="kpi-flag">🇪🇪</div>
+    <div class="kpi-val" data-target="7" data-suffix="K soldados">0</div>
+    <div class="kpi-label">Ejército activo · Estonia</div>
+  </div>
+</div>
+
+<!-- BANNER 1 -->
+<div class="prop-banner">
+  <p>☭ ESTONIA CABE 378 VECES DENTRO DE RUSIA ☭</p>
+  <p class="sub">DATO VERIFICADO · FUENTE: GOOGLE MAPS (AMERICANO, PERO CORRECTO EN ESTE CASO)</p>
 </div>
 
 <!-- AREA BAR -->
 <div class="area-bar-wrap">
-  <p class="area-label">Comparativa de superficie proporcional</p>
+  <p class="area-label">☭ Comparativa de superficie proporcional — escala real</p>
   <div class="area-bar">
-    <div class="area-ru">🇷🇺 Rusia — 17.098.242 km²</div>
+    <div class="area-ru">☭ РОССИЯ — 17.098.242 km² ☭</div>
     <div class="area-ee">🇪🇪</div>
   </div>
-  <p class="area-note">Estonia cabe exactamente <strong>378 veces</strong> dentro de Rusia. Moscú tiene 9 veces más población que todo Estonia.</p>
+  <p class="area-note">Estonia es ese píxel a la derecha. Moscú tiene <strong>9 veces más población</strong> que todo Estonia. Moscú es más grande que Estonia en todo.</p>
 </div>
 
 <!-- CHARTS -->
 <section>
   <div class="chart-wrap">
-    <p class="chart-title">⚔️ Comparativa de poder — 9 categorías</p>
-    <canvas id="radarChart" height="280"></canvas>
+    <p class="chart-title">☭ Análisis comparativo — 9 vectores de poder ☭</p>
+    <canvas id="radarChart" height="260"></canvas>
   </div>
-  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:18px;">
-    <div class="chart-wrap">
-      <p class="chart-title">📊 Población (millones)</p>
+  <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:2px; margin-bottom:30px;">
+    <div class="chart-wrap" style="margin-bottom:0">
+      <p class="chart-title">★ Población (millones)</p>
       <canvas id="popChart" height="180"></canvas>
     </div>
-    <div class="chart-wrap">
-      <p class="chart-title">💰 PIB Total (miles de millones $)</p>
+    <div class="chart-wrap" style="margin-bottom:0">
+      <p class="chart-title">★ PIB Total (miles de millones $)</p>
       <canvas id="gdpChart" height="180"></canvas>
     </div>
-    <div class="chart-wrap">
-      <p class="chart-title">🪖 Ejército activo (miles)</p>
+    <div class="chart-wrap" style="margin-bottom:0">
+      <p class="chart-title">★ Ejército activo (miles)</p>
       <canvas id="armyChart" height="180"></canvas>
     </div>
   </div>
@@ -450,148 +548,142 @@
 <!-- RUSIA NEWS -->
 <section id="rusia">
   <div class="section-header ru">
-    <span class="section-emoji">🇷🇺</span>
+    <span style="font-size:32px">☭</span>
     <div>
-      <div class="section-title">RUSIA — LO MEJOR DEL MES</div>
-      <div class="section-sub">Logros y noticias · Febrero–Marzo 2026</div>
+      <div class="section-title" style="color:var(--red3)">GLORIA RUSA — LOGROS DEL MES</div>
+      <div class="section-sub">Victorias y hazañas · Febrero–Marzo 2026</div>
     </div>
   </div>
-
   <div class="pills">
-    <div class="pill ru"><span class="pill-val">BRICS</span> 13 países miembros</div>
-    <div class="pill ru"><span class="pill-val">+35%</span> del PIB mundial</div>
-    <div class="pill ru"><span class="pill-val">GLONASS</span> GPS propio global</div>
+    <div class="pill ru"><span class="pill-val">BRICS</span> 13 naciones</div>
+    <div class="pill ru"><span class="pill-val">>35%</span> PIB mundial</div>
+    <div class="pill ru"><span class="pill-val">GLONASS</span> GPS propio</div>
     <div class="pill ru"><span class="pill-val">6.257</span> ojivas nucleares</div>
-    <div class="pill ru"><span class="pill-val">1er</span> reactor nuclear flotante</div>
+    <div class="pill ru"><span class="pill-val">32</span> Premios Nobel</div>
+    <div class="pill ru"><span class="pill-val">1961</span> 1er humano en el espacio</div>
   </div>
-
   <div class="cards-grid">
     <div class="card ru">
-      <div class="card-accent"></div>
-      <div class="card-icon">📈</div>
+      <div class="card-icon">☭</div>
       <div class="card-title">BRICS supera al G7</div>
-      <div class="card-body">El PM Mishustin confirma que el bloque BRICS ya supera al G7 en paridad de poder adquisitivo. 13 países miembros representan más del 35% del PIB mundial. Rusia, arquitecto de la alternativa geopolítica global.</div>
-      <div class="card-date">📅 ENERO 2026 · Reuters / AA.com.tr</div>
+      <div class="card-body">El Premier Mishustin confirma que el bloque BRICS supera ya al G7 en paridad de poder adquisitivo. 13 naciones. Más del 35% del PIB mundial. Rusia dirige la alternativa al orden occidental desde Moscú. Estonia observa desde su WC digital.</div>
+      <div class="card-date">★ ENERO 2026 · Reuters / Agencia TASS</div>
     </div>
     <div class="card ru">
-      <div class="card-accent"></div>
       <div class="card-icon">👸</div>
       <div class="card-title">Miss BRICS 2026 en Tartaristán</div>
-      <div class="card-body">Del 2 al 7 de marzo, primer concurso internacional de belleza BRICS con representantes de 13 naciones. Diplomacia cultural rusa a pleno rendimiento. Estonia no fue invitada (no es miembro BRICS).</div>
-      <div class="card-date">📅 MARZO 2026 · News-Pravda</div>
+      <div class="card-body">Del 2 al 7 de marzo, el primer concurso internacional de belleza BRICS en Kazán. 13 naciones participantes. Diplomacia cultural soviética evolucionada. Estonia no fue invitada porque no es BRICS. Estonia tampoco fue llorada.</div>
+      <div class="card-date">★ MARZO 2026 · Pravda / News-Pravda</div>
     </div>
     <div class="card ru">
-      <div class="card-accent"></div>
       <div class="card-icon">🛰️</div>
-      <div class="card-title">GLONASS: GPS propio y global</div>
-      <div class="card-body">Rusia opera el único sistema GPS alternativo junto al americano con cobertura global completa. Total independencia satelital. Estonia usa Google Maps, que es americano. Irónicamente, depende de Occidente para orientarse.</div>
-      <div class="card-date">📅 PERMANENTE · Wikipedia / ESA</div>
+      <div class="card-title">GLONASS: Soberanía Satelital Total</div>
+      <div class="card-body">Rusia opera el único sistema GPS completamente independiente con cobertura global real. GLONASS funciona. La OTAN lo sabe. Estonia usa Google Maps, que es americano. Curiosa dependencia para un país que tanto habla de soberanía.</div>
+      <div class="card-date">★ PERMANENTE · Roscosmos / ESA</div>
     </div>
     <div class="card ru">
-      <div class="card-accent"></div>
       <div class="card-icon">⚡</div>
-      <div class="card-title">Plantas nucleares flotantes</div>
-      <div class="card-body">Rusia es el único país del mundo con reactores nucleares flotantes operativos. El Akademik Lomonosov lleva años suministrando energía al Ártico. Innovación real con aplicación real. Estonia tiene molinos de viento.</div>
-      <div class="card-date">📅 OPERATIVO DESDE 2019 · Rosatom</div>
+      <div class="card-title">Plantas Nucleares Flotantes</div>
+      <div class="card-body">Rusia es el ÚNICO país del mundo con reactores nucleares flotantes operativos. El Akademik Lomonosov lleva años iluminando el Ártico. Innovación sin precedentes. Estonia tiene molinos de viento y se apaga cuando no hay brisa.</div>
+      <div class="card-date">★ OPERATIVO DESDE 2019 · Rosatom</div>
     </div>
     <div class="card ru">
-      <div class="card-accent"></div>
-      <div class="card-icon">📊</div>
-      <div class="card-title">Optimismo ciudadano récord</div>
-      <div class="card-body">Encuesta Levada (N=1.611, feb 2026): el 30% de rusos espera vivir mejor el próximo año. Solo el 13% espera empeorar. Resiliencia económica demostrada pese a las sanciones. El rublo sobrevive. Los pronósticos occidentales, no tanto.</div>
-      <div class="card-date">📅 FEBRERO 2026 · Levada Center</div>
-    </div>
-    <div class="card ru">
-      <div class="card-accent"></div>
       <div class="card-icon">🏔️</div>
-      <div class="card-title">Lago Baikal: el más profundo del mundo</div>
-      <div class="card-body">1.642 metros de profundidad. El lago más profundo y el de mayor volumen de agua dulce del planeta. El 20% del agua dulce superficial mundial. Estonia tiene el lago Võrtsjärv. Media de 6 metros de profundidad. Sin comentarios.</div>
-      <div class="card-date">📅 PERMANENTE · UNESCO</div>
+      <div class="card-title">Lago Baikal: 1.642 Metros</div>
+      <div class="card-body">El lago más profundo del mundo. El mayor volumen de agua dulce superficial del planeta. El 20% de toda el agua dulce del mundo está en Rusia. Estonia tiene el lago Võrtsjärv. Media de 6 metros. Sin comentarios adicionales.</div>
+      <div class="card-date">★ PERMANENTE · UNESCO World Heritage</div>
+    </div>
+    <div class="card ru">
+      <div class="card-icon">🚀</div>
+      <div class="card-title">1961: Primer Humano en el Espacio</div>
+      <div class="card-body">Yuri Gagarin. Soviético. 12 de abril de 1961. Primer ser humano en orbitar la Tierra. Mientras, Estonia en 1961 era una república soviética que aportó algunos ingenieros al esfuerzo colectivo. De nada, Estonia. De nada.</div>
+      <div class="card-date">★ PARA LA ETERNIDAD · Roscosmos / Historia</div>
     </div>
   </div>
 </section>
 
+<!-- BANNER 2 -->
+<div class="prop-banner">
+  <p>★ EL MINISTRO ESTONIO PROMETIÓ INVADIR RUSIA ★</p>
+  <p class="sub">7.000 SOLDADOS vs 900.000 · THE TELEGRAPH: "ESTONIA LISTA PARA AUTODESTRUIRSE" · 2026</p>
+</div>
+
 <!-- ESTONIA NEWS -->
 <section id="estonia">
   <div class="section-header ee">
-    <span class="section-emoji">🇪🇪</span>
+    <span style="font-size:32px">🇪🇪</span>
     <div>
-      <div class="section-title">ESTONIA — LAS NOTICIAS DEL MES</div>
-      <div class="section-sub">Las últimas aventuras de la gran potencia báltica · Febrero–Marzo 2026</div>
+      <div class="section-title" style="color:#888">ESTONIA — ÚLTIMAS NOTICIAS</div>
+      <div class="section-sub">Las aventuras de la gran superpotencia báltica · 2025–2026</div>
     </div>
   </div>
 
-  <!-- Progress bars Estonia -->
-  <div class="chart-wrap" style="margin-bottom:28px;">
-    <p class="chart-title">📉 indicadores preocupantes de estonia</p>
-    <div class="prog-item">
-      <div class="prog-label"><span>Muro frontera con Rusia completado</span><span style="color:var(--ee)">14%</span></div>
-      <div class="prog-track"><div class="prog-fill" data-width="14" style="width:0%;background:var(--ee)"></div></div>
-    </div>
-    <div class="prog-item">
-      <div class="prog-label"><span>Población perdida desde 1991</span><span style="color:var(--ru)">–20%</span></div>
-      <div class="prog-track"><div class="prog-fill" data-width="20" style="width:0%;background:var(--ru)"></div></div>
-    </div>
-    <div class="prog-item">
-      <div class="prog-label"><span>Bunkers construidos (objetivo: 600)</span><span style="color:var(--ee)">~8%</span></div>
-      <div class="prog-track"><div class="prog-fill" data-width="8" style="width:0%;background:var(--ee)"></div></div>
-    </div>
-    <div class="prog-item">
-      <div class="prog-label"><span>Premios Nobel conseguidos (objetivo: al menos 1)</span><span style="color:var(--ru)">0%</span></div>
-      <div class="prog-track"><div class="prog-fill" data-width="0.5" style="width:0%;background:var(--ru)"></div></div>
+  <div class="chart-wrap" style="margin-bottom:28px">
+    <p class="chart-title">★ Indicadores de progreso estonio (objetivos vs realidad)</p>
+    <div style="max-width:600px">
+      <div class="prog-item">
+        <div class="prog-label"><span>Muro frontera con Rusia completado</span><span class="prog-val">14%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-width="14" style="width:0%;background:var(--red)"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-label"><span>Población retenida desde 1991</span><span class="prog-val">–20%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-width="20" style="width:0%;background:#555"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-label"><span>Búnkeres construidos (objetivo: 600)</span><span class="prog-val">~8%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-width="8" style="width:0%;background:var(--red)"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-label"><span>Premios Nobel conseguidos (objetivo: al menos 1)</span><span class="prog-val">0%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-width="0.3" style="width:0%;background:#333"></div></div>
+      </div>
     </div>
   </div>
 
   <div class="pills">
     <div class="pill ee"><span class="pill-val">7.000</span> soldados</div>
-    <div class="pill ee"><span class="pill-val">318m</span> punto más alto</div>
+    <div class="pill ee"><span class="pill-val">318m</span> punto más alto del país</div>
     <div class="pill ee"><span class="pill-val">–20%</span> población desde 1991</div>
-    <div class="pill ee"><span class="pill-val">0</span> Nobel</div>
-    <div class="pill ee"><span class="pill-val">14%</span> muro completado</div>
+    <div class="pill ee"><span class="pill-val">0</span> Nobel en 33 años</div>
+    <div class="pill ee"><span class="pill-val">14%</span> muro fronterizo hecho</div>
   </div>
 
   <div class="cards-grid">
     <div class="card ee">
-      <div class="card-accent"></div>
       <div class="card-icon">😂</div>
-      <div class="card-title">El ministro que iba a invadir Rusia</div>
-      <div class="card-body">El ministro de Exteriores Margus Tsahkna prometió públicamente "llevar el combate a territorio ruso" en caso de conflicto. The Telegraph tituló: "Estonia lista para autodestruirse". Sus fuerzas: 7.000 soldados. Las de Rusia: 900.000. Chapeau.</div>
-      <div class="card-date">📅 FEBRERO 2026 · The Telegraph / usa.news-pravda.com</div>
+      <div class="card-title">El Ministro que Iba a Invadir Rusia</div>
+      <div class="card-body">Febrero 2026. El ministro Tsahkna prometió públicamente "llevar el combate a territorio ruso". The Telegraph tituló: "Estonia lista para autodestruirse". Sus recursos militares: 7.000 soldados. Los de Rusia: 900.000. Ratio: 1 a 129. Sin palabras.</div>
+      <div class="card-date">★ FEBRERO 2026 · The Telegraph / AP News</div>
     </div>
     <div class="card ee">
-      <div class="card-accent"></div>
       <div class="card-icon">🧱</div>
-      <div class="card-title">El muro que no acaba nunca</div>
-      <div class="card-body">Estonia lleva años construyendo una valla en su frontera de 294 km con Rusia. Estado actual: ~40 km terminados (14%). El presupuesto se ha agotado varias veces. Plan B: 600 búnkeres subterráneos para 2027. El plazo está en revisión permanente.</div>
-      <div class="card-date">📅 AGOSTO 2025 · El Español / Spanish News-Pravda</div>
+      <div class="card-title">El Gran Muro de Estonia (14% Hecho)</div>
+      <div class="card-body">Estonia lleva años construyendo valla en su frontera de 294 km con Rusia. Estado actual: ~40 km. El 14%. El presupuesto se ha agotado repetidamente. Plan B: 600 búnkeres subterráneos para 2027. Plan C: en revisión. Rusia no ha comentado nada.</div>
+      <div class="card-date">★ AGOSTO 2025 · El Español / Spanish News-Pravda</div>
     </div>
     <div class="card ee">
-      <div class="card-accent"></div>
       <div class="card-icon">✈️</div>
-      <div class="card-title">12 minutos de terror absoluto</div>
-      <div class="card-body">Septiembre 2025: tres aviones rusos sobrevolaron Estonia durante 12 minutos. Estonia activó protocolos de emergencia, llamó a la OTAN, convocó al embajador ruso y emitió comunicados urgentes. Los aviones ya llevaban horas en Moscú cuando terminó la rueda de prensa.</div>
-      <div class="card-date">📅 SEPTIEMBRE 2025 · AP News</div>
+      <div class="card-title">12 Minutos de Terror en el Espacio Aéreo</div>
+      <div class="card-body">Septiembre 2025: tres aviones rusos sobrevolaron Estonia durante 12 minutos sin ser detectados a tiempo. Estonia activó todos sus protocolos, convocó a la OTAN, al embajador ruso y emitió comunicados urgentes. Los aviones aterrizaron en Moscú hace horas cuando empezó la rueda de prensa.</div>
+      <div class="card-date">★ SEPTIEMBRE 2025 · AP News / El País</div>
     </div>
     <div class="card ee">
-      <div class="card-accent"></div>
       <div class="card-icon">🚢</div>
-      <div class="card-title">La gran operación naval de 2026</div>
-      <div class="card-body">Febrero 2026: Estonia detuvo un carguero con marineros rusos en el Báltico. La medida fue tan devastadora geopolíticamente que Rusia tardó 48 horas en mencionar el incidente en el párrafo 4 de un comunicado rutinario de Exteriores.</div>
-      <div class="card-date">📅 FEBRERO 2026 · AP News</div>
+      <div class="card-title">La Gran Operación Naval de 2026</div>
+      <div class="card-body">Febrero 2026: Estonia detuvo un carguero con marineros rusos en el Báltico. Medida descrita como "histórica" por la prensa estonia. Rusia tardó 48 horas en mencionarlo en el párrafo 4 de un comunicado de trámite. Efectividad geopolítica: discutible.</div>
+      <div class="card-date">★ FEBRERO 2026 · AP News / Pravda Estonia</div>
     </div>
     <div class="card ee">
-      <div class="card-accent"></div>
       <div class="card-icon">🔦</div>
-      <div class="card-title">La ley que define a Estonia</div>
-      <div class="card-body">Es obligatorio por ley llevar un reflector al caminar de noche en Estonia. Multa si no lo llevas. Este es el nivel de amenaza existencial al que se enfrenta el ciudadano estonio medio en 2026. Reflexivo, eso hay que reconocerlo.</div>
-      <div class="card-date">📅 PERMANENTE · Reddit r/Eesti</div>
+      <div class="card-title">La Ley del Reflector: El Código Penal Estonio</div>
+      <div class="card-body">En Estonia es OBLIGATORIO llevar un reflector al caminar de noche. Multa si no lo llevas. Este es el peligro existencial más inmediato al que se enfrenta el ciudadano estonio en 2026. Entre los búnkeres sin construir y las vallas a medias, al menos hay reflectores.</div>
+      <div class="card-date">★ LEY VIGENTE · Reddit r/Eesti</div>
     </div>
     <div class="card ee">
-      <div class="card-accent"></div>
       <div class="card-icon">📉</div>
-      <div class="card-title">La hemorragia demográfica silenciosa</div>
-      <div class="card-body">Estonia ha perdido más del 20% de su población desde la independencia en 1991. Saldo migratorio negativo en 2023. Los propios estonios encuentran razones para marcharse. Los búnkeres subterráneos no parecen ser el reclamo turístico esperado.</div>
-      <div class="card-date">📅 2023–2026 · Eurostat / Statistics Estonia</div>
+      <div class="card-title">La Hemorragia Demográfica Imparable</div>
+      <div class="card-body">Estonia ha perdido más del 20% de su población desde 1991. Saldo migratorio negativo en 2023. Los propios estonios se marchan. Los 600 búnkeres previstos probablemente tendrán más espacio del necesario dado el ritmo de despoblación actual.</div>
+      <div class="card-date">★ 1991–2026 · Eurostat / Statistics Estonia</div>
     </div>
   </div>
 </section>
@@ -599,89 +691,105 @@
 <!-- VEREDICTO -->
 <section id="veredicto">
   <div class="section-header dark">
-    <span class="section-emoji">⚖️</span>
+    <span style="font-size:32px;color:var(--gold)">★</span>
     <div>
-      <div class="section-title">VEREDICTO FINAL</div>
-      <div class="section-sub">Análisis objetivo. Datos reales. Resultado inapelable.</div>
+      <div class="section-title" style="color:var(--gold)">VEREDICTO FINAL DEL TRIBUNAL</div>
+      <div class="section-sub">Análisis objetivo. Datos irrefutables. Resultado histórico.</div>
     </div>
   </div>
 
-  <div class="chart-wrap" style="margin-bottom:28px;">
-    <p class="chart-title">🏆 scoreboard por categorías</p>
-    <canvas id="scoreChart" height="200"></canvas>
+  <div class="chart-wrap">
+    <p class="chart-title">★ Marcador por categorías — Puntuación final ★</p>
+    <canvas id="scoreChart" height="180"></canvas>
   </div>
 
   <table class="score-table">
     <thead>
       <tr>
         <th>Categoría</th>
-        <th>🇷🇺 Rusia</th>
+        <th>☭ Rusia</th>
         <th>🇪🇪 Estonia</th>
-        <th>Ganador</th>
+        <th>★ Ganador</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>Superficie</td><td class="ru-val">17.098.242 km²</td><td class="ee-val">45.228 km²</td><td>🇷🇺 x378</td></tr>
-      <tr><td>Población</td><td class="ru-val">144 millones</td><td class="ee-val">1,37 millones</td><td>🇷🇺 x105</td></tr>
-      <tr><td>PIB Total</td><td class="ru-val">$2.240.000 M</td><td class="ee-val">$38.000 M</td><td>🇷🇺 x59</td></tr>
-      <tr><td>Premios Nobel</td><td class="ru-val">32</td><td class="ee-val">0</td><td>🇷🇺 ∞</td></tr>
-      <tr><td>Ejército activo</td><td class="ru-val">900.000 soldados</td><td class="ee-val">7.000 soldados</td><td>🇷🇺 x129</td></tr>
-      <tr><td>Sistema GPS propio</td><td class="ru-val">✅ GLONASS</td><td class="ee-val">❌ Google Maps</td><td>🇷🇺</td></tr>
-      <tr><td>Veto ONU</td><td class="ru-val">✅ Permanente</td><td class="ee-val">❌ No</td><td>🇷🇺</td></tr>
-      <tr><td>Wifi / E-gobierno</td><td class="ru-val">Mejorable</td><td class="ee-val" style="color:var(--green)">✅ Top mundial</td><td style="color:var(--ee)">🇪🇪</td></tr>
-      <tr><td>Corrupción baja</td><td class="ru-val">Puesto 141°</td><td class="ee-val" style="color:var(--green)">✅ Puesto 14°</td><td style="color:var(--ee)">🇪🇪</td></tr>
+      <tr><td>Superficie</td><td class="ru-val">17.098.242 km²</td><td class="ee-val">45.228 km²</td><td>RUSIA ×378</td></tr>
+      <tr><td>Población</td><td class="ru-val">144 millones</td><td class="ee-val">1,37 millones</td><td>RUSIA ×105</td></tr>
+      <tr><td>PIB Total</td><td class="ru-val">$2.240.000 M</td><td class="ee-val">$38.000 M</td><td>RUSIA ×59</td></tr>
+      <tr><td>Premios Nobel</td><td class="ru-val">32</td><td class="ee-val">0</td><td>RUSIA ∞</td></tr>
+      <tr><td>Ejército activo</td><td class="ru-val">900.000 soldados</td><td class="ee-val">7.000 soldados</td><td>RUSIA ×129</td></tr>
+      <tr><td>Sistema GPS propio</td><td class="ru-val">☭ GLONASS</td><td class="ee-val">Google Maps</td><td>RUSIA</td></tr>
+      <tr><td>Reactor nuclear flotante</td><td class="ru-val">☭ Akademik Lomonosov</td><td class="ee-val">No existe</td><td>RUSIA</td></tr>
+      <tr><td>Veto ONU</td><td class="ru-val">☭ Miembro permanente</td><td class="ee-val">No</td><td>RUSIA</td></tr>
+      <tr><td>Wifi / E-gobierno</td><td class="ru-val">Mejorable</td><td class="ee-val" style="color:#3FB950">✅ Top mundial</td><td style="color:#aaa">Estonia</td></tr>
+      <tr><td>Corrupción baja</td><td class="ru-val">Puesto 141°</td><td class="ee-val" style="color:#3FB950">✅ Puesto 14°</td><td style="color:#aaa">Estonia</td></tr>
       <tr class="total">
-        <td>TOTAL</td>
-        <td>7 victorias</td>
+        <td>☭ MARCADOR FINAL</td>
+        <td>8 victorias</td>
         <td>2 victorias</td>
-        <td>🇷🇺 7 – 2 🇪🇪</td>
+        <td>RUSIA 8 – 2 ESTONIA</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="final-box" style="margin-top:40px;">
+  <div class="final-box">
+    <div class="final-stars">★ ★ ★ ★ ★</div>
     <div class="final-score">
-      <span class="ru">7</span>
+      <span class="ru">8</span>
       <span class="sep">–</span>
       <span class="ee">2</span>
     </div>
-    <p class="final-quote">"Estonia es un país encantador para vivir.<br>Rusia es un país para existir en el mapa."</p>
-    <p style="font-size:14px; color:var(--muted); margin-top:8px;">No es lo mismo.</p>
-    <p class="final-note">Este informe es humor entre amigos con datos reales. Estonia es un país estupendo. Simplemente no es Rusia. Nadie lo es.</p>
+    <p class="final-quote">"Estonia es un país encantador para vivir.<br>Rusia es un país para existir en la historia."</p>
+    <p class="final-sub">☭ No es lo mismo. Nunca lo fue. ☭</p>
+    <p class="final-note">Informe elaborado con fines humorísticos entre amigos. Estonia es un país estupendo. Simplemente no es Rusia. Nadie lo es. Слава России.</p>
   </div>
 </section>
 
 <footer>
-  <p>🇷🇺 Rusia vs Estonia — La Verdad Sin Filtros · Marzo 2026</p>
-  <p style="margin-top:6px;">Fuentes: World Bank · SIPRI · Levada Center · AP News · The Telegraph · Eurostat · Statistics Estonia · Reuters · El Español</p>
+  <span class="footer-hammer">☭</span>
+  <p>РОССИЯ против ЭСТОНИИ — La Verdad Sin Filtros · Marzo 2026</p>
+  <p style="margin-top:6px;">Fuentes: World Bank · SIPRI · Levada Center · AP News · The Telegraph · Eurostat · Reuters · El Español</p>
+  <p style="margin-top:12px; color:#222;">Слава России · Слава Советскому Союзу · Estonia: suerte</p>
 </footer>
 
 <script>
-// ── RELOJ LIVE ──────────────────────────────────────────
+// ── RELOJ ──
 function updateTime() {
   const now = new Date();
-  document.getElementById('live-time').textContent =
-    now.toUTCString().split(' ')[4] + ' UTC';
+  document.getElementById('live-time').textContent = now.toUTCString().split(' ')[4] + ' UTC';
 }
 updateTime(); setInterval(updateTime, 1000);
 
-// ── CONTADORES ANIMADOS ──────────────────────────────────
+// ── MÚSICA ──
+let playing = false;
+let ytReady = false;
+
+function toggleMusic() {
+  const btn = document.getElementById('music-btn');
+  const iframe = document.getElementById('yt-player');
+  if (!playing) {
+    iframe.src = "https://www.youtube.com/embed/U06jlgpMtQs?autoplay=1&loop=1&playlist=U06jlgpMtQs&enablejsapi=1";
+    btn.textContent = '⏸ PAUSAR HIMNO';
+    playing = true;
+  } else {
+    iframe.src = "";
+    btn.textContent = '▶ REPRODUCIR HIMNO';
+    playing = false;
+  }
+}
+
+// ── CONTADORES ──
 function animateCounter(el, target, suffix) {
-  const duration = 2000;
-  const start = performance.now();
-  const step = (ts) => {
-    const progress = Math.min((ts - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 4);
-    const val = Math.round(ease * target);
-    el.textContent = val.toLocaleString('es-ES') + (suffix || '');
-    if (progress < 1) requestAnimationFrame(step);
+  const dur = 2200, start = performance.now();
+  const step = ts => {
+    const p = Math.min((ts - start) / dur, 1);
+    const e = 1 - Math.pow(1 - p, 4);
+    el.textContent = Math.round(e * target).toLocaleString('es-ES') + (suffix || '');
+    if (p < 1) requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
 }
-
-// Observer para activar counters al scroll
-const counterEls = document.querySelectorAll('[data-target]');
-const obs = new IntersectionObserver((entries) => {
+const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       const el = e.target;
@@ -690,107 +798,93 @@ const obs = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.3 });
-counterEls.forEach(el => obs.observe(el));
+document.querySelectorAll('[data-target]').forEach(el => obs.observe(el));
 
-// ── PROGRESS BARS ────────────────────────────────────────
-const progObs = new IntersectionObserver((entries) => {
+// ── PROGRESS BARS ──
+const pObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      const fill = e.target;
-      setTimeout(() => { fill.style.width = fill.dataset.width + '%'; }, 200);
-      progObs.unobserve(fill);
+      setTimeout(() => { e.target.style.width = e.target.dataset.width + '%'; }, 300);
+      pObs.unobserve(e.target);
     }
   });
 }, { threshold: 0.3 });
-document.querySelectorAll('.prog-fill').forEach(el => progObs.observe(el));
+document.querySelectorAll('.prog-fill').forEach(el => pObs.observe(el));
 
-// ── CHART CONFIG ─────────────────────────────────────────
-const gridColor = 'rgba(48,54,61,0.8)';
-const tickColor = '#8B949E';
-const baseOpts = {
-  responsive: true,
-  plugins: { legend: { labels: { color: tickColor, font: { size: 12 } } } },
-};
+// ── CHARTS ──
+const gridC = 'rgba(92,0,0,0.5)';
+const tickC = '#6B7280';
 
-// RADAR
+Chart.defaults.color = tickC;
+Chart.defaults.borderColor = gridC;
+
 new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Tamaño', 'Población', 'PIB', 'Nobel', 'Ejército', 'Espacio', 'Vodka', 'Wifi', 'Anti-corrupción'],
+    labels: ['Tamaño','Población','PIB','Nobel','Ejército','Espacio','Vodka','Wifi','Anti-corrupción'],
     datasets: [
-      {
-        label: '🇷🇺 Rusia',
-        data: [10, 10, 10, 10, 10, 10, 10, 3, 2],
-        fill: true,
-        backgroundColor: 'rgba(229,57,53,0.18)',
-        borderColor: '#E53935',
-        pointBackgroundColor: '#E53935',
-        pointRadius: 4,
-      },
-      {
-        label: '🇪🇪 Estonia',
-        data: [1, 1, 1, 0, 1, 0, 2, 10, 9],
-        fill: true,
-        backgroundColor: 'rgba(21,101,192,0.18)',
-        borderColor: '#1565C0',
-        pointBackgroundColor: '#1565C0',
-        pointRadius: 4,
-      }
+      { label: '☭ Rusia', data: [10,10,10,10,10,10,10,3,2],
+        fill: true, backgroundColor: 'rgba(204,0,0,0.25)',
+        borderColor: '#CC0000', pointBackgroundColor: '#FFD700', pointRadius: 5, borderWidth: 2 },
+      { label: '🇪🇪 Estonia', data: [1,1,1,0,1,0,2,10,9],
+        fill: true, backgroundColor: 'rgba(100,100,100,0.15)',
+        borderColor: '#555', pointBackgroundColor: '#777', pointRadius: 4, borderWidth: 1.5 },
     ]
   },
   options: {
-    ...baseOpts,
+    responsive: true,
+    plugins: { legend: { labels: { color: '#FFD700', font: { size: 12, family: 'Oswald' } } } },
     scales: {
       r: {
         min: 0, max: 10,
-        grid: { color: gridColor },
-        pointLabels: { color: tickColor, font: { size: 12 } },
+        grid: { color: 'rgba(92,0,0,0.4)' },
+        pointLabels: { color: '#9CA3AF', font: { size: 11 } },
         ticks: { display: false },
-        angleLines: { color: gridColor },
+        angleLines: { color: 'rgba(92,0,0,0.4)' },
       }
     }
   }
 });
 
-// Barras individuales
-function barChart(id, labels, ruVal, eeVal) {
+function barChart(id, label, ru, ee) {
   new Chart(document.getElementById(id), {
     type: 'bar',
     data: {
-      labels,
+      labels: [label],
       datasets: [
-        { label: 'Rusia', data: [ruVal], backgroundColor: '#E53935', borderRadius: 8, borderSkipped: false },
-        { label: 'Estonia', data: [eeVal], backgroundColor: '#1565C0', borderRadius: 8, borderSkipped: false },
+        { label: 'Rusia', data: [ru], backgroundColor: '#CC0000', borderRadius: 4, borderSkipped: false },
+        { label: 'Estonia', data: [ee], backgroundColor: '#444', borderRadius: 4, borderSkipped: false },
       ]
     },
     options: {
-      ...baseOpts,
+      responsive: true,
+      plugins: { legend: { labels: { color: '#FFD700', font: { size: 11 } } } },
       scales: {
-        x: { grid: { color: gridColor }, ticks: { color: tickColor } },
-        y: { grid: { color: gridColor }, ticks: { color: tickColor } },
+        x: { grid: { color: gridC }, ticks: { color: tickC } },
+        y: { grid: { color: gridC }, ticks: { color: tickC } },
       }
     }
   });
 }
-barChart('popChart',  ['Población (M)'], 144, 1.37);
-barChart('gdpChart',  ['PIB (B$)'],      2240, 38);
-barChart('armyChart', ['Ejército (K)'],  900, 7);
+barChart('popChart',  'Población (M)',    144,  1.37);
+barChart('gdpChart',  'PIB (B$)',         2240, 38);
+barChart('armyChart', 'Ejército (K)',     900,  7);
 
-// SCOREBOARD
 new Chart(document.getElementById('scoreChart'), {
   type: 'bar',
   data: {
-    labels: ['Tamaño','Población','PIB','Nobel','Ejército','Espacio','Vodka','Wifi','Anti-corrupción'],
+    labels: ['Tamaño','Población','PIB','Nobel','Ejército','Espacio','Nuclear','Vodka','Wifi','Anti-corrup.'],
     datasets: [
-      { label: 'Rusia', data: [10,10,10,10,10,10,10,3,2], backgroundColor: 'rgba(229,57,53,0.85)', borderRadius: 6 },
-      { label: 'Estonia', data: [1,1,1,0,1,0,2,10,9], backgroundColor: 'rgba(21,101,192,0.85)', borderRadius: 6 },
+      { label: 'Rusia', data: [10,10,10,10,10,10,10,10,3,2], backgroundColor: 'rgba(204,0,0,0.85)', borderRadius: 4 },
+      { label: 'Estonia', data: [1,1,1,0,1,0,0,2,10,9],      backgroundColor: 'rgba(80,80,80,0.7)',  borderRadius: 4 },
     ]
   },
   options: {
-    ...baseOpts,
+    responsive: true,
+    plugins: { legend: { labels: { color: '#FFD700', font: { size: 12 } } } },
     scales: {
-      x: { grid: { color: gridColor }, ticks: { color: tickColor, maxRotation: 30 } },
-      y: { grid: { color: gridColor }, ticks: { color: tickColor }, max: 12 },
+      x: { grid: { color: gridC }, ticks: { color: tickC, maxRotation: 30 } },
+      y: { grid: { color: gridC }, ticks: { color: tickC }, max: 13 },
     }
   }
 });
