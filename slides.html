@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>☭ РOCCИЯ vs ЭСТОНИЯ — Presentación Oficial del Kremlin</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Special+Elite&family=Bebas+Neue&display=swap');
+
+:root {
+  --red:#CC0000;--red2:#8B0000;--red3:#FF2222;
+  --gold:#FFD700;--black:#080000;--dark:#150000;
+  --card:#1C0404;--white:#FFF5F5;--grey:#9CA3AF;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-family:'Oswald',sans-serif}
+
+/* ═══════════════════ LAYOUT ═══════════════════ */
+#deck{
+  position:relative;width:100%;height:100%;
+}
+.slide{
+  position:absolute;inset:0;
+  display:none;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:20px;overflow:hidden;
+}
+.slide.active{display:flex}
+
+/* ═══════════════════ NAVIGATION ═══════════════════ */
+#nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:900;
+  padding:12px 20px;
+  background:rgba(8,0,0,.9);
+  border-top:2px solid var(--red);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.btn{
+  background:var(--red);color:white;border:2px solid var(--gold);
+  padding:8px 22px;font-family:'Oswald',sans-serif;font-size:14px;
+  font-weight:700;cursor:pointer;letter-spacing:1px;
+  text-transform:uppercase;transition:all .15s;user-select:none;
+  min-width:80px;
+}
+.btn:hover{background:#FF1A1A}
+.btn:active{transform:scale(.95)}
+.btn:disabled{background:#333;border-color:#444;color:#555;cursor:default}
+#progress-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+#slide-counter{font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+#progress-bar{width:100%;height:4px;background:#300;border-radius:2px;overflow:hidden}
+#progress-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold));transition:width .3s ease;width:0%}
+
+/* ═══════════════════ ENTRANCES ═══════════════════ */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes zoomIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+@keyframes bounceIn{0%{opacity:0;transform:scale(.3)}60%{transform:scale(1.1)}80%{transform:scale(.95)}100%{opacity:1;transform:scale(1)}}
+@keyframes shakeX{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes ticker{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
+@keyframes pulse2{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes countUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes starSpin{0%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(1.2)}100%{transform:rotate(360deg) scale(1)}}
+
+.a-fade{animation:fadeIn .6s ease both}
+.a-up{animation:slideUp .5s ease both}
+.a-left{animation:slideLeft .5s ease both}
+.a-zoom{animation:zoomIn .5s cubic-bezier(.34,1.56,.64,1) both}
+.a-bounce{animation:bounceIn .7s cubic-bezier(.34,1.56,.64,1) both}
+.a-float{animation:float 3s ease-in-out infinite}
+.a-pulse{animation:pulse2 2s ease-in-out infinite}
+.a-star{animation:starSpin 4s linear infinite}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}
+.d4{animation-delay:.4s}.d5{animation-delay:.5s}.d6{animation-delay:.6s}
+.d7{animation-delay:.7s}.d8{animation-delay:.8s}
+
+/* ═══════════════════ BG PATTERNS ═══════════════════ */
+.bg-soviet{background:var(--black);background-image:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(180,0,0,.04) 40px,rgba(180,0,0,.04) 80px)}
+.bg-red{background:linear-gradient(135deg,var(--red2) 0%,var(--black) 100%)}
+.bg-dark{background:linear-gradient(135deg,var(--dark),var(--black) 70%)}
+.bg-gold{background:linear-gradient(135deg,#3D2B00,var(--black) 70%)}
+
+/* ═══════════════════ TYPOGRAPHY ═══════════════════ */
+.t-hero{font-family:'Bebas Neue','Oswald',sans-serif;font-size:clamp(48px,13vw,120px);line-height:.9;text-transform:uppercase;letter-spacing:2px}
+.t-big{font-family:'Bebas Neue','Oswald',sans-serif;font-size:clamp(36px,9vw,90px);line-height:1;text-transform:uppercase;letter-spacing:2px}
+.t-med{font-family:'Oswald',sans-serif;font-size:clamp(20px,5vw,44px);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.t-small{font-family:'Special Elite',serif;font-size:clamp(13px,3vw,20px);line-height:1.5}
+.t-micro{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--grey)}
+.c-red{color:var(--red3)}.c-gold{color:var(--gold)}.c-grey{color:var(--grey)}
+.c-white{color:var(--white)}.c-dark{color:#555}
+.line-through{text-decoration:line-through;text-decoration-color:var(--red)}
+
+/* ═══════════════════ STAR / HAMMER ═══════════════════ */
+.star-big{font-size:clamp(40px,10vw,90px);color:var(--gold);text-shadow:0 0 30px rgba(255,215,0,.6)}
+.hammer-icon{font-size:clamp(30px,8vw,70px);display:block;text-align:center;margin-bottom:10px}
+
+/* ═══════════════════ STAT CARD ═══════════════════ */
+.stat-pair{display:flex;gap:12px;width:100%;max-width:700px;flex-wrap:wrap;justify-content:center}
+.stat-box{flex:1;min-width:140px;background:var(--card);border:1px solid #400;padding:20px 16px;text-align:center}
+.stat-box.win{border-top:4px solid var(--red)}
+.stat-box.lose{border-top:4px solid #333}
+.stat-num{font-family:'Bebas Neue','Oswald',sans-serif;font-size:clamp(28px,8vw,64px);line-height:1}
+.stat-box.win .stat-num{color:var(--red3);text-shadow:0 0 15px rgba(255,26,26,.4)}
+.stat-box.lose .stat-num{color:#555}
+.stat-label{font-size:11px;color:var(--grey);letter-spacing:2px;text-transform:uppercase;margin-top:8px}
+.ratio-badge{background:var(--red);color:var(--gold);font-family:'Bebas Neue','Oswald',sans-serif;font-size:clamp(16px,4vw,28px);letter-spacing:2px;padding:6px 18px;margin-top:10px;display:inline-block}
+
+/* ═══════════════════ BAR VISUAL ═══════════════════ */
+.bar-visual{width:100%;max-width:680px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.bar-label{font-size:12px;color:var(--grey);letter-spacing:1px;min-width:100px;text-align:right;text-transform:uppercase}
+.bar-track{flex:1;height:18px;background:#1A0000;border:1px solid #400;overflow:hidden}
+.bar-fill{height:100%;transition:width 1.2s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;padding:0 6px}
+.bar-fill.ru{background:linear-gradient(90deg,var(--red2),var(--red))}
+.bar-fill.ee{background:#333}
+.bar-val{font-size:10px;font-weight:700;color:white;white-space:nowrap}
+
+/* ═══════════════════ PROP BOX ═══════════════════ */
+.prop-box{
+  border:2px solid var(--gold);
+  background:rgba(180,0,0,.15);
+  padding:20px 28px;max-width:720px;
+  text-align:center;
+}
+.quote-box{
+  border-left:4px solid var(--gold);
+  background:var(--card);
+  padding:16px 20px;max-width:680px;
+  text-align:left;
+}
+.quote-text{font-family:'Special Elite',serif;font-size:clamp(14px,3vw,19px);color:var(--white);line-height:1.5;font-style:italic}
+.quote-src{font-size:11px;color:var(--gold);letter-spacing:2px;margin-top:10px;text-transform:uppercase}
+
+/* ═══════════════════ TICKER ═══════════════════ */
+.slide-ticker{
+  position:absolute;bottom:56px;left:0;right:0;
+  background:var(--red);padding:7px 0;overflow:hidden;
+  font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  white-space:nowrap;
+}
+.slide-ticker span{display:inline-block;animation:ticker 25s linear infinite;padding-right:60px}
+
+/* ═══════════════════ SLIDE TITLE BAR ═══════════════════ */
+.slide-topbar{
+  position:absolute;top:0;left:0;right:0;
+  background:rgba(0,0,0,.7);
+  border-bottom:2px solid var(--red);
+  padding:8px 20px;display:flex;align-items:center;justify-content:space-between;
+}
+.topbar-tag{font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+
+/* ═══════════════════ EMOJI ARMY ═══════════════════ */
+.emoji-grid{display:flex;flex-wrap:wrap;gap:2px;max-width:680px;line-height:1.3;font-size:clamp(10px,2.5vw,16px)}
+
+/* ═══════════════════ WALL PROGRESS ═══════════════════ */
+.wall-track{
+  width:100%;max-width:680px;
+  height:clamp(30px,6vw,50px);
+  background:#111;border:2px solid #400;overflow:hidden;
+  position:relative;
+}
+.wall-fill{
+  height:100%;background:repeating-linear-gradient(90deg,var(--red),var(--red) 8px,var(--red2) 8px,var(--red2) 16px);
+  transition:width 2s cubic-bezier(.4,0,.2,1);width:0%;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ═══════════════════ QUIZ MINI-GAME ═══════════════════ */
+#quiz-container{display:none;width:100%;max-width:680px;flex-direction:column;gap:14px}
+#quiz-container.active{display:flex}
+.quiz-question{
+  font-family:'Oswald',sans-serif;font-size:clamp(16px,3.5vw,24px);
+  font-weight:700;text-align:center;color:var(--white);line-height:1.3;
+  padding:10px 0;
+}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quiz-opt{
+  background:var(--card);border:2px solid #400;
+  padding:clamp(12px,3vw,20px);
+  font-family:'Oswald',sans-serif;font-size:clamp(14px,3vw,19px);
+  font-weight:700;color:var(--white);cursor:pointer;
+  text-align:center;text-transform:uppercase;letter-spacing:1px;
+  transition:all .15s;user-select:none;
+}
+.quiz-opt:hover:not(:disabled){background:#2A0808;border-color:var(--red)}
+.quiz-opt:active:not(:disabled){transform:scale(.97)}
+.quiz-opt.correct{background:#052e05 !important;border-color:#22c55e !important;color:#22c55e !important}
+.quiz-opt.wrong{background:#2e0505 !important;border-color:var(--red) !important;color:var(--red3) !important;animation:shakeX .4s ease}
+.quiz-opt:disabled{cursor:default;opacity:.7}
+.quiz-feedback{
+  text-align:center;font-family:'Special Elite',serif;
+  font-size:clamp(15px,3.5vw,22px);min-height:32px;
+  padding:8px;
+}
+.quiz-feedback.ok{color:#22c55e}
+.quiz-feedback.bad{color:var(--red3)}
+.quiz-score-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--card);border:1px solid #400;padding:10px 16px;
+}
+.quiz-score-label{font-size:11px;color:var(--grey);letter-spacing:2px;text-transform:uppercase}
+.quiz-score-val{font-family:'Bebas Neue','Oswald',sans-serif;font-size:28px;color:var(--gold)}
+.quiz-progress{font-size:11px;color:var(--grey)}
+.quiz-next-btn{display:none;width:100%}
+
+/* ═══════════════════ RESULTS ═══════════════════ */
+.result-medal{font-size:clamp(50px,15vw,100px);display:block;text-align:center;margin-bottom:10px}
+.result-score{font-family:'Bebas Neue','Oswald',sans-serif;font-size:clamp(60px,15vw,120px);color:var(--gold);line-height:1}
+
+/* ═══════════════════ FINISH SCREEN ═══════════════════ */
+.confetti-bg{
+  background:linear-gradient(135deg,#3D0000,var(--black));
+}
+.star-explosion{font-size:clamp(24px,6vw,50px);letter-spacing:8px;animation:pulse2 1.5s ease-in-out infinite}
+
+/* ═══════════════════ MOBILE SWIPE ═══════════════════ */
+@media(max-width:500px){
+  .stat-pair{flex-direction:column}
+  .stat-box{min-width:0}
+  .quiz-options{grid-template-columns:1fr}
+  .bar-label{min-width:70px;font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<div id="deck">
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 1: PORTADA
+══════════════════════════════════════════════ -->
+<div class="slide bg-soviet" id="s1">
+  <div class="star-big a-bounce" style="margin-bottom:10px">☭</div>
+  <p class="t-micro c-gold a-fade d1" style="margin-bottom:14px;letter-spacing:6px">KREMLIN PRODUCTIONS · INFORME Nº1 · 2026</p>
+  <div class="t-hero c-red a-zoom d2" style="text-align:center;text-shadow:0 0 40px rgba(255,26,26,.5)">РОССИЯ</div>
+  <div class="t-big c-gold a-fade d3" style="letter-spacing:10px;margin:4px 0">— VS —</div>
+  <div class="t-hero a-zoom d4" style="text-align:center;color:#666">
+    <span class="line-through">ЭСТОНИЯ</span>
+  </div>
+  <p class="t-small c-grey a-up d5" style="margin-top:18px;text-align:center;max-width:480px;font-style:italic">"Un análisis histórico, definitivo e imparcial.<br>Datos verificados por el Ministerio de la Verdad."</p>
+  <div class="a-up d6" style="margin-top:20px">
+    <div style="background:var(--red);border:2px solid var(--gold);padding:8px 24px;display:inline-flex;gap:10px;align-items:center">
+      <span style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)">DESLIZA PARA COMENZAR ▶</span>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:60px;font-size:8px;letter-spacing:2px;color:#333;text-transform:uppercase">Presentación oficial · Controles: ← → flechas teclado · táctil: deslizar</div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 2: ADVERTENCIA OFICIAL
+══════════════════════════════════════════════ -->
+<div class="slide bg-dark" id="s2">
+  <div class="slide-topbar"><div class="topbar-tag">☭ Aviso Legal</div><div class="topbar-tag">Presentación Oficial</div></div>
+  <div style="max-width:680px;text-align:center">
+    <div class="star-big a-bounce" style="font-size:50px;margin-bottom:16px">⚠️</div>
+    <p class="t-med c-gold a-zoom d1" style="margin-bottom:20px">ADVERTENCIA DEL KREMLIN</p>
+    <div class="prop-box a-up d2">
+      <p class="t-small c-white" style="line-height:1.8">Esta presentación contiene <span class="c-gold">datos reales</span>, datos <span class="c-red">levemente exagerados</span>, y otros <span style="color:#ff6b6b">completamente inventados</span>.<br><br>
+      Al final habrá un <span class="c-gold">quiz de 10 preguntas</span> para ver si sabes distinguirlos.<br><br>
+      Estonia es un país estupendo. Simplemente no es Rusia.</p>
+    </div>
+    <p class="t-micro c-grey a-fade d3" style="margin-top:20px">Слава России · Entretenimiento entre amigos · Sin ánimo de incidente diplomático</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 3: TAMAÑO
+══════════════════════════════════════════════ -->
+<div class="slide bg-soviet" id="s3">
+  <div class="slide-topbar"><div class="topbar-tag">☭ Dato nº1 / 10</div><div class="topbar-tag">Geografía</div></div>
+  <p class="t-med c-gold a-up" style="margin-bottom:18px;text-align:center">TAMAÑO: NO ES UN MITO</p>
+  <div class="stat-pair a-zoom d2">
+    <div class="stat-box win">
+      <div style="font-size:30px;margin-bottom:8px">🇷🇺</div>
+      <div class="stat-num">17.098.242</div>
+      <div class="stat-label">km² · Rusia</div>
+      <div class="ratio-badge">EL PAÍS MÁS GRANDE</div>
+    </div>
+    <div class="stat-box lose">
+      <div style="font-size:30px;margin-bottom:8px">🇪🇪</div>
+      <div class="stat-num" style="font-size:clamp(20px,5vw,40px)">45.228</div>
+      <div class="stat-label">km² · Estonia</div>
+      <div style="background:#222;color:#555;font-family:'Oswald',sans-serif;font-size:14px;padding:4px 14px;margin-top:10px;letter-spacing:1px">Equivale a... ¿Teruel?</div>
+    </div>
+  </div>
+  <div class="a-up d4" style="margin-top:18px;text-align:center">
+    <div style="background:rgba(180,0,0,.2);border:1px solid #500;padding:12px 20px;max-width:580px">
+      <p class="t-small c-white">Estonia cabe <span class="c-gold" style="font-size:1.4em;font-family:'Bebas Neue',sans-serif">378 veces</span> dentro de Rusia.<br>
+      <span class="c-grey" style="font-size:.9em">Si Rusia fuera un parking, Estonia sería la plaza de moto del final.</span></p>
+    </div>
+  </div>
+  <div class="slide-ticker"><span>☭ DATO EXTRA: RUSIA LIMITA CON 14 PAÍSES · ESTONIA LIMITA CON 2 (RUSIA Y LETONIA) · UNO DE LOS DOS LA IGNORA ☭</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 4: POBLACIÓN
+══════════════════════════════════════════════ -->
+<div class="slide bg-dark" id="s4">
+  <div class="slide-topbar"><div class="topbar-tag">☭ Dato nº2 / 10</div><div class="topbar-tag">Demografía</div></div>
+  <p class="t-med c-gold a-up" style="margin-bottom:16px;text-align:center">POBLACIÓN: MOSCÚ > ESTONIA</p>
+  <div class="bar-visual a-fade d2">
+    <div class="bar-row">
+      <div class="bar-label">Rusia</div>
+      <div class="bar-track"><div class="bar-fill ru" data-w="100" style="width:0%"><span class="bar-val">144 millones</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Moscú sola</div>
+      <div class="bar-track"><div class="bar-fill ru" data-w="87" style="width:0%;background:linear-gradient(90deg,#FF6600,#FF8800)"><span class="bar-val">12,6 millones</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Estonia</div>
+      <div class="bar-track"><div class="bar-fill ee" data-w="0.95" style="width:0%"><span class="bar-val">1,37 M</span></div></div>
+    </div>
+  </div>
+  <div class="a-up d4" style="margin-top:18px;max-width:620px;text-align:center">
+    <p class="t-small c-white">Moscú tiene <span class="c-gold">9× más habitantes</span> que Estonia entera.<br>
+    <span class="c-grey" style="font-size:.88em">El concierto de Taylor Swift en Madrid congregó ~90.000 personas. Necesitaría <span style="color:var(--red3)">152 conciertos seguidos</span> para cubrir la población de Estonia. Y aun así no llegaría a Moscú.</span></p>
+  </div>
+  <div style="margin-top:16px;a-up d5">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:620px">
+      <div style="background:var(--card);border:1px solid #400;padding:8px 14px;font-size:12px;color:var(--grey);letter-spacing:1px;text-transform:uppercase">📉 –20% población desde 1991</div>
+      <div style="background:var(--card);border:1px solid #400;padding:8px 14px;font-size:12px;color:var(--grey);letter-spacing:1px;text-transform:uppercase">🚶 Los estonios se van a Finlandia</div>
+      <div style="background:var(--card);border:1px solid #400;padding:8px 14px;font-size:12px;color:var(--grey);letter-spacing:1px;text-transform:uppercase">🏙️ Tallin < barrio de Moscú</div>
+    </div>
+  </div>
+  <div class="slide-ticker"><span>☭ DATO REAL: El BARRIO MOSCOVITA DE ZYABLIKOVO tiene más gente que Tartu, la segunda ciudad estonia · ☭</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 5: EJÉRCITO
+══════════════════════════════════════════════ -->
+<div class="slide bg-soviet" id="s5">
+  <div class="slide-topbar"><div class="topbar-tag">☭ Dato nº3 / 10</div><div class="topbar-tag">Poder Militar</div></div>
+  <p class="t-med c-gold a-up" style="margin-bottom:14px;text-align:center">FUERZAS MILITARES</p>
+  <div class="stat-pair a-zoom d2" style="margin-bottom:14px">
+    <div class="stat-box win">
+      <div style="font-size:24px;margin-bottom:6px">🇷🇺 ⚔️</div>
+      <div class="stat-num">900.000</div>
+      <div class="stat-label">Soldados activos · Rusia</div>
+    </div>
+    <div class="stat-box lose">
+      <div style="font-size:24px;margin-bottom:6px">🇪🇪 🔦</div>
+      <div class="stat-num">7.000</div>
+      <div class="stat-label">Soldados activos · Estonia</div>
+    </div>
+  </div>
+  <div class="a-up d3" style="text-align:center;margin-bottom:12px">
+    <span class="ratio-badge" style="font-size:clamp(16px,5vw,32px)">RATIO: 1 estonio vs 129 rusos</span>
+  </div>
+  <!-- EMOJI ARMY VISUAL -->
+  <div class="a-fade d4" style="max-width:660px;text-align:center">
+    <p class="t-micro c-gold" style="margin-bottom:8px">Representación proporcional de los ejércitos (cada emoji = 1.000 soldados)</p>
+    <div style="background:var(--card);border:1px solid #400;padding:10px;display:flex;flex-wrap:wrap;gap:1px;max-height:90px;overflow:hidden;justify-content:flex-start" id="army-emojis">
+    </div>
+    <p style="font-size:10px;color:#444;margin-top:4px;letter-spacing:1px">🔴 = Rusia (900 emojis representados) · 🔵 = Estonia (7 emojis)</p>
+  </div>
+  <div class="slide-ticker"><span>☭ CITA REAL del ministro estonio (2026): "Llevaremos el combate a territorio ruso" · The Telegraph: "Estonia lista para autodestruirse" ☭</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 6: EL MINISTRO INVASOR
+══════════════════════════════════════════════ -->
+<div class="slide bg-red" id="s6">
+  <div class="slide-topbar"><div class="topbar-tag">☭ ESCENA HISTÓRICA</div><div class="topbar-tag">Febrero 2026</div></div>
+  <div style="max-width:680px;text-align:center">
+    <div style="font-size:clamp(30px,8vw,64px);margin-bottom:12px" class="a-bounce">😂</div>
+    <p class="t-med c-gold a-zoom d1" style="margin-bottom:20px">EL MINISTRO QUE IBA A INVADIR RUSIA</p>
+    <div class="quote-box a-up d2" style="margin-bottom:16px">
+      <p class="quote-text">"Debemos estar preparados para llevar el combate <strong style="color:var(--gold)">directamente a territorio ruso</strong>. Estonia no se quedará atrás."</p>
+      <p class="quote-src">★ Ministro de Defensa Estonio · Febrero 2026 · AP News / The Telegraph</p>
+    </div>
+    <div class="quote-box a-up d3" style="border-left-color:var(--red)">
+      <p class="quote-text" style="color:var(--grey)">"Estonia lista para <strong style="color:var(--red3)">autodestruirse</strong>."</p>
+      <p class="quote-src" style="color:var(--red3)">★ TITULAR REAL · The Telegraph · Febrero 2026</p>
+    </div>
+    <div class="a-up d4" style="margin-top:16px;background:rgba(0,0,0,.5);border:1px solid #500;padding:10px 18px">
+      <p class="t-small c-grey">Rusia tardó <span class="c-gold">72 horas</span> en mencionar el comunicado.<br>
+      Lo hizo en el párrafo 4 de una nota de trámite.<br>
+      <span style="font-size:.85em">La nota fue sobre exportaciones de trigo. El párrafo 4 era un "también..."</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 7: EL MURO
+══════════════════════════════════════════════ -->
+<div class="slide bg-soviet" id="s7">
+  <div class="slide-topbar"><div class="topbar-tag">☭ Dato nº4 / 10</div><div class="topbar-tag">Infraestructura</div></div>
+  <p class="t-med c-gold a-up" style="text-align:center;margin-bottom:8px">EL GRAN MURO DE ESTONIA</p>
+  <p class="t-small c-grey a-fade d2" style="text-align:center;margin-bottom:20px">Empezado en 2022 · Objetivo: 294 km · Estado actual: en obras</p>
+  <div class="a-zoom d3" style="width:100%;max-width:680px;margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--grey);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">
+      <span>☭ Progreso del Gran Muro Estonio</span>
+      <span class="c-gold">14%</span>
+    </div>
+    <div class="wall-track">
+      <div class="wall-fill" id="wall-fill" style="width:0%">
+        <span style="font-size:11px;font-weight:700;color:white;white-space:nowrap">~41 km construidos</span>
+      </div>
+      <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:11px;color:#444">253 km pendientes 🏗️</span>
+    </div>
+    <p style="font-size:11px;color:#555;margin-top:6px;letter-spacing:1px">▲ El muro de Berlín tardó 3 años. Este lleva 4 años y va por el 14%.</p>
+  </div>
+  <div class="a-up d4" style="max-width:680px;width:100%">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+      <div style="background:var(--card);border:1px solid #400;padding:12px;text-align:center">
+        <div style="font-size:20px;margin-bottom:4px">🏗️</div>
+        <div style="font-size:11px;color:var(--grey);letter-spacing:1px;text-transform:uppercase">Planificación</div>
+        <div style="font-size:18px;font-weight:700;color:var(--gold)">2018</div>
+      </div>
+      <div style="background:var(--card);border:1px solid #400;padding:12px;text-align:center">
+        <div style="font-size:20px;margin-bottom:4px">💸</div>
+        <div style="font-size:11px;color:var(--grey);letter-spacing:1px;text-transform:uppercase">Presupuesto</div>
+        <div style="font-size:18px;font-weight:700;color:var(--red3)">Agotado ×3</div>
+      </div>
+      <div style="background:var(--card);border:1px solid #400;padding:12px;text-align:center">
+        <div style="font-size:20px;margin-bottom:4px">🎯</div>
+        <div style="font-size:11px;color:var(--grey);letter-spacing:1px;text-transform:uppercase">Plan B</div>
+        <div style="font-size:18px;font-weight:700;color:var(--gold)">600 búnkeres</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-ticker"><span>★ PLAN C ESTONIO: Si Rusia invade, esconderse en el 8% de búnkeres que sí están construidos · Plan D: aún en revisión ★</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 8: NOBEL / CIENCIA
+══════════════════════════════════════════════ -->
+<div class="slide bg-dark" id="s8">
+  <div class="slide-topbar"><div class="topbar-tag">☭ Dato nº5 / 10</div><div class="topbar-tag">Ciencia y Cultura</div></div>
+  <p class="t-med c-gold a-up" style="text-align:center;margin-bottom:18px">PREMIOS NOBEL</p>
+  <div class="stat-pair a-zoom d2">
+    <div class="stat-box win" style="padding:24px">
+      <div style="font-size:28px;margin-bottom:8px">🏆🇷🇺</div>
+      <div class="stat-num">32</div>
+      <div class="stat-label">Nobel · Rusia / URSS</div>
+      <div style="font-size:11px;color:var(--grey);margin-top:8px;line-height:1.5">Física · Química · Literatura<br>Fisiología · Paz · Economía</div>
+    </div>
+    <div class="stat-box lose" style="padding:24px">
+      <div style="font-size:28px;margin-bottom:8px">🤷🇪🇪</div>
+      <div class="stat-num">0</div>
+      <div class="stat-label">Nobel · Estonia (33 años)</div>
+      <div style="font-size:11px;color:#444;margin-top:8px;line-height:1.5">Literatura: no<br>Física: no · Paz: no · Memes: aún no</div>
+    </div>
+  </div>
+  <div class="a-up d4" style="margin-top:16px;max-width:640px;text-align:center">
+    <div class="quote-box" style="border-left-color:#444">
+      <p class="quote-text" style="color:var(--grey)">Estonia fundó <span style="color:white">Skype</span> en 2003. Lo vendieron a eBay por 2.600M$. Luego eBay lo vendió. Luego Microsoft lo compró. Luego Skype fue reemplazado por Teams, que nadie usa voluntariamente. El Premio Nobel de "ideas con mal final" tampoco existe.</p>
+    </div>
+  </div>
+  <div class="slide-ticker"><span>★ DATO RUSO: El TETRIS fue inventado en Moscú en 1984 · El juego más vendido de la historia · Estonia inventó... el Transferwise (ahora Wise). OK, está bien, ese sí es bueno. ★</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 9: ALTURAS (MONTAÑAS)
+══════════════════════════════════════════════ -->
+<div class="slide bg-soviet" id="s9">
+  <div class="slide-topbar"><div class="topbar-tag">☭ Dato nº6 / 10</div><div class="topbar-tag">Orografía</div></div>
+  <p class="t-med c-gold a-up" style="text-align:center;margin-bottom:16px">MONTAÑAS: EL ANÁLISIS BRUTAL</p>
+  <div class="a-fade d2" style="width:100%;max-width:680px">
+    <div class="bar-row" style="margin-bottom:20px">
+      <div class="bar-label" style="font-size:11px">Elbrús 🇷🇺</div>
+      <div class="bar-track" style="height:40px">
+        <div class="bar-fill ru" data-w="100" style="width:0%;height:100%">
+          <span class="bar-val" style="font-size:13px">5.642 m ← punto más alto de Europa</span>
+        </div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label" style="font-size:11px">Munamägi 🇪🇪</div>
+      <div class="bar-track" style="height:40px">
+        <div class="bar-fill ee" data-w="5.6" style="width:0%;height:100%">
+          <span class="bar-val" style="font-size:13px">318 m</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="a-up d3" style="margin-top:16px;text-align:center;max-width:640px">
+    <div style="background:rgba(180,0,0,.15);border:1px solid #500;padding:14px 20px">
+      <p class="t-small c-white">El Elbrús es <span class="c-gold" style="font-size:1.3em">17,7 veces más alto</span> que el punto más alto de Estonia.<br>
+      <span class="c-grey" style="font-size:.88em">El Munamägi se llama "la gran colina del huevo" en estonio.<br>
+      En Madrid, Rivas-Vaciamadrid tiene cerros más altos.<br>
+      El Suur Munamägi es el punto más alto de los 3 países bálticos. Eso da una idea.</span></p>
+    </div>
+  </div>
+  <div class="slide-ticker"><span>☭ EXTRA: El lago Baikal tiene 1.642m de profundidad · Más profundo que la "montaña" más alta de Estonia · Rusia gana incluso en el agua ☭</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 10: DATOS ABSURDOS EXTRA
+══════════════════════════════════════════════ -->
+<div class="slide bg-dark" id="s10">
+  <div class="slide-topbar"><div class="topbar-tag">☭ Bonus Round</div><div class="topbar-tag">Datos Selectos</div></div>
+  <p class="t-med c-gold a-up" style="text-align:center;margin-bottom:16px">DATOS QUE NADIE TE CUENTA</p>
+  <div class="a-fade d2" style="max-width:680px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:6px">
+    <div style="background:var(--card);border:1px solid #400;padding:14px;border-top:3px solid var(--red)">
+      <div style="font-size:20px;margin-bottom:6px">🌡️</div>
+      <p style="font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Frío extremo</p>
+      <p style="font-family:'Special Elite',serif;font-size:12px;color:var(--grey);line-height:1.5">Oymyakon (Rusia): –71,2°C registrados. La gente <em>vive</em> ahí. Los colegios cierran en Siberia a –55°C. Estonia declara emergencia a –25°C.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid #400;padding:14px;border-top:3px solid var(--red)">
+      <div style="font-size:20px;margin-bottom:6px">🔦</div>
+      <p style="font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">La Gran Ley</p>
+      <p style="font-family:'Special Elite',serif;font-size:12px;color:var(--grey);line-height:1.5">En Estonia es <strong style="color:white">OBLIGATORIO</strong> por ley llevar un reflector al caminar de noche. Multa real. El peligro existencial estonio nº1 es que no te vean en una curva.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid #400;padding:14px;border-top:3px solid #555">
+      <div style="font-size:20px;margin-bottom:6px">⏱️</div>
+      <p style="font-size:11px;color:#555;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">12 Minutos</p>
+      <p style="font-family:'Special Elite',serif;font-size:12px;color:var(--grey);line-height:1.5">Sept 2025: aviones rusos sobrevolaron Estonia 12 min sin ser detectados a tiempo. La rueda de prensa estonia empezó cuando los aviones ya tomaban café en Moscú.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid #400;padding:14px;border-top:3px solid var(--red)">
+      <div style="font-size:20px;margin-bottom:6px">🚂</div>
+      <p style="font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Transiberiano</p>
+      <p style="font-family:'Special Elite',serif;font-size:12px;color:var(--grey);line-height:1.5">Cruzar Rusia en tren de oeste a este tarda 7 días completos. Cruzar Estonia de extremo a extremo en coche: 3 horas. Una tarde.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid #400;padding:14px;border-top:3px solid var(--red)">
+      <div style="font-size:20px;margin-bottom:6px">🎮</div>
+      <p style="font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Tetris</p>
+      <p style="font-family:'Special Elite',serif;font-size:12px;color:var(--grey);line-height:1.5">Inventado en Moscú, 1984. Alexei Pajitnov. El juego más vendido de la historia. Estonia tiene Pipedrive (CRM de ventas B2B). No es lo mismo.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid #400;padding:14px;border-top:3px solid #555">
+      <div style="font-size:20px;margin-bottom:6px">🌊</div>
+      <p style="font-size:11px;color:#555;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Agua Dulce</p>
+      <p style="font-family:'Special Elite',serif;font-size:12px;color:var(--grey);line-height:1.5">El 20% de toda el agua dulce superficial del planeta está en Rusia. El lago más profundo del mundo está en Rusia. Rusia es el planeta Tierra pero interesante.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 11: INTRO QUIZ
+══════════════════════════════════════════════ -->
+<div class="slide bg-red" id="s11">
+  <div class="slide-topbar"><div class="topbar-tag">☭ Intermedio</div><div class="topbar-tag">Mini-Juego</div></div>
+  <div style="text-align:center;max-width:640px">
+    <div style="font-size:clamp(40px,10vw,80px);margin-bottom:12px" class="a-bounce">🎮</div>
+    <p class="t-big c-gold a-zoom d1" style="margin-bottom:14px">MINI-JUEGO</p>
+    <p class="t-med c-white a-up d2" style="margin-bottom:18px;font-size:clamp(16px,4vw,28px)">¿SABES MÁS QUE<br>UN MINISTRO ESTONIO?</p>
+    <div class="prop-box a-up d3">
+      <p class="t-small c-white" style="line-height:1.8">
+      10 preguntas · <span class="c-gold">¿Real o Inventado?</span><br>
+      Cada pregunta: un dato sobre Estonia o Rusia.<br>
+      Tú decides si es <span style="color:#22c55e">VERDAD</span> o <span style="color:var(--red3)">MENTIRA</span>.<br><br>
+      <span class="c-grey" style="font-size:.88em">Spoiler: los datos reales son tan absurdos que parecen inventados.</span></p>
+    </div>
+    <div class="a-up d4" style="margin-top:18px">
+      <div style="background:var(--gold);color:var(--black);padding:10px 28px;font-family:'Bebas Neue','Oswald',sans-serif;font-size:22px;letter-spacing:3px;display:inline-block;cursor:pointer" onclick="nextSlide()">
+        ▶ COMENZAR EL QUIZ
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 12: QUIZ
+══════════════════════════════════════════════ -->
+<div class="slide bg-soviet" id="s12">
+  <div class="slide-topbar"><div class="topbar-tag">☭ QUIZ EN CURSO</div><div class="topbar-tag" id="quiz-topbar-score">Puntos: 0</div></div>
+  <div id="quiz-container" class="active" style="padding-bottom:10px">
+    <div class="quiz-score-bar">
+      <div><div class="quiz-score-label">Puntos</div><div class="quiz-score-val" id="qs-score">0</div></div>
+      <div><div class="quiz-score-label">Pregunta</div><div class="quiz-score-val" id="qs-q">1/10</div></div>
+      <div><div class="quiz-score-label">Racha</div><div class="quiz-score-val" id="qs-streak">🔥0</div></div>
+    </div>
+    <div class="quiz-question" id="quiz-q-text">Cargando...</div>
+    <div class="quiz-options" id="quiz-opts"></div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <button class="btn quiz-next-btn" id="quiz-next" onclick="nextQuestion()" style="display:none">SIGUIENTE PREGUNTA →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 13: RESULTADOS QUIZ
+══════════════════════════════════════════════ -->
+<div class="slide bg-dark" id="s13">
+  <div style="text-align:center;max-width:640px">
+    <p class="t-med c-gold a-up" style="margin-bottom:6px">RESULTADO FINAL</p>
+    <div class="result-medal a-bounce d1" id="result-medal">🏆</div>
+    <div class="result-score a-zoom d2" id="result-score">0/10</div>
+    <div class="a-up d3" id="result-title" style="font-family:'Oswald',sans-serif;font-size:clamp(18px,4vw,30px);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin:10px 0"></div>
+    <div class="a-up d4" id="result-msg" style="font-family:'Special Elite',serif;font-size:clamp(13px,2.5vw,17px);color:var(--grey);max-width:500px;margin:10px auto;line-height:1.6"></div>
+    <div class="a-up d5" style="margin-top:16px">
+      <button class="btn" onclick="restartQuiz()" style="background:var(--gold);color:var(--black);border-color:var(--red)">🔄 REPETIR QUIZ</button>
+    </div>
+    <p class="a-fade d6 t-micro c-grey" style="margin-top:14px">Continúa la presentación con la flecha →</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 14: DATOS ABSURDOS EXAGERADOS
+══════════════════════════════════════════════ -->
+<div class="slide bg-soviet" id="s14">
+  <div class="slide-topbar"><div class="topbar-tag">☭ Zona de Exageración</div><div class="topbar-tag">100% Inventado</div></div>
+  <p class="t-med c-red a-up" style="text-align:center;margin-bottom:6px">DATOS QUE SON INVENTADOS</p>
+  <p class="t-small c-grey a-fade d1" style="text-align:center;margin-bottom:16px;font-size:13px">(pero podrían serlo)</p>
+  <div class="a-fade d2" style="max-width:680px;width:100%;display:flex;flex-direction:column;gap:8px">
+    <div class="quote-box">
+      <p class="quote-text" style="font-size:clamp(12px,2.5vw,16px)">📐 Si Rusia fuera un parking, <span style="color:var(--gold)">Estonia sería la plaza reservada para scooters</span> del fondo. Y aun así probablemente estaría mal señalizada.</p>
+    </div>
+    <div class="quote-box">
+      <p class="quote-text" style="font-size:clamp(12px,2.5vw,16px)">🛢️ El ejército estonio consume en combustible anual <span style="color:var(--gold)">lo mismo que un regimiento ruso en una tarde de martes</span>. Y el martes no era de maniobras.</p>
+    </div>
+    <div class="quote-box">
+      <p class="quote-text" style="font-size:clamp(12px,2.5vw,16px)">🗺️ Google Maps necesita <span style="color:var(--gold)">zoom nivel 7</span> para ver Estonia entera. Para Rusia necesita zoom 3 y aún así los Urales se ven pequeños.</p>
+    </div>
+    <div class="quote-box">
+      <p class="quote-text" style="font-size:clamp(12px,2.5vw,16px)">🌊 La flota naval estonia podría aparcar completa en el <span style="color:var(--gold)">parking del Aeropuerto de Barajas</span>. Terminal 4, zona larga estancia.</p>
+    </div>
+  </div>
+  <div class="slide-ticker"><span>☭ NOTA LEGAL: Los datos de esta diapositiva son pura ficción · Los de las anteriores son reales · Eso es lo preocupante ☭</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 15: VEREDICTO FINAL
+══════════════════════════════════════════════ -->
+<div class="slide confetti-bg" id="s15">
+  <div style="text-align:center;max-width:700px">
+    <div class="star-explosion a-pulse" style="margin-bottom:12px">★ ★ ★ ★ ★</div>
+    <p class="t-small c-gold a-fade d1" style="letter-spacing:4px;margin-bottom:10px;text-transform:uppercase">VEREDICTO OFICIAL DEL KREMLIN</p>
+    <div class="t-hero c-red a-zoom d2" style="text-shadow:0 0 40px rgba(255,26,26,.6);margin-bottom:4px">10 – 2</div>
+    <p class="t-med c-gold a-up d3" style="margin-bottom:20px">RUSIA GANA ☭</p>
+    <div class="prop-box a-up d4" style="margin-bottom:18px">
+      <p class="t-small c-white" style="line-height:1.8;font-family:'Special Elite',serif">"Estonia es un país <span class="c-gold">encantador para vivir</span>.<br>
+      Rusia es un país para <span class="c-red">existir en la historia</span>.<br><br>
+      No es lo mismo. Nunca lo fue.<br>
+      <span class="c-grey" style="font-size:.85em">Y Estonia lo sabe. Por eso tiene 600 búnkeres planeados.</span>"</p>
+    </div>
+    <div class="a-up d5" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:16px">
+      <div style="background:var(--red);padding:8px 16px;font-size:12px;color:white;letter-spacing:2px;text-transform:uppercase">🇷🇺 10 victorias</div>
+      <div style="background:#222;padding:8px 16px;font-size:12px;color:#666;letter-spacing:2px;text-transform:uppercase">🇪🇪 2 victorias</div>
+    </div>
+    <p class="a-fade d6 t-micro c-grey" style="margin-bottom:6px">Наша страна самая лучшая · Слава России · Estonia: ánimo</p>
+    <p class="a-fade d7 t-micro" style="color:#222">Web completa: nicolceng.github.io/rusia-vs-estonia</p>
+  </div>
+</div>
+
+</div><!-- /#deck -->
+
+<!-- NAV -->
+<div id="nav">
+  <button class="btn" id="btn-prev" onclick="prevSlide()" disabled>◀ ATRÁS</button>
+  <div id="progress-wrap">
+    <div id="slide-counter">DIAP. 1 / 15</div>
+    <div id="progress-bar"><div id="progress-fill"></div></div>
+  </div>
+  <button class="btn" id="btn-next" onclick="nextSlide()">SIGUIENTE ▶</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// QUIZ DATA
+// ═══════════════════════════════════════════
+const quizData = [
+  {
+    q: "En Estonia existe una ley que OBLIGA a los peatones a llevar un reflector de noche, con multa incluida.",
+    a: "VERDAD", b: "MENTIRA",
+    correct: "a",
+    ok: "¡CORRECTO, CAMARADA! ☭ La ley existe de verdad. Multa real. El peligro nº1 del ciudadano estonio es que no le vean en una curva.",
+    bad: "¡ERROR! Reportado al Kremlin. Es VERDAD. Estonia tiene ley de reflectores nocturnos con multa incluida. Dato real."
+  },
+  {
+    q: "El muro fronterizo Estonia-Rusia está completado en un 14% después de 4 años de construcción.",
+    a: "VERDAD", b: "MENTIRA",
+    correct: "a",
+    ok: "¡CORRECTO! ★ Solo el 14%. ~41 km de 294. El presupuesto se ha agotado 3 veces. El muro de Berlín tardó 3 años. Este...",
+    bad: "¡INCORRECTO! Es VERDAD. El muro lleva 4 años en obras y solo está al 14%. Sin comentarios adicionales."
+  },
+  {
+    q: "El punto más alto de Estonia se llama 'Suur Munamägi' y tiene 318 metros de altitud.",
+    a: "VERDAD", b: "MENTIRA",
+    correct: "a",
+    ok: "¡BIEN! ☭ Suur Munamägi, 318 metros. El punto más alto de los 3 países bálticos. En España lo llamaríamos 'loma'.",
+    bad: "¡FALLO! Es VERDAD. 318 metros. El Elbrús ruso tiene 5.642m. Rusia gana también en altura."
+  },
+  {
+    q: "Estonia ganó un Premio Nobel de Literatura en 2021 por la novela épica 'Kalevipoeg'.",
+    a: "VERDAD", b: "MENTIRA",
+    correct: "b",
+    ok: "¡CORRECTO! ☭ INVENTADO. Estonia no ha ganado ningún Nobel. El Kalevipoeg es real (poema de 1862) pero no ganó Nobel.",
+    bad: "¡ERROR! Es MENTIRA. Estonia NO ha ganado ningún Premio Nobel en sus 33 años de independencia. Ninguno."
+  },
+  {
+    q: "El Tetris fue inventado por un programador soviético en Moscú en 1984.",
+    a: "VERDAD", b: "MENTIRA",
+    correct: "a",
+    ok: "¡EXACTO! ★ Alexei Pajitnov, Instituto Dorodnitsyn, Moscú, 1984. URSS. El juego más vendido de la historia.",
+    bad: "¡INCORRECTO! Es VERDAD. Alexei Pajitnov lo creó en Moscú en 1984. Soviético 100%."
+  },
+  {
+    q: "Moscú tiene más habitantes (12,6M) que toda Estonia (1,37M).",
+    a: "VERDAD", b: "MENTIRA",
+    correct: "a",
+    ok: "¡BIEN! ☭ Moscú 12,6 millones. Estonia entera 1,37 millones. Una ciudad > un país. Moscú gana por 9:1.",
+    bad: "¡FALLO! Es VERDAD. Moscú tiene 9× más gente que Estonia entera. Moscú = Estonia × 9."
+  },
+  {
+    q: "Rusia tiene su propio sistema GPS independiente llamado GLONASS, completamente operativo.",
+    a: "VERDAD", b: "MENTIRA",
+    correct: "a",
+    ok: "¡CORRECTO! ☭ GLONASS (GLObal NAvigation Satellite System). Operativo, global, soberano. Estonia usa el del iPhone.",
+    bad: "¡ERROR! Es VERDAD. GLONASS existe desde los 80s, es global y funciona. Estonia no tiene GPS propio."
+  },
+  {
+    q: "Estonia tiene un reactor nuclear flotante en el mar Báltico para producir energía.",
+    a: "VERDAD", b: "MENTIRA",
+    correct: "b",
+    ok: "¡CORRECTO! ☭ INVENTADO. ESO lo tiene RUSIA (el Akademik Lomonosov, en el Ártico). Estonia tiene molinos de viento.",
+    bad: "¡INCORRECTO! Es MENTIRA. El reactor flotante es RUSO (Akademik Lomonosov). Estonia no tiene nada nuclear."
+  },
+  {
+    q: "En septiembre 2025, aviones rusos sobrevolaron espacio aéreo estonio 12 minutos sin ser detectados a tiempo.",
+    a: "VERDAD", b: "MENTIRA",
+    correct: "a",
+    ok: "¡BIEN! ★ Hecho real. Septiembre 2025. 3 aviones, 12 minutos. Los aviones aterrizaban en Moscú cuando empezó la rueda de prensa.",
+    bad: "¡ERROR! Es VERDAD. Septiembre 2025. Los aviones estaban tomando café en Moscú cuando Estonia convocó al embajador."
+  },
+  {
+    q: "Estonia fue el primer país del mundo en lanzar un satélite al espacio, en 2013.",
+    a: "VERDAD", b: "MENTIRA",
+    correct: "b",
+    ok: "¡CORRECTO! ☭ MENTIRA. El primer satélite fue el Sputnik SOVIÉTICO en 1957. Estonia lanzó un satélite de 1 kg en 2013, 56 años después.",
+    bad: "¡INCORRECTO! Es MENTIRA. El Sputnik soviético fue en 1957. Estonia lanzó ESTCube-1 en 2013. 56 años de diferencia."
+  }
+];
+
+// ═══════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════
+const TOTAL = 15;
+let current = 1;
+let quizOnSlide = 12;
+
+function showSlide(n) {
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById('s'+n);
+  if(el) el.classList.add('active');
+
+  document.getElementById('slide-counter').textContent = `DIAP. ${n} / ${TOTAL}`;
+  document.getElementById('progress-fill').style.width = ((n/TOTAL)*100)+'%';
+  document.getElementById('btn-prev').disabled = (n===1);
+  document.getElementById('btn-next').disabled = (n===TOTAL);
+
+  // Animate bars
+  setTimeout(()=>{
+    el.querySelectorAll('.bar-fill[data-w]').forEach(b=>{
+      b.style.width = b.dataset.w+'%';
+    });
+    const wallFill = document.getElementById('wall-fill');
+    if(n===7 && wallFill) wallFill.style.width='14%';
+  },300);
+
+  // Army emojis
+  if(n===5) buildArmyGrid();
+  // Init quiz
+  if(n===12 && quizState.qIndex===0) initQuiz();
+  // Results
+  if(n===13) showResults();
+}
+
+function nextSlide() {
+  if(current < TOTAL){ current++; showSlide(current); }
+}
+function prevSlide() {
+  if(current > 1){ current--; showSlide(current); }
+}
+
+// Keyboard
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') nextSlide();
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') prevSlide();
+});
+
+// Touch/Swipe
+let touchX = 0;
+document.addEventListener('touchstart', e=>{ touchX = e.touches[0].clientX; },{passive:true});
+document.addEventListener('touchend', e=>{
+  const diff = touchX - e.changedTouches[0].clientX;
+  if(Math.abs(diff)>50){
+    if(diff>0) nextSlide(); else prevSlide();
+  }
+},{passive:true});
+
+// ═══════════════════════════════════════════
+// ARMY GRID
+// ═══════════════════════════════════════════
+function buildArmyGrid(){
+  const el = document.getElementById('army-emojis');
+  if(!el||el.children.length>0) return;
+  let html='';
+  // 90 red + 7 blue (scaled: 900K/10 + 7K/1)
+  for(let i=0;i<90;i++) html+='<span title="~10.000 soldados rusos">🔴</span>';
+  for(let i=0;i<7;i++) html+='<span title="~1.000 soldados estonios">🔵</span>';
+  el.innerHTML=html;
+}
+
+// ═══════════════════════════════════════════
+// QUIZ ENGINE
+// ═══════════════════════════════════════════
+const quizState = { qIndex:0, score:0, streak:0, maxStreak:0, answered:false };
+
+function initQuiz(){
+  quizState.qIndex=0; quizState.score=0; quizState.streak=0; quizState.answered=false;
+  loadQuestion();
+}
+function restartQuiz(){
+  initQuiz();
+  current=12; showSlide(12);
+}
+
+function loadQuestion(){
+  const q = quizData[quizState.qIndex];
+  document.getElementById('quiz-q-text').textContent = `"${q.q}"`;
+  document.getElementById('qs-q').textContent = `${quizState.qIndex+1}/10`;
+  document.getElementById('qs-score').textContent = quizState.score;
+  document.getElementById('qs-streak').textContent = `🔥${quizState.streak}`;
+  document.getElementById('quiz-topbar-score').textContent = `Puntos: ${quizState.score}`;
+  document.getElementById('quiz-feedback').textContent='';
+  document.getElementById('quiz-feedback').className='quiz-feedback';
+  document.getElementById('quiz-next').style.display='none';
+  quizState.answered=false;
+
+  const opts = document.getElementById('quiz-opts');
+  opts.innerHTML=`
+    <div class="quiz-opt" id="opt-a" onclick="answerQuiz('a')">✅ ${q.a}</div>
+    <div class="quiz-opt" id="opt-b" onclick="answerQuiz('b')">❌ ${q.b}</div>
+  `;
+}
+
+function answerQuiz(choice){
+  if(quizState.answered) return;
+  quizState.answered=true;
+  const q = quizData[quizState.qIndex];
+  const isCorrect = (choice===q.correct);
+  const pts = isCorrect ? (10 + quizState.streak*3) : 0;
+
+  document.getElementById('opt-a').disabled=true;
+  document.getElementById('opt-b').disabled=true;
+  document.getElementById('opt-'+q.correct).classList.add('correct');
+
+  if(isCorrect){
+    quizState.score+=pts; quizState.streak++;
+    if(quizState.streak>quizState.maxStreak) quizState.maxStreak=quizState.streak;
+    const fb = document.getElementById('quiz-feedback');
+    fb.textContent=(quizState.streak>2?'🔥 RACHA ×'+quizState.streak+' · ':'')+q.ok+(pts>10?' (+'+pts+'pts RACHA)':'');
+    fb.className='quiz-feedback ok';
+  } else {
+    document.getElementById('opt-'+choice).classList.add('wrong');
+    quizState.streak=0;
+    const fb=document.getElementById('quiz-feedback');
+    fb.textContent=q.bad;
+    fb.className='quiz-feedback bad';
+  }
+
+  document.getElementById('qs-score').textContent=quizState.score;
+  document.getElementById('qs-streak').textContent='🔥'+quizState.streak;
+  document.getElementById('quiz-topbar-score').textContent='Puntos: '+quizState.score;
+  document.getElementById('quiz-next').style.display='block';
+}
+
+function nextQuestion(){
+  quizState.qIndex++;
+  if(quizState.qIndex>=quizData.length){
+    current=13; showSlide(13);
+  } else {
+    loadQuestion();
+  }
+}
+
+function showResults(){
+  const s=quizState.score;
+  const correct=quizData.filter((_,i)=>{
+    // We don't track per-question, estimate from score
+    return true;
+  }).length;
+  // Estimate correct from score (minimum 10/q, + streaks)
+  let corr = Math.round(s / 12); // rough
+  corr = Math.min(10,Math.max(0,corr));
+
+  const medals=[
+    {min:0,  medal:'💀', title:'DETENIDO POR LA KGB',    color:'#ff4444', msg:'0–3 puntos. Puede que seas ministro de defensa estonio. Revisa la presentación, camarada.'},
+    {min:30, medal:'🪖', title:'RECLUTA SOVIÉTICO',       color:'#ff8800', msg:'Conocimiento básico. El comisario político está... decepcionado. Pero no irás al gulag hoy.'},
+    {min:60, medal:'⭐', title:'CAMARADA COMPETENTE',     color:'var(--gold)', msg:'Sólido conocimiento de los hechos. El Politburó ha tomado nota favorable.'},
+    {min:80, medal:'🏅', title:'HÉROE DE LA FEDERACIÓN',  color:'var(--gold)', msg:'Excelente. Tienes el conocimiento de un analista del Kremlin. Bienvenido.'},
+    {min:100,medal:'☭',  title:'SECRETARIO GENERAL',     color:'var(--red3)', msg:'Puntuación perfecta. Te nombramos Secretario General de la Comisión Anti-Estonia.'},
+  ];
+  let result=medals[0];
+  for(const m of medals){ if(s>=m.min) result=m; }
+
+  document.getElementById('result-medal').textContent=result.medal;
+  document.getElementById('result-score').textContent=s+' pts';
+  const rt=document.getElementById('result-title');
+  rt.textContent=result.title; rt.style.color=result.color;
+  document.getElementById('result-msg').textContent=result.msg;
+}
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+showSlide(1);
+</script>
+</body>
+</html>
