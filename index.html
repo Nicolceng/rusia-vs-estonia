@@ -3,821 +3,824 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🔴 GNN WORLD — RUSIA vs ESTONIA: EN DIRECTO</title>
+<title>☭ СЛАВА POCCИИ — Rusia Humilla a Estonia ☭</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Condensed:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Special+Elite&display=swap');
 :root{
-  --navy:#001B3E; --navy2:#002B5E; --navy3:#003580;
-  --blue:#0055A5; --blue2:#1A6FD4; --light:#E8F0FE;
-  --red:#D10000; --red2:#FF1744; --yellow:#FFD600;
-  --green:#00C853; --orange:#FF6D00;
-  --white:#FFFFFF; --off:#F4F6F9; --grey:#64748B;
-  --dark:#0A1628; --border:#1E3A5F;
-  --text:#1A2332;
+  --red:#CC0000;--red2:#8B0000;--red3:#FF1A1A;
+  --gold:#FFD700;--gold2:#B8860B;
+  --black:#0A0000;--dark:#1A0000;--card:#1E0505;--card2:#2A0808;
+  --white:#FFF5F5;--grey:#9CA3AF;--border:#5C0000;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);line-height:1.5}
+body{
+  font-family:'Oswald','Arial Narrow',sans-serif;
+  background:var(--black);color:var(--white);line-height:1.5;
+  background-image:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(180,0,0,0.04) 40px,rgba(180,0,0,0.04) 80px);
+}
 
-/* ── TOP BAR ── */
-.topbar{
-  background:var(--dark);
-  border-bottom:1px solid var(--border);
-  padding:6px 20px;display:flex;align-items:center;
-  justify-content:space-between;font-size:12px;color:#8BA4C0;
-}
-.topbar-left{display:flex;gap:20px;flex-wrap:wrap}
-.topbar-item{display:flex;align-items:center;gap:5px}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--red2);animation:blink 1.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-#tb-time{color:var(--yellow);font-weight:600}
-.topbar-right{font-size:11px;letter-spacing:.5px}
+/* ── TICKER ── */
+.ticker-wrap{background:var(--red);border-bottom:3px solid var(--gold);overflow:hidden;white-space:nowrap;padding:9px 0;font-size:13px;font-weight:700;letter-spacing:.5px;font-family:'Oswald',sans-serif;text-transform:uppercase}
+.ticker{display:inline-block;animation:ticker 55s linear infinite}
+.ticker span{margin:0 50px;color:var(--white)}
+.ticker .star{color:var(--gold)}
+@keyframes ticker{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
 
-/* ── NETWORK HEADER ── */
-.net-header{
-  background:linear-gradient(90deg,var(--dark) 0%,var(--navy2) 50%,var(--dark) 100%);
-  border-bottom:3px solid var(--red2);
-  padding:14px 24px;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
-  position:sticky;top:0;z-index:200;
-}
-.net-logo{
-  display:flex;align-items:center;gap:12px;
-}
-.net-logo-badge{
-  background:var(--red2);color:white;
-  font-family:'Roboto Condensed',sans-serif;
-  font-size:28px;font-weight:700;
-  padding:4px 14px;letter-spacing:3px;
-}
-.net-logo-sub{
-  font-family:'Roboto Condensed',sans-serif;
-  font-size:13px;letter-spacing:2px;color:#8BA4C0;
-  text-transform:uppercase;
-}
-.net-logo-sub b{color:var(--yellow)}
-.live-pill{
-  display:flex;align-items:center;gap:6px;
-  background:var(--red2);
-  padding:5px 14px;font-weight:700;font-size:13px;
-  letter-spacing:1px;animation:livepulse 2s infinite;
-}
-@keyframes livepulse{0%,100%{background:var(--red2)}50%{background:#FF4444}}
-.net-nav{display:flex;gap:4px;flex-wrap:wrap}
-.net-nav a{
-  color:#8BA4C0;text-decoration:none;font-size:12px;
-  padding:5px 12px;letter-spacing:.5px;text-transform:uppercase;
-  border:1px solid transparent;transition:all .2s;
-}
-.net-nav a:hover{border-color:var(--border);color:var(--white)}
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,0,0,.97);border-bottom:3px solid var(--red);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.nav-logo{font-family:'Special Elite',serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;text-shadow:0 0 20px rgba(255,215,0,.4)}
+.nav-links{display:flex;gap:24px;flex-wrap:wrap}
+.nav-links a{color:var(--grey);text-decoration:none;font-size:13px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.live-badge{background:var(--red);color:var(--gold);border:1px solid var(--gold);font-size:11px;font-weight:700;padding:3px 12px;letter-spacing:2px;text-transform:uppercase;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
 
-/* ── BREAKING BANNER ── */
-.breaking-wrap{
-  background:var(--red2);
-  overflow:hidden;white-space:nowrap;
-  border-bottom:2px solid var(--yellow);
-  padding:8px 0;display:flex;align-items:stretch;
+/* ── WEEK BANNER ── */
+.week-banner{
+  background:linear-gradient(135deg,var(--red2),var(--dark));
+  border-top:4px solid var(--gold);border-bottom:4px solid var(--gold);
+  padding:18px 20px;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;
+  text-align:center;
 }
-.breaking-tag{
-  background:var(--yellow);color:var(--dark);
-  font-weight:800;font-size:12px;letter-spacing:2px;
-  padding:0 16px;display:flex;align-items:center;
-  text-transform:uppercase;flex-shrink:0;
+.week-num{
+  font-family:'Oswald',sans-serif;font-size:clamp(28px,6vw,52px);font-weight:700;
+  color:var(--gold);text-shadow:0 0 20px rgba(255,215,0,.5);line-height:1;
 }
-.breaking-scroll{flex:1;overflow:hidden}
-.breaking-inner{display:inline-block;animation:scroll 50s linear infinite;white-space:nowrap;padding-left:40px}
-.breaking-inner span{font-size:13px;font-weight:600;letter-spacing:.3px;margin-right:60px}
-.breaking-inner .sep{color:var(--yellow);margin:0 10px}
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.week-label{font-size:11px;color:var(--grey);letter-spacing:3px;text-transform:uppercase;margin-top:4px}
+.week-divider{width:2px;height:50px;background:var(--border)}
+.week-tagline{font-family:'Special Elite',serif;font-size:clamp(13px,2vw,18px);color:var(--white);max-width:500px;font-style:italic}
+.week-tagline span{color:var(--gold);font-style:normal;font-weight:700}
+.week-days{font-size:11px;color:var(--grey);letter-spacing:2px;text-transform:uppercase;margin-top:6px}
 
-/* ── HERO SCOREBOARD ── */
-.hero{
-  background:linear-gradient(180deg,var(--dark) 0%,var(--navy) 100%);
-  padding:40px 20px 30px;border-bottom:1px solid var(--border);
-}
-.hero-tag{
-  text-align:center;font-size:11px;letter-spacing:3px;
-  color:#8BA4C0;text-transform:uppercase;margin-bottom:20px;
-}
-.hero-tag span{color:var(--yellow)}
-.scoreboard{
-  max-width:900px;margin:0 auto;
-  display:grid;grid-template-columns:1fr auto 1fr;
-  gap:0;align-items:center;
-}
-.team-block{text-align:center;padding:20px}
-.team-flag{font-size:clamp(48px,10vw,80px);margin-bottom:10px;display:block}
-.team-name{
-  font-family:'Roboto Condensed',sans-serif;
-  font-size:clamp(22px,5vw,42px);font-weight:700;
-  text-transform:uppercase;letter-spacing:2px;
-}
-.team-name.ru{color:var(--red2)}
-.team-name.ee{color:#8BA4C0}
-.team-score-box{
-  display:flex;flex-direction:column;align-items:center;gap:0;
-  background:rgba(0,0,0,.3);border:1px solid var(--border);
-  padding:20px 30px;
-}
-.score-nums{
-  font-family:'Roboto Condensed',sans-serif;
-  font-size:clamp(60px,14vw,110px);font-weight:700;
-  line-height:1;color:var(--white);letter-spacing:-2px;
-}
-.score-nums .dash{color:var(--yellow);font-size:.6em;margin:0 8px}
-.score-label{font-size:10px;letter-spacing:3px;color:#8BA4C0;text-transform:uppercase;margin-top:4px}
-.score-detail{
-  display:flex;gap:20px;margin-top:12px;flex-wrap:wrap;justify-content:center;
-}
-.sd-item{text-align:center}
-.sd-val{font-size:18px;font-weight:800;color:var(--yellow)}
-.sd-key{font-size:9px;color:#8BA4C0;letter-spacing:1px;text-transform:uppercase}
+/* ── HERO ── */
+.hero{text-align:center;padding:60px 20px 50px;background:radial-gradient(ellipse at center top,rgba(180,0,0,.35) 0%,transparent 65%);border-bottom:3px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 5 L35 20 L50 20 L38 29 L43 44 L30 35 L17 44 L22 29 L10 20 L25 20 Z' fill='none' stroke='rgba(180,0,0,0.07)' stroke-width='1'/%3E%3C/svg%3E") repeat;pointer-events:none}
+.hero-stars{font-size:32px;letter-spacing:16px;margin-bottom:16px;color:var(--gold);text-shadow:0 0 20px rgba(255,215,0,.6)}
+.hero-cccp{font-family:'Special Elite',serif;font-size:13px;letter-spacing:8px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;opacity:.8}
+.hero h1{font-family:'Oswald',sans-serif;font-size:clamp(30px,7vw,72px);font-weight:700;line-height:1.05;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.hero h1 .ru{color:var(--red3);text-shadow:0 0 30px rgba(255,26,26,.5)}
+.hero h1 .vs{color:var(--gold);font-size:.5em;display:block;letter-spacing:8px;margin:8px 0}
+.hero h1 .ee{color:#888;text-decoration:line-through;text-decoration-color:var(--red3)}
+.hero-sub{font-family:'Special Elite',serif;font-size:clamp(13px,2vw,17px);color:var(--grey);max-width:650px;margin:16px auto 30px;font-style:italic}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);padding:10px 24px;font-size:13px;letter-spacing:1px;color:var(--grey);text-transform:uppercase}
+#live-time{color:var(--gold);font-weight:700}
 
-/* ── STAT PILLS STRIP ── */
-.stat-strip{
-  background:var(--navy2);border-bottom:1px solid var(--border);
-  padding:12px 20px;
-  display:flex;gap:6px;overflow-x:auto;justify-content:center;flex-wrap:wrap;
+/* ── PROP BANNER ── */
+.prop-banner{background:var(--red);border-top:4px solid var(--gold);border-bottom:4px solid var(--gold);text-align:center;padding:24px 20px;margin:40px 0}
+.prop-banner p{font-family:'Special Elite',serif;font-size:clamp(15px,2.8vw,24px);color:var(--gold);letter-spacing:3px;text-transform:uppercase;text-shadow:2px 2px 4px rgba(0,0,0,.5)}
+.prop-banner .sub{font-size:11px;color:rgba(255,255,255,.7);letter-spacing:2px;margin-top:6px}
+
+/* ── WEEKLY SPOTLIGHT ── */
+.spotlight{
+  max-width:1100px;margin:0 auto;padding:20px 20px 40px;
 }
-.stat-pill{
-  background:rgba(255,255,255,.05);border:1px solid var(--border);
-  padding:6px 14px;font-size:12px;white-space:nowrap;
-  display:flex;align-items:center;gap:6px;
-}
-.stat-pill .k{color:#8BA4C0;font-size:10px;letter-spacing:1px;text-transform:uppercase}
-.stat-pill .v{font-weight:700}
-.stat-pill .v.win{color:var(--yellow)}
-.stat-pill .v.lose{color:#4A6080}
+.spotlight-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+@media(max-width:700px){.spotlight-grid{grid-template-columns:1fr}}
+.spotlight-card{background:var(--card);border:1px solid var(--border);padding:28px;position:relative;overflow:hidden}
+.spotlight-card.win::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--red),var(--gold),var(--red))}
+.spotlight-card.fail::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:#333}
+.spotlight-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;font-family:'Oswald',sans-serif}
+.spotlight-card.win .spotlight-tag{color:var(--gold)}
+.spotlight-card.fail .spotlight-tag{color:#555}
+.spotlight-icon{font-size:42px;margin-bottom:12px;display:block}
+.spotlight-title{font-family:'Oswald',sans-serif;font-size:clamp(16px,2.5vw,22px);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;line-height:1.2}
+.spotlight-card.win .spotlight-title{color:var(--gold)}
+.spotlight-card.fail .spotlight-title{color:#999}
+.spotlight-body{font-family:'Special Elite',serif;font-size:13.5px;color:var(--grey);line-height:1.7}
+.spotlight-source{font-size:10px;color:#444;margin-top:14px;letter-spacing:1px;text-transform:uppercase}
 
-/* ── MAIN GRID ── */
-.main{max-width:1200px;margin:0 auto;padding:24px 20px 60px;display:grid;grid-template-columns:2fr 1fr;gap:16px}
-@media(max-width:900px){.main{grid-template-columns:1fr}}
+/* ── KPI GRID ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:3px;max-width:1100px;margin:30px auto;padding:0 20px;border:2px solid var(--border)}
+.kpi{background:var(--card);padding:26px 16px;text-align:center;border:1px solid var(--border);position:relative;overflow:hidden;transition:background .2s}
+.kpi::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px}
+.kpi.ru::after{background:var(--red)}
+.kpi.ee::after{background:#555}
+.kpi:hover{background:var(--card2)}
+.kpi-val{font-size:clamp(20px,4vw,36px);font-weight:700;line-height:1;margin-bottom:6px;font-family:'Oswald',sans-serif}
+.kpi.ru .kpi-val{color:var(--red3);text-shadow:0 0 15px rgba(255,26,26,.4)}
+.kpi.ee .kpi-val{color:#777}
+.kpi-label{font-size:10px;color:var(--grey);letter-spacing:1px;text-transform:uppercase}
+.kpi-flag{font-size:22px;margin-bottom:8px}
 
-/* ── SECTION HEADER ── */
-.sec-head{
-  border-left:4px solid var(--blue2);
-  padding:8px 14px;margin-bottom:16px;
-  background:rgba(26,111,212,.08);
-}
-.sec-head.alert{border-left-color:var(--red2)}
-.sec-head.gold{border-left-color:var(--yellow)}
-.sec-head h2{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--white)}
-.sec-head p{font-size:11px;color:#8BA4C0;margin-top:2px;letter-spacing:.5px}
+/* ── SECTION ── */
+section{max-width:1100px;margin:0 auto;padding:20px 20px 60px}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:30px;padding-bottom:14px}
+.section-header.ru{border-bottom:3px solid var(--red)}
+.section-header.ee{border-bottom:3px solid #444}
+.section-header.dark{border-bottom:3px solid var(--gold)}
+.section-title{font-family:'Oswald',sans-serif;font-size:clamp(17px,3.5vw,26px);font-weight:700;text-transform:uppercase;letter-spacing:2px}
+.section-sub{font-size:11px;color:var(--grey);letter-spacing:1px;margin-top:3px;text-transform:uppercase}
 
-/* ── NEWS CARDS ── */
-.news-card{
-  background:rgba(255,255,255,.04);border:1px solid var(--border);
-  padding:18px;margin-bottom:8px;
-  transition:background .2s;cursor:default;
-}
-.news-card:hover{background:rgba(255,255,255,.07)}
-.news-card-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
-.news-card-icon{
-  width:40px;height:40px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;
-}
-.news-card-icon.ru{background:rgba(209,0,0,.2)}
-.news-card-icon.ee{background:rgba(100,116,139,.15)}
-.news-card-icon.neutral{background:rgba(26,111,212,.15)}
-.nc-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
-.nc-tag.ru{color:var(--red2)}
-.nc-tag.ee{color:#8BA4C0}
-.nc-tag.neutral{color:var(--blue2)}
-.nc-title{font-size:15px;font-weight:700;color:var(--white);line-height:1.3}
-.nc-body{font-size:13px;color:#8BA4C0;line-height:1.65}
-.nc-footer{display:flex;justify-content:space-between;margin-top:10px;font-size:11px;color:#4A6080;letter-spacing:.5px}
+/* ── AREA BAR ── */
+.area-bar-wrap{max-width:1100px;margin:0 auto;padding:0 20px 40px}
+.area-label{font-size:11px;color:var(--grey);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.area-bar{display:flex;height:56px;border:2px solid var(--border);overflow:hidden}
+.area-ru{background:linear-gradient(90deg,var(--red2),var(--red));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:white;flex:378;font-family:'Oswald',sans-serif;letter-spacing:1px;text-shadow:1px 1px 3px rgba(0,0,0,.5)}
+.area-ee{background:#333;display:flex;align-items:center;justify-content:center;font-size:10px;color:#aaa;flex:1;padding:2px}
+.area-note{font-size:12px;color:var(--grey);margin-top:8px;font-style:italic}
+.area-note strong{color:var(--gold)}
 
-/* ── COMPARISON BARS ── */
-.comp-bar-item{margin-bottom:14px}
-.comp-bar-head{display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px}
-.comp-bar-label{color:#8BA4C0;letter-spacing:.5px;text-transform:uppercase;font-size:11px}
-.comp-bar-vals{display:flex;gap:16px}
-.cbv-ru{color:var(--red2);font-weight:700}
-.cbv-ee{color:#4A6080;font-weight:700}
-.comp-track{height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;display:flex}
-.ct-ru{background:var(--red2);height:100%;border-radius:4px 0 0 4px;transition:width 1.3s ease}
-.ct-ee{background:#2A4060;height:100%;border-radius:0 4px 4px 0;transition:width 1.3s ease}
+/* ── CARDS ── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px}
+.card{background:var(--card);border:1px solid var(--border);padding:22px;position:relative;overflow:hidden;transition:background .2s,transform .2s}
+.card:hover{background:var(--card2);transform:translateY(-2px)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.card.ru::before{background:linear-gradient(90deg,var(--red),var(--gold),var(--red))}
+.card.ee::before{background:#444}
+.card-icon{font-size:28px;margin-bottom:10px}
+.card-title{font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.card.ru .card-title{color:var(--gold)}
+.card.ee .card-title{color:#bbb}
+.card-body{font-size:13.5px;color:var(--grey);line-height:1.65;font-family:'Special Elite',serif}
+.card-date{font-size:10px;color:#555;margin-top:12px;letter-spacing:1px;text-transform:uppercase}
 
-/* ── SIDEBAR CARDS ── */
-.side-card{
-  background:rgba(255,255,255,.04);border:1px solid var(--border);
-  padding:16px;margin-bottom:8px;
-}
-.side-card-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-bottom:12px}
+/* ── PROGRESS BARS ── */
+.prog-item{margin-bottom:18px}
+.prog-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px;letter-spacing:1px;text-transform:uppercase}
+.prog-val{color:var(--gold);font-weight:700}
+.prog-track{height:12px;background:var(--card2);border:1px solid var(--border)}
+.prog-fill{height:100%;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
 
-/* ── KPI MINI ── */
-.kpi-mini{text-align:center;padding:12px 8px;background:rgba(0,0,0,.2);border:1px solid var(--border);margin-bottom:6px}
-.kpi-mini-val{font-family:'Roboto Condensed',sans-serif;font-size:clamp(22px,5vw,36px);font-weight:700;line-height:1}
-.kpi-mini-val.win{color:var(--red2)}
-.kpi-mini-val.lose{color:#2A4060}
-.kpi-mini-label{font-size:10px;color:#8BA4C0;letter-spacing:1px;text-transform:uppercase;margin-top:5px}
+/* ── CHART ── */
+.chart-wrap{background:var(--card);border:1px solid var(--border);padding:24px;margin-bottom:24px}
+.chart-title{font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:18px}
 
-/* ── PROGRESS METER ── */
-.meter-item{margin-bottom:12px}
-.meter-head{display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;color:#8BA4C0;text-transform:uppercase;letter-spacing:.5px}
-.meter-val{color:var(--yellow);font-weight:700}
-.meter-track{height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden}
-.meter-fill{height:100%;border-radius:3px;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+/* ── SCOREBOARD ── */
+.score-table{width:100%;border-collapse:collapse;font-size:14px}
+.score-table thead th{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:12px 16px;border-bottom:2px solid var(--red);font-family:'Oswald',sans-serif;background:var(--card2);text-align:left}
+.score-table tbody tr{border-bottom:1px solid var(--border)}
+.score-table tbody tr:hover{background:var(--card2)}
+.score-table td{padding:12px 16px;background:var(--card)}
+.score-table td:first-child{font-weight:700;color:var(--grey);letter-spacing:1px;text-transform:uppercase;font-size:11px}
+.score-table td:last-child{font-weight:800;color:var(--red3);font-family:'Oswald',sans-serif;font-size:15px}
+.score-table tr.total td{background:var(--red);font-weight:800;font-size:15px;color:white}
+.score-table tr.total td:last-child{color:var(--gold);font-size:18px}
+.ru-val{color:var(--red3);font-weight:700}
+.ee-val{color:#666}
 
-/* ── CHART CARD ── */
-.chart-card{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:18px;margin-bottom:8px}
-.chart-card-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-bottom:14px}
+/* ── PILLS ── */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 28px}
+.pill{background:var(--card);border:1px solid var(--border);padding:7px 14px;font-size:12px;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:8px;font-family:'Oswald',sans-serif}
+.pill.ru{border-color:var(--red)}
+.pill.ee{border-color:#333}
+.pill-val{font-weight:800}
+.pill.ru .pill-val{color:var(--red3)}
+.pill.ee .pill-val{color:#666}
 
-/* ── QUOTE BOX ── */
-.quote-stripe{
-  border-left:3px solid var(--yellow);
-  background:rgba(255,214,0,.05);
-  padding:12px 16px;margin:10px 0;
-}
-.qs-text{font-size:14px;color:var(--white);font-style:italic;line-height:1.6}
-.qs-src{font-size:10px;color:#4A6080;margin-top:6px;letter-spacing:1px;text-transform:uppercase}
+/* ── FINAL BOX ── */
+.final-box{border:3px solid var(--gold);padding:60px 30px;text-align:center;margin-top:30px;background:linear-gradient(135deg,rgba(180,0,0,.25),rgba(0,0,0,.8)),repeating-linear-gradient(0deg,transparent,transparent 30px,rgba(180,0,0,.05) 30px,rgba(180,0,0,.05) 31px);position:relative}
+.final-stars{font-size:40px;letter-spacing:16px;color:var(--gold);margin-bottom:20px}
+.final-score{font-family:'Oswald',sans-serif;font-size:clamp(60px,16vw,120px);font-weight:700;line-height:1;margin-bottom:20px}
+.final-score .ru{color:var(--red3);text-shadow:0 0 40px rgba(255,26,26,.6)}
+.final-score .sep{color:var(--gold);font-size:.5em;margin:0 16px}
+.final-score .ee{color:#555;text-decoration:line-through}
+.final-quote{font-family:'Special Elite',serif;font-size:clamp(15px,2.5vw,22px);color:var(--gold);max-width:700px;margin:0 auto 16px}
+.final-sub{font-size:13px;color:var(--grey);letter-spacing:2px;text-transform:uppercase}
+.final-note{font-size:11px;color:#333;margin-top:24px}
 
-/* ── ALERT BOX ── */
-.alert-box{
-  background:rgba(209,0,0,.1);border:1px solid rgba(209,0,0,.3);
-  padding:14px 16px;margin-bottom:8px;
-}
-.ab-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red2);margin-bottom:6px}
-.ab-text{font-size:13px;color:var(--white);line-height:1.6}
+/* ── COUNTDOWN ── */
+.countdown-wrap{max-width:1100px;margin:0 auto;padding:0 20px 40px}
+.countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
+.cd-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:20px 10px}
+.cd-num{font-family:'Oswald',sans-serif;font-size:clamp(28px,5vw,50px);font-weight:700;color:var(--red3);text-shadow:0 0 15px rgba(255,26,26,.4)}
+.cd-label{font-size:10px;color:var(--grey);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
 
-/* ── SCORETABLE ── */
-.score-table{width:100%;border-collapse:collapse;font-size:13px}
-.score-table th{
-  font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#8BA4C0;
-  padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;
-  background:rgba(0,0,0,.2);
-}
-.score-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04)}
-.score-table tr:hover td{background:rgba(255,255,255,.03)}
-.score-table td:first-child{color:#8BA4C0;font-size:11px;letter-spacing:.5px;text-transform:uppercase}
-.score-table .win-cell{color:var(--red2);font-weight:700}
-.score-table .lose-cell{color:#2A4060}
-.score-table .ee-win{color:var(--green);font-weight:700}
-.score-table .final-row td{background:rgba(26,111,212,.15);font-weight:700}
-.score-table .final-row td:last-child{color:var(--yellow);font-size:15px}
-
-/* ── ODDITIES GRID ── */
-.oddities{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;margin-bottom:8px}
-.oddity{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:14px}
-.oddity-icon{font-size:22px;margin-bottom:8px}
-.oddity-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px}
-.oddity-body{font-size:12px;color:#8BA4C0;line-height:1.6}
-.oddity-tag{font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-top:8px;color:#4A6080}
-.oddity-tag.ru{color:var(--red2)}
-.oddity-tag.ee{color:var(--green)}
+/* ── MUSIC BAR ── */
+.music-bar{position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(10,0,0,.97);border-top:2px solid var(--gold);padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.music-title{font-family:'Special Elite',serif;font-size:13px;color:var(--gold);flex:1}
+.music-btn{background:var(--red);color:white;border:2px solid var(--gold);padding:6px 18px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:all .2s}
+.music-btn:hover{background:var(--red3)}
+.music-note{font-size:11px;color:var(--grey)}
 
 /* ── FOOTER ── */
-footer{
-  background:var(--dark);border-top:1px solid var(--border);
-  text-align:center;padding:24px 20px 30px;
-  font-size:12px;color:#2A4080;
-}
-.footer-logo{font-family:'Roboto Condensed',sans-serif;font-size:22px;font-weight:700;color:#1A3060;margin-bottom:8px}
+footer{text-align:center;padding:30px 20px 80px;border-top:3px solid var(--red);font-family:'Special Elite',serif;font-size:12px;color:#444}
+.footer-hammer{font-size:28px;color:var(--red);margin-bottom:8px;display:block}
 
-/* ── RESPONSIVE ── */
 @media(max-width:600px){
-  .scoreboard{grid-template-columns:1fr;gap:0}
-  .team-score-box{padding:16px 20px}
-  .score-nums{font-size:clamp(50px,14vw,80px)}
-  .net-nav{display:none}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .cards-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .score-table{font-size:11px}
+  .score-table td{padding:9px 10px}
+  .countdown-grid{grid-template-columns:repeat(4,1fr)}
+  .week-divider{display:none}
+  .week-banner{gap:18px}
 }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-left">
-    <div class="topbar-item"><div class="dot"></div><span>EN DIRECTO</span></div>
-    <div class="topbar-item">🕒 <span id="tb-time">--:--:--</span> UTC</div>
-    <div class="topbar-item">📍 Cobertura: Báltico / Moscú / Tallin</div>
-  </div>
-  <div class="topbar-right">GNN GLOBAL NEWS NETWORK · Edición Internacional</div>
+<!-- YT AUDIO HIDDEN -->
+<div id="yt-container" style="position:fixed;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none">
+  <iframe id="yt-player" width="1" height="1" src="" allow="autoplay" frameborder="0"></iframe>
 </div>
 
-<!-- NETWORK HEADER -->
-<div class="net-header">
-  <div class="net-logo">
-    <div class="net-logo-badge">GNN</div>
-    <div>
-      <div style="font-family:'Roboto Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:1px">GLOBAL NEWS NETWORK</div>
-      <div class="net-logo-sub">COBERTURA ESPECIAL · <b>RUSIA vs ESTONIA</b> · Análisis Exclusivo</div>
-    </div>
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker" id="ticker-content">
+    <span class="star">☭</span>
+    <span>URGENTE: Estonia sigue existiendo — Rusia sigue sin enterarse</span>
+    <span class="star">★</span>
+    <span>RUSIA 17.098.242 km² · ESTONIA 45.228 km² · Estonia cabe 378 veces en Rusia</span>
+    <span class="star">☭</span>
+    <span>Premios Nobel — Rusia: 32 · Estonia: 0 · Diferencia: INFINITA</span>
+    <span class="star">★</span>
+    <span>Ministro estonio prometió invadir Rusia · 7.000 soldados vs 900.000 · The Telegraph: "Estonia lista para autodestruirse"</span>
+    <span class="star">☭</span>
+    <span>Muro frontera Estonia-Rusia completado: 14% · En obra desde hace 3 años · Presupuesto agotado</span>
+    <span class="star">★</span>
+    <span>GLONASS operativo · Rusia tiene GPS propio · Estonia usa el GPS americano del iPhone</span>
+    <span class="star">☭</span>
+    <span>Estonia: punto más alto 318m · En Madrid eso es un cerro para sacar el perro</span>
+    <span class="star">★</span>
+    <span>Moscú tiene 12,6 millones de habitantes · Estonia entera tiene 1,37 millones · Moscú > Estonia</span>
   </div>
-  <nav class="net-nav">
-    <a href="#portada">Portada</a>
-    <a href="#analisis">Análisis</a>
-    <a href="#rusia">Rusia</a>
-    <a href="#estonia">Estonia</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">☭ СЛАВА POCCИИ ☭</div>
+  <div class="nav-links">
+    <a href="#semana">Esta Semana</a>
+    <a href="#stats">Estadísticas</a>
+    <a href="#rusia">Gloria Rusa</a>
+    <a href="#estonia">La Víctima</a>
     <a href="#veredicto">Veredicto</a>
-  </nav>
-  <div class="live-pill">🔴 DIRECTO</div>
-</div>
+  </div>
+  <div class="live-badge" id="semana-badge">● SEM. XX</div>
+</nav>
 
-<!-- BREAKING BANNER -->
-<div class="breaking-wrap">
-  <div class="breaking-tag">⚡ ÚLTIMA HORA</div>
-  <div class="breaking-scroll">
-    <div class="breaking-inner">
-      <span>CONFIRMADO: Estonia sigue existiendo — Rusia actualiza su ignorancia sobre el tema</span><span class="sep">|</span>
-      <span>GNN EXCLUSIVA: Estonia tiene 318m de altitud máxima — equivale a un aparcamiento en el Tibidabo</span><span class="sep">|</span>
-      <span>FUENTES: Ejército estonio de 7.000 soldados "preparado para invadir Rusia" según ministro — fuentes rusas no encuentran Estonia en mapa</span><span class="sep">|</span>
-      <span>BREAKING: Muro fronterizo estonio al 14% de completar — presupuesto agotado por 4ª vez consecutiva</span><span class="sep">|</span>
-      <span>GNN DATA: Moscú tiene 9x más habitantes que Estonia entera — Moscú no sabe que Estonia existe</span><span class="sep">|</span>
-      <span>ACTUALIZACIÓN: Estonia gana en WiFi, anticorrupción y governance digital · Rusia gana en todo lo demás · GNN confirma</span><span class="sep">|</span>
-      <!-- repeat for seamless loop -->
-      <span>CONFIRMADO: Estonia sigue existiendo — Rusia actualiza su ignorancia sobre el tema</span><span class="sep">|</span>
-      <span>GNN EXCLUSIVA: Estonia tiene 318m de altitud máxima — equivale a un aparcamiento en el Tibidabo</span><span class="sep">|</span>
-      <span>FUENTES: Ejército estonio de 7.000 soldados "preparado para invadir Rusia" según ministro — fuentes rusas no encuentran Estonia en mapa</span><span class="sep">|</span>
-      <span>BREAKING: Muro fronterizo estonio al 14% de completar — presupuesto agotado por 4ª vez consecutiva</span><span class="sep">|</span>
-      <span>GNN DATA: Moscú tiene 9x más habitantes que Estonia entera — Moscú no sabe que Estonia existe</span><span class="sep">|</span>
-      <span>ACTUALIZACIÓN: Estonia gana en WiFi, anticorrupción y governance digital · Rusia gana en todo lo demás · GNN confirma</span>
-    </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stars">★ ★ ★ ★ ★</div>
+  <p class="hero-cccp">— Informe Oficial de la Verdad · Edición Semanal —</p>
+  <h1>
+    <span class="ru">РOCCИЯ</span>
+    <span class="vs">☭ VS ☭</span>
+    <span class="ee">ESTONIA</span>
+  </h1>
+  <p class="hero-sub">"La historia juzgará con objetividad. Por eso estamos aquí nosotros."<br>— Actualización automática cada semana. Sin filtros. Sin piedad.</p>
+  <div class="hero-badge">
+    <span>🕒</span>
+    <span id="live-time">--:--:--</span>
+    <span>·</span>
+    <span id="current-date-str">cargando...</span>
+    <span>· Moscú aprueba</span>
   </div>
 </div>
 
-<!-- HERO SCOREBOARD -->
-<div class="hero" id="portada">
-  <div class="hero-tag">GNN WORLD SPECIAL REPORT · <span>MARCADOR EN DIRECTO</span> · Actualizado <span id="hero-date">ahora</span></div>
-  <div class="scoreboard">
-    <div class="team-block">
-      <span class="team-flag">🇷🇺</span>
-      <div class="team-name ru">RUSIA</div>
-      <div style="font-size:11px;color:#8BA4C0;margin-top:4px;letter-spacing:1px">144M hab · 17M km²</div>
-    </div>
-    <div class="team-score-box">
-      <div class="score-nums"><span id="sc-ru" style="color:var(--red2)">0</span><span class="dash">–</span><span id="sc-ee" style="color:#4A6080">0</span></div>
-      <div class="score-label">⚡ Marcador oficial GNN</div>
-      <div class="score-detail">
-        <div class="sd-item"><div class="sd-val" id="sd-weeks">—</div><div class="sd-key">Semana</div></div>
-        <div class="sd-item"><div class="sd-val">10</div><div class="sd-key">Categorías</div></div>
-        <div class="sd-item"><div class="sd-val" id="sd-year">2026</div><div class="sd-key">Año</div></div>
-      </div>
-    </div>
-    <div class="team-block">
-      <span class="team-flag">🇪🇪</span>
-      <div class="team-name ee">ESTONIA</div>
-      <div style="font-size:11px;color:#4A6080;margin-top:4px;letter-spacing:1px">1.37M hab · 45K km²</div>
-    </div>
+<!-- WEEK BANNER -->
+<div class="week-banner" id="semana">
+  <div>
+    <div class="week-num" id="week-display">SEMANA —</div>
+    <div class="week-label">☭ Edición semanal auto-actualizada ☭</div>
+  </div>
+  <div class="week-divider"></div>
+  <div>
+    <div class="week-tagline" id="week-tagline">"Cargando sabiduría soviética..."</div>
+    <div class="week-days" id="week-dates">— — al — —</div>
+  </div>
+  <div class="week-divider"></div>
+  <div>
+    <div class="week-num" id="weeks-since">—</div>
+    <div class="week-label">semanas humillando a Estonia</div>
   </div>
 </div>
 
-<!-- STAT PILLS STRIP -->
-<div class="stat-strip" id="analisis">
-  <div class="stat-pill"><span class="k">Superficie</span><span class="v win">×378 Rusia</span></div>
-  <div class="stat-pill"><span class="k">Ejército</span><span class="v win">×129 Rusia</span></div>
-  <div class="stat-pill"><span class="k">Nobel</span><span class="v win">32–0 Rusia</span></div>
-  <div class="stat-pill"><span class="k">PIB total</span><span class="v win">×59 Rusia</span></div>
-  <div class="stat-pill"><span class="k">PIB/cápita</span><span class="v" style="color:var(--green)">Estonia lidera</span></div>
-  <div class="stat-pill"><span class="k">Wifi</span><span class="v" style="color:var(--green)">Estonia #1</span></div>
-  <div class="stat-pill"><span class="k">Corrupción</span><span class="v" style="color:var(--green)">Estonia #14</span></div>
-  <div class="stat-pill"><span class="k">Punto más alto</span><span class="v win">Elbrús 5.642m</span></div>
-  <div class="stat-pill"><span class="k">Altitud Estonia</span><span class="v lose">318m</span></div>
-  <div class="stat-pill"><span class="k">Muro fronterizo</span><span class="v lose">14% hecho</span></div>
+<!-- COUNTDOWN al próximo lunes -->
+<div class="countdown-wrap" style="margin-top:30px">
+  <p class="area-label" style="text-align:center;margin-bottom:16px">☭ Próxima actualización semanal — LUNES ☭</p>
+  <div class="countdown-grid">
+    <div class="cd-box"><div class="cd-num" id="cd-d">0</div><div class="cd-label">Días</div></div>
+    <div class="cd-box"><div class="cd-num" id="cd-h">0</div><div class="cd-label">Horas</div></div>
+    <div class="cd-box"><div class="cd-num" id="cd-m">0</div><div class="cd-label">Minutos</div></div>
+    <div class="cd-box"><div class="cd-num" id="cd-s">0</div><div class="cd-label">Segundos</div></div>
+  </div>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="main">
-<div> <!-- LEFT COLUMN -->
+<!-- WEEKLY SPOTLIGHT (auto-rota cada semana) -->
+<section>
+  <div class="section-header dark">
+    <span style="font-size:32px;color:var(--gold)">☭</span>
+    <div>
+      <div class="section-title" style="color:var(--gold)" id="spotlight-week-title">LOGROS Y VERGÜENZAS DE LA SEMANA</div>
+      <div class="section-sub">Se actualiza solo cada lunes · Datos verificados por el Kremlin</div>
+    </div>
+  </div>
+  <div class="spotlight-grid">
+    <div class="spotlight-card win">
+      <div class="spotlight-tag">☭ Logro ruso de la semana</div>
+      <div class="spotlight-icon" id="sp-ru-icon">☭</div>
+      <div class="spotlight-title" id="sp-ru-title">Cargando...</div>
+      <div class="spotlight-body" id="sp-ru-body">Un momento...</div>
+      <div class="spotlight-source" id="sp-ru-src"></div>
+    </div>
+    <div class="spotlight-card fail">
+      <div class="spotlight-tag">🇪🇪 Fracaso estonio de la semana</div>
+      <div class="spotlight-icon" id="sp-ee-icon">🇪🇪</div>
+      <div class="spotlight-title" id="sp-ee-title">Cargando...</div>
+      <div class="spotlight-body" id="sp-ee-body">Un momento...</div>
+      <div class="spotlight-source" id="sp-ee-src"></div>
+    </div>
+  </div>
+</section>
 
-  <!-- COMPARATIVAS -->
-  <div class="sec-head"><h2>📊 Comparativa de indicadores</h2><p>Datos verificados · Fuentes: World Bank, SIPRI, Eurostat, IMF 2025</p></div>
+<!-- PROP BANNER 1 -->
+<div class="prop-banner">
+  <p>☭ ESTONIA CABE 378 VECES DENTRO DE RUSIA ☭</p>
+  <p class="sub">DATO VERIFICADO · FUENTE: GOOGLE MAPS (AMERICANO, PERO CORRECTO EN ESTE CASO)</p>
+</div>
 
-  <div class="chart-card" style="margin-bottom:16px">
-    <div class="chart-card-title">Distribución de poder — Radar GNN</div>
-    <canvas id="radarChart" height="220"></canvas>
+<!-- KPI GRID -->
+<div class="kpi-grid" id="stats">
+  <div class="kpi ru"><div class="kpi-flag">🇷🇺</div><div class="kpi-val" data-target="17098242" data-suffix=" km²">0</div><div class="kpi-label">Superficie · Rusia</div></div>
+  <div class="kpi ee"><div class="kpi-flag">🇪🇪</div><div class="kpi-val" data-target="45228" data-suffix=" km²">0</div><div class="kpi-label">Superficie · Estonia</div></div>
+  <div class="kpi ru"><div class="kpi-flag">🇷🇺</div><div class="kpi-val" data-target="144" data-suffix="M hab">0</div><div class="kpi-label">Población · Rusia</div></div>
+  <div class="kpi ee"><div class="kpi-flag">🇪🇪</div><div class="kpi-val" data-target="137" data-suffix="0K hab">0</div><div class="kpi-label">Población · Estonia</div></div>
+  <div class="kpi ru"><div class="kpi-flag">🇷🇺</div><div class="kpi-val" data-target="32" data-suffix="">0</div><div class="kpi-label">Premios Nobel · Rusia</div></div>
+  <div class="kpi ee"><div class="kpi-flag">🇪🇪</div><div class="kpi-val" style="color:#555">0</div><div class="kpi-label">Premios Nobel · Estonia</div></div>
+  <div class="kpi ru"><div class="kpi-flag">🇷🇺</div><div class="kpi-val" data-target="900" data-suffix="K soldados">0</div><div class="kpi-label">Ejército activo · Rusia</div></div>
+  <div class="kpi ee"><div class="kpi-flag">🇪🇪</div><div class="kpi-val" data-target="7" data-suffix="K soldados">0</div><div class="kpi-label">Ejército activo · Estonia</div></div>
+  <div class="kpi ru"><div class="kpi-flag">🇷🇺</div><div class="kpi-val" data-target="6257" data-suffix=" ojivas">0</div><div class="kpi-label">Arsenal nuclear · Rusia</div></div>
+  <div class="kpi ee"><div class="kpi-flag">🇪🇪</div><div class="kpi-val" style="color:#555">0</div><div class="kpi-label">Arsenal nuclear · Estonia</div></div>
+</div>
+
+<!-- AREA BAR -->
+<div class="area-bar-wrap">
+  <p class="area-label">☭ Comparativa de superficie proporcional — escala real</p>
+  <div class="area-bar">
+    <div class="area-ru">☭ РОССИЯ — 17.098.242 km² ☭</div>
+    <div class="area-ee">🇪🇪</div>
+  </div>
+  <p class="area-note">Estonia es ese píxel a la derecha. <strong>Moscú</strong> sola tiene más habitantes que toda Estonia. Moscú supera a Estonia en tamaño, población, PIB, ejército y vibe general.</p>
+</div>
+
+<!-- CHARTS -->
+<section>
+  <div class="chart-wrap">
+    <p class="chart-title">☭ Análisis comparativo — 9 vectores de poder ☭</p>
+    <canvas id="radarChart" height="260"></canvas>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;margin-bottom:30px">
+    <div class="chart-wrap" style="margin-bottom:0"><p class="chart-title">★ Población (millones)</p><canvas id="popChart" height="180"></canvas></div>
+    <div class="chart-wrap" style="margin-bottom:0"><p class="chart-title">★ PIB Total (miles de millones $)</p><canvas id="gdpChart" height="180"></canvas></div>
+    <div class="chart-wrap" style="margin-bottom:0"><p class="chart-title">★ Ejército activo (miles)</p><canvas id="armyChart" height="180"></canvas></div>
+  </div>
+</section>
+
+<!-- RUSIA NEWS -->
+<section id="rusia">
+  <div class="section-header ru">
+    <span style="font-size:32px">☭</span>
+    <div>
+      <div class="section-title" style="color:var(--red3)">GLORIA RUSA — LOGROS HISTÓRICOS</div>
+      <div class="section-sub">Victorias, hazañas e invenciones · Registros permanentes</div>
+    </div>
+  </div>
+  <div class="pills">
+    <div class="pill ru"><span class="pill-val">BRICS</span> 13 naciones</div>
+    <div class="pill ru"><span class="pill-val">>35%</span> PIB mundial</div>
+    <div class="pill ru"><span class="pill-val">GLONASS</span> GPS propio</div>
+    <div class="pill ru"><span class="pill-val">6.257</span> ojivas nucleares</div>
+    <div class="pill ru"><span class="pill-val">32</span> Premios Nobel</div>
+    <div class="pill ru"><span class="pill-val">1961</span> 1er humano en el espacio</div>
+    <div class="pill ru"><span class="pill-val">Lada</span> el coche eterno</div>
+    <div class="pill ru"><span class="pill-val">Tetris</span> inventado en Moscú</div>
+  </div>
+  <div class="cards-grid">
+    <div class="card ru"><div class="card-icon">☭</div><div class="card-title">BRICS supera al G7</div><div class="card-body">13 naciones. Más del 35% del PIB mundial en paridad de poder. Rusia lidera la alternativa al orden occidental. Estonia celebra haber vendido 40 millones de euros en bayas silvestres ese mismo año.</div><div class="card-date">★ ENERO 2026 · Reuters / TASS</div></div>
+    <div class="card ru"><div class="card-icon">🚀</div><div class="card-title">1961: Gagarin. Punto Final.</div><div class="card-body">Yuri Gagarin. Soviético. 12 de abril de 1961. Primer ser humano en orbitar la Tierra. Estonia en 1961 contribuía de forma modesta al esfuerzo colectivo soviético. De nada, Estonia. De nada.</div><div class="card-date">★ PARA LA ETERNIDAD · Roscosmos</div></div>
+    <div class="card ru"><div class="card-icon">🎮</div><div class="card-title">Tetris: Inventado en Moscú</div><div class="card-body">1984. Alexei Pajitnov. Instituto Dorodnitsyn, Moscú. El juego más vendido de todos los tiempos salió de un ordenador soviético. Estonia tiene Skype. Que fue comprado por Microsoft. Y luego por eBay. Luego devuelto. Y vendido otra vez. Muy soberano todo.</div><div class="card-date">★ 1984 · Historia del Videojuego</div></div>
+    <div class="card ru"><div class="card-icon">🛰️</div><div class="card-title">GLONASS: Independencia Total</div><div class="card-body">El único GPS completamente soberano con cobertura global real, junto al americano GPS. Rusia no depende del iPhone para saber dónde está. Estonia sí. Esto es, técnicamente, la diferencia entre una potencia y un municipio con buenas playas.</div><div class="card-date">★ PERMANENTE · Roscosmos / ESA</div></div>
+    <div class="card ru"><div class="card-icon">⚡</div><div class="card-title">Planta Nuclear Flotante</div><div class="card-body">El Akademik Lomonosov lleva años generando electricidad en el Ártico. El único reactor nuclear flotante del mundo. Estonia tiene aerogeneradores que se paran cuando no hay viento. En el Ártico, siempre hay viento. Planificación.</div><div class="card-date">★ OPERATIVO 2019 · Rosatom</div></div>
+    <div class="card ru"><div class="card-icon">🏔️</div><div class="card-title">Lago Baikal: 20% del Agua Dulce</div><div class="card-body">1.642 metros de profundidad. 20% de toda el agua dulce superficial del planeta en un solo lago. El lago más antiguo del mundo (25 millones de años). Estonia tiene el lago Võrtsjärv: 6 metros de media, visible entero desde Google Maps zoom 10.</div><div class="card-date">★ PERMANENTE · UNESCO</div></div>
+    <div class="card ru"><div class="card-icon">🍹</div><div class="card-title">El Vodka: Invención Civilizatoria</div><div class="card-body">El vodka ruso es patrimonio cultural inmaterial de la humanidad en 24 países. Exportado a 180 naciones. Estonia produce Vana Tallinn, un licor de color caramelo que los turistas compran por error pensando que es vodka y luego guardan en el armario.</div><div class="card-date">★ DESDE EL SIGLO IX · Historia</div></div>
+    <div class="card ru"><div class="card-icon">🎻</div><div class="card-title">Literatura y Música: Liga Propia</div><div class="card-body">Tolstói. Dostoyevski. Chéjov. Pushkin. Tchaikovsky. Rachmaninoff. Shostakóvich. Estonia tiene Arvo Pärt, que es muy bueno pero escribe música tan tranquila que a veces se confunde con silencio. No es lo mismo.</div><div class="card-date">★ SIGLOS XVIII–XXI · Historia Cultural</div></div>
+  </div>
+</section>
+
+<!-- PROP BANNER 2 -->
+<div class="prop-banner">
+  <p>★ EL MINISTRO ESTONIO PROMETIÓ INVADIR RUSIA ★</p>
+  <p class="sub">7.000 SOLDADOS vs 900.000 · RATIO: 1 A 129 · THE TELEGRAPH: "ESTONIA LISTA PARA AUTODESTRUIRSE" · 2026</p>
+</div>
+
+<!-- ESTONIA NEWS -->
+<section id="estonia">
+  <div class="section-header ee">
+    <span style="font-size:32px">🇪🇪</span>
+    <div>
+      <div class="section-title" style="color:#888">ESTONIA — NOTICIAS DE LA GRAN POTENCIA</div>
+      <div class="section-sub">Aventuras bálticas · Datos reales · Sin editar</div>
+    </div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
-    <div class="chart-card" style="margin-bottom:0"><div class="chart-card-title">Superficie km²</div><canvas id="areaChart" height="180"></canvas></div>
-    <div class="chart-card" style="margin-bottom:0"><div class="chart-card-title">PIB per cápita ($)</div><canvas id="gdpCapChart" height="180"></canvas></div>
-  </div>
-
-  <!-- COMPARISON BARS -->
-  <div class="side-card" style="margin-bottom:16px">
-    <div class="side-card-title">Comparativa directa — Top 8 indicadores</div>
-    <div id="comp-bars">
-      <div class="comp-bar-item" data-ru="100" data-ee="0.26">
-        <div class="comp-bar-head"><span class="comp-bar-label">Superficie</span><div class="comp-bar-vals"><span class="cbv-ru">Rusia 17M</span><span class="cbv-ee">EE 45K</span></div></div>
-        <div class="comp-track"><div class="ct-ru" style="width:0%"></div><div class="ct-ee" style="width:0%"></div></div>
+  <div class="chart-wrap" style="margin-bottom:28px">
+    <p class="chart-title">★ Indicadores de progreso estonio (objetivo vs realidad)</p>
+    <div style="max-width:600px">
+      <div class="prog-item">
+        <div class="prog-label"><span>Muro frontera con Rusia completado</span><span class="prog-val">14%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-width="14" style="width:0%;background:var(--red)"></div></div>
       </div>
-      <div class="comp-bar-item" data-ru="100" data-ee="0.96">
-        <div class="comp-bar-head"><span class="comp-bar-label">Población</span><div class="comp-bar-vals"><span class="cbv-ru">144M</span><span class="cbv-ee">1.37M</span></div></div>
-        <div class="comp-track"><div class="ct-ru" style="width:0%"></div><div class="ct-ee" style="width:0%"></div></div>
+      <div class="prog-item">
+        <div class="prog-label"><span>Población retenida desde 1991</span><span class="prog-val">–20%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-width="20" style="width:0%;background:#555"></div></div>
       </div>
-      <div class="comp-bar-item" data-ru="100" data-ee="1.7">
-        <div class="comp-bar-head"><span class="comp-bar-label">PIB Total ($B)</span><div class="comp-bar-vals"><span class="cbv-ru">$2.240B</span><span class="cbv-ee">$38B</span></div></div>
-        <div class="comp-track"><div class="ct-ru" style="width:0%"></div><div class="ct-ee" style="width:0%"></div></div>
+      <div class="prog-item">
+        <div class="prog-label"><span>Búnkeres construidos (objetivo: 600)</span><span class="prog-val">~8%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-width="8" style="width:0%;background:var(--red)"></div></div>
       </div>
-      <div class="comp-bar-item" data-ru="100" data-ee="0.78">
-        <div class="comp-bar-label">Ejército activo</div>
-        <div class="comp-bar-head" style="margin-top:4px"><span></span><div class="comp-bar-vals"><span class="cbv-ru">900K</span><span class="cbv-ee">7K</span></div></div>
-        <div class="comp-track"><div class="ct-ru" style="width:0%"></div><div class="ct-ee" style="width:0%"></div></div>
+      <div class="prog-item">
+        <div class="prog-label"><span>Premios Nobel (objetivo: al menos 1)</span><span class="prog-val">0%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-width="0.5" style="width:0%;background:#333"></div></div>
       </div>
-      <div class="comp-bar-item" data-ru="63" data-ee="100">
-        <div class="comp-bar-head"><span class="comp-bar-label">PIB per cápita</span><div class="comp-bar-vals"><span class="cbv-ru" style="color:var(--green)">$15K</span><span class="cbv-ee" style="color:var(--green)">$24K ✓</span></div></div>
-        <div class="comp-track">
-          <div class="ct-ru" style="width:0%;background:var(--blue2)"></div>
-          <div class="ct-ee" style="width:0%;background:var(--green)"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- NEWS CARDS RUSIA -->
-  <div class="sec-head alert" id="rusia"><h2>🇷🇺 Cobertura: Bloque Rusia</h2><p>Última hora · Logros y posiciones · GNN Moscú</p></div>
-
-  <div class="news-card">
-    <div class="news-card-head">
-      <div class="news-card-icon ru">☭</div>
-      <div><div class="nc-tag ru">GNN EXCLUSIVA · GEOPOLÍTICA</div><div class="nc-title">BRICS suma su nación número 13: Rusia confirma bloque supera al G7</div></div>
-    </div>
-    <div class="nc-body">El Premier Mishustin confirma que el PIB combinado del bloque BRICS en paridad de poder adquisitivo supera ya al G7 colectivo. 13 naciones. Más del 35% del PIB mundial. Rusia lidera la única alternativa real al orden financiero occidental. Estonia ha enviado felicitaciones. El comunicado llegó tarde porque tuvieron que traducirlo al ruso para que alguien lo leyera.</div>
-    <div class="quote-stripe"><p class="qs-text">"Los BRICS representan el futuro multipolar de la economía global."</p><p class="qs-src">★ Reuters / TASS · Enero 2026</p></div>
-    <div class="nc-footer"><span>GNN MOSCÚ · CONFIRMADO</span><span>Enero 2026</span></div>
-  </div>
-
-  <div class="news-card">
-    <div class="news-card-head">
-      <div class="news-card-icon ru">🛰️</div>
-      <div><div class="nc-tag ru">CIENCIA · ESPACIO</div><div class="nc-title">GLONASS: 30 años de independencia satelital — Rusia el único país con GPS soberano real</div></div>
-    </div>
-    <div class="nc-body">El sistema GLONASS, operativo desde los años 80 y con cobertura global certificada, representa la única alternativa funcional al GPS americano. Rusia navega sola. Estonia navega con el iPhone. Su reciente satélite ESTCube-1 (2013, 1 kg, tamaño cubo Rubik) funcionó unos meses y perdió comunicación. GNN no lo cuenta como equivalente a GLONASS.</div>
-    <div class="nc-footer"><span>GNN TECNOLOGÍA · VERIFICADO</span><span>Permanente</span></div>
-  </div>
-
-  <div class="news-card">
-    <div class="news-card-head">
-      <div class="news-card-icon ru">⚡</div>
-      <div><div class="nc-tag ru">ENERGÍA · INNOVACIÓN</div><div class="nc-title">Akademik Lomonosov: el único reactor nuclear flotante del planeta cumple 5 años operativo</div></div>
-    </div>
-    <div class="nc-body">El Akademik Lomonosov lleva desde 2019 generando electricidad en el Ártico sin interrupciones. Primer y único reactor nuclear flotante del mundo. Mientras tanto, Estonia ha apostado por la energía eólica, que funciona cuando hay viento. En el Ártico siempre hay viento. En Estonia también, pero no tienen reactor.</div>
-    <div class="nc-footer"><span>GNN ENERGÍA · ROSATOM</span><span>Operativo 2019–hoy</span></div>
-  </div>
-
-  <div class="news-card">
-    <div class="news-card-head">
-      <div class="news-card-icon ru">🎮</div>
-      <div><div class="nc-tag ru">CULTURA · TECNOLOGÍA</div><div class="nc-title">A 40 años del Tetris: el legado cultural soviético que conquistó el mundo</div></div>
-    </div>
-    <div class="nc-body">1984. Alexei Pajitnov. Instituto Dorodnitsyn de Informática Aplicada, Moscú. El juego más vendido de todos los tiempos (500M de copias) salió de un ordenador soviético. Estonia creó Pipedrive (software CRM B2B) y Transferwise (fintech). Útiles. Pero nadie ha dicho nunca "echemos un Pipedrive" en una tarde de domingo.</div>
-    <div class="nc-footer"><span>GNN CULTURA · VERIFICADO</span><span>1984 — Para siempre</span></div>
-  </div>
-
-  <!-- NEWS CARDS ESTONIA -->
-  <div class="sec-head" style="border-left-color:#4A6080;margin-top:24px" id="estonia"><h2>🇪🇪 Cobertura: Bloque Estonia</h2><p>Últimas novedades de la gran potencia báltica · GNN Tallin</p></div>
-
-  <div class="alert-box">
-    <div class="ab-tag">⚡ GNN ALERTA DIPLOMÁTICA · Febrero 2026</div>
-    <div class="ab-text">El Ministro de Defensa estonio Tsahkna ha declarado que Estonia está "preparada para llevar el combate a territorio ruso". El ejército estonio cuenta con 7.000 soldados activos. El ruso con 900.000. Ratio: 1 a 129. <b>The Telegraph</b> ha titulado: <i>"Estonia lista para autodestruirse"</i>. El Kremlin no ha convocado reunión de emergencia. Tampoco de no-emergencia.</div>
-  </div>
-
-  <div class="news-card">
-    <div class="news-card-head">
-      <div class="news-card-icon neutral">🌐</div>
-      <div><div class="nc-tag neutral">GNN ANÁLISIS · GOBIERNO DIGITAL</div><div class="nc-title">Estonia lidera el ranking mundial de e-Government — el único dato que le sale bien</div></div>
-    </div>
-    <div class="nc-body">GNN reconoce: Estonia tiene el sistema de gobierno digital más avanzado del mundo. Votación online desde 2005, identidad digital universal, recetas médicas digitales, firma electrónica reconocida internacionalmente. Fundado por necesidad: con 1,37 millones de personas y mucho bosque, digitalizar todo era la única opción. La necesidad, madre de la invención.</div>
-    <div class="quote-stripe" style="border-left-color:var(--green)"><p class="qs-text">"Estonia es el país más digital del mundo. Solo le falta gente que lo use."</p><p class="qs-src">★ GNN Analysis Desk · 2026</p></div>
-    <div class="nc-footer"><span>GNN TECH · VERIFICADO</span><span>2005–2026</span></div>
-  </div>
-
-  <div class="news-card">
-    <div class="news-card-head">
-      <div class="news-card-icon ee">🧱</div>
-      <div><div class="nc-tag ee">GNN SEGUIMIENTO · INFRAESTRUCTURA</div><div class="nc-title">El Gran Muro: 4 años, 3 presupuestos agotados y el 14% completado</div></div>
-    </div>
-    <div class="nc-body">Estonia comenzó la construcción de una valla fronteriza de 294 km con Rusia en 2022. Situación actual: ~41 km construidos (14%). El presupuesto aprobado se ha agotado tres veces. El Plan B contempla 600 búnkeres subterráneos para 2027, de los cuales se ha construido aproximadamente el 8%. GNN calcula que al ritmo actual el muro estaría terminado en 2050, si el presupuesto aguanta.</div>
-    <div class="nc-footer"><span>GNN TALLIN · AP NEWS · VERIFICADO</span><span>2022–en obras</span></div>
-  </div>
-
-  <div class="news-card">
-    <div class="news-card-head">
-      <div class="news-card-icon ee">📉</div>
-      <div><div class="nc-tag ee">GNN DATOS · DEMOGRAFÍA</div><div class="nc-title">Estonia pierde el 20% de su población desde 1991 — los estonios emigran a Finlandia</div></div>
-    </div>
-    <div class="nc-body">Desde la independencia en 1991, Estonia ha perdido más del 20% de su población. Saldo migratorio negativo sostenido. Los ciudadanos estonios emigran principalmente a Finlandia, Noruega y Alemania. Los 600 búnkeres subterráneos planificados para 2027 tendrán probablemente más espacio del previsto dado el ritmo de despoblación. GNN aclara: esto no es culpa de Rusia. Es libre elección.</div>
-    <div class="nc-footer"><span>GNN DEMOGRAFÍA · EUROSTAT</span><span>1991–2026</span></div>
-  </div>
-
-  <!-- ODDITIES -->
-  <div class="sec-head gold" style="margin-top:24px"><h2>💡 Datos que nadie te cuenta</h2><p>Verificados por el equipo de investigación de GNN</p></div>
-  <div class="oddities">
-    <div class="oddity">
-      <div class="oddity-icon">🔦</div>
-      <div class="oddity-title">La Ley del Reflector</div>
-      <div class="oddity-body">En Estonia es OBLIGATORIO por ley llevar un reflector en la ropa al caminar de noche. Multa real si no lo llevas. El mayor peligro para el ciudadano estonio medio en 2026 no es la invasión: es que el del Škoda no te vea en la curva.</div>
-      <div class="oddity-tag ee">★ Ley vigente · Código Penal Estonio</div>
-    </div>
-    <div class="oddity">
-      <div class="oddity-icon">🌡️</div>
-      <div class="oddity-title">Oymyakon: –71,2°C</div>
-      <div class="oddity-body">El pueblo más frío habitado del planeta está en Siberia. Los colegios cierran a –55°C. Estonia declara emergencia climática a –25°C. Los rusos de Oymyakon llaman a eso "una tarde fresca de octubre".</div>
-      <div class="oddity-tag ru">★ Rusia · Guinness World Records</div>
-    </div>
-    <div class="oddity">
-      <div class="oddity-icon">✈️</div>
-      <div class="oddity-title">Los 12 Minutos</div>
-      <div class="oddity-body">Septiembre 2025: tres aviones rusos sobrevolaron espacio aéreo estonio 12 minutos sin ser detectados. Los aviones aterrizaban en Moscú cuando empezó la rueda de prensa estonia. Convocaron al embajador. Emitieron 4 comunicados.</div>
-      <div class="oddity-tag ee">★ Sep 2025 · AP News</div>
-    </div>
-    <div class="oddity">
-      <div class="oddity-icon">🏔️</div>
-      <div class="oddity-title">318 vs 5.642 metros</div>
-      <div class="oddity-body">El Elbrús ruso es 17,7 veces más alto que el punto más alto de Estonia. El Munamägi (318m) es el punto más alto de los 3 países bálticos. En Madrid eso sería una pista de running de nivel principiante.</div>
-      <div class="oddity-tag ru">★ Dato geográfico permanente</div>
-    </div>
-    <div class="oddity">
-      <div class="oddity-icon">🚂</div>
-      <div class="oddity-title">7 días vs 3 horas</div>
-      <div class="oddity-body">Cruzar Rusia de extremo a extremo en el Transiberiano: 7 días de viaje continuo. Cruzar Estonia de punta a punta en coche: 3 horas. Una misma tarde, sin detenerse a comer.</div>
-      <div class="oddity-tag ru">★ Ferrocarriles Rusos / Google Maps</div>
-    </div>
-    <div class="oddity">
-      <div class="oddity-icon">🌊</div>
-      <div class="oddity-title">El lago más profundo > la montaña más alta</div>
-      <div class="oddity-body">El lago Baikal tiene 1.642m de profundidad. Más profundo que la montaña más alta de Estonia (318m). Rusia gana incluso cuando va hacia abajo.</div>
-      <div class="oddity-tag ru">★ UNESCO · Geografía</div>
-    </div>
-  </div>
-
-</div><!-- /LEFT COLUMN -->
-
-<!-- RIGHT COLUMN (SIDEBAR) -->
-<div>
-  <!-- LIVE SCOREBOARD -->
-  <div class="side-card">
-    <div class="side-card-title">📊 Marcador por categorías</div>
-    <table class="score-table">
-      <thead><tr><th>Área</th><th>🇷🇺</th><th>🇪🇪</th></tr></thead>
-      <tbody>
-        <tr><td>Superficie</td><td class="win-cell">17M km²</td><td class="lose-cell">45K</td></tr>
-        <tr><td>Población</td><td class="win-cell">144M</td><td class="lose-cell">1.37M</td></tr>
-        <tr><td>PIB total</td><td class="win-cell">$2.24T</td><td class="lose-cell">$38B</td></tr>
-        <tr><td>Nobel</td><td class="win-cell">32</td><td class="lose-cell">0</td></tr>
-        <tr><td>Ejército</td><td class="win-cell">900K</td><td class="lose-cell">7K</td></tr>
-        <tr><td>Nuclear</td><td class="win-cell">6.257</td><td class="lose-cell">0</td></tr>
-        <tr><td>Altitud máx.</td><td class="win-cell">5.642m</td><td class="lose-cell">318m</td></tr>
-        <tr><td>GPS propio</td><td class="win-cell">GLONASS</td><td class="lose-cell">No</td></tr>
-        <tr><td>PIB/cápita</td><td class="lose-cell">$15K</td><td class="ee-win">$24K ✓</td></tr>
-        <tr><td>E-Gov / WiFi</td><td class="lose-cell">Mejorable</td><td class="ee-win">#1 ✓</td></tr>
-        <tr><td>Anticorrupción</td><td class="lose-cell">Puesto 141</td><td class="ee-win">Puesto 14 ✓</td></tr>
-        <tr class="final-row"><td><b>RESULTADO</b></td><td><b>8 wins</b></td><td>3 wins</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- PROGRESS INDICATORS ESTONIA -->
-  <div class="side-card">
-    <div class="side-card-title">🏗️ Proyectos en curso — Estonia</div>
-    <div class="meter-item">
-      <div class="meter-head"><span>Muro fronterizo (294 km)</span><span class="meter-val">14%</span></div>
-      <div class="meter-track"><div class="meter-fill" data-w="14" style="width:0%;background:var(--red2)"></div></div>
-    </div>
-    <div class="meter-item">
-      <div class="meter-head"><span>Búnkeres (objetivo: 600)</span><span class="meter-val">8%</span></div>
-      <div class="meter-track"><div class="meter-fill" data-w="8" style="width:0%;background:var(--orange)"></div></div>
-    </div>
-    <div class="meter-item">
-      <div class="meter-head"><span>Población retenida desde 1991</span><span class="meter-val">–20%</span></div>
-      <div class="meter-track"><div class="meter-fill" data-w="80" style="width:0%;background:var(--grey)"></div></div>
-    </div>
-    <div class="meter-item">
-      <div class="meter-head"><span>Premios Nobel (objetivo ≥ 1)</span><span class="meter-val">0%</span></div>
-      <div class="meter-track"><div class="meter-fill" data-w="0.5" style="width:0%;background:#2A4060"></div></div>
-    </div>
-    <div class="meter-item">
-      <div class="meter-head"><span>E-Government (objetivo: ser Rusia)</span><span class="meter-val">N/A</span></div>
-      <div class="meter-track"><div class="meter-fill" data-w="100" style="width:0%;background:var(--green)"></div></div>
-    </div>
-  </div>
-
-  <!-- CHART PIB -->
-  <div class="chart-card">
-    <div class="chart-card-title">PIB Total vs per cápita</div>
-    <canvas id="gdpChart" height="200"></canvas>
-  </div>
-
-  <!-- GNN VERDICT BOX -->
-  <div class="side-card" id="veredicto" style="border-color:var(--yellow)">
-    <div class="side-card-title">⚖️ VEREDICTO OFICIAL GNN</div>
-    <div style="text-align:center;padding:10px 0">
-      <div style="font-family:'Roboto Condensed',sans-serif;font-size:60px;font-weight:700;line-height:1;color:var(--red2)">8</div>
-      <div style="font-size:20px;color:var(--yellow);font-weight:700;margin:4px 0">—</div>
-      <div style="font-family:'Roboto Condensed',sans-serif;font-size:40px;font-weight:700;line-height:1;color:#2A4060">3</div>
-      <div style="font-size:10px;color:#4A6080;letter-spacing:2px;text-transform:uppercase;margin-top:8px">Rusia 8 · Estonia 3</div>
-    </div>
-    <p style="font-size:12px;color:#8BA4C0;text-align:center;line-height:1.6;margin-top:12px;font-style:italic">"Estonia es encantadora para vivir. Rusia existe en la historia. No es lo mismo."</p>
-    <p style="font-size:10px;color:#2A4060;text-align:center;margin-top:8px">GNN Editorial Board · Marzo 2026</p>
-  </div>
-
-  <!-- COUNTDOWN -->
-  <div class="side-card">
-    <div class="side-card-title">⏱️ Próxima actualización semanal</div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">
-      <div style="text-align:center;background:rgba(0,0,0,.2);padding:10px 4px">
-        <div style="font-family:'Roboto Condensed',sans-serif;font-size:26px;font-weight:700;color:var(--yellow)" id="cd-d">0</div>
-        <div style="font-size:9px;color:#4A6080;letter-spacing:1px;text-transform:uppercase">Días</div>
-      </div>
-      <div style="text-align:center;background:rgba(0,0,0,.2);padding:10px 4px">
-        <div style="font-family:'Roboto Condensed',sans-serif;font-size:26px;font-weight:700;color:var(--yellow)" id="cd-h">0</div>
-        <div style="font-size:9px;color:#4A6080;letter-spacing:1px;text-transform:uppercase">Horas</div>
-      </div>
-      <div style="text-align:center;background:rgba(0,0,0,.2);padding:10px 4px">
-        <div style="font-family:'Roboto Condensed',sans-serif;font-size:26px;font-weight:700;color:var(--yellow)" id="cd-m">0</div>
-        <div style="font-size:9px;color:#4A6080;letter-spacing:1px;text-transform:uppercase">Min</div>
-      </div>
-      <div style="text-align:center;background:rgba(0,0,0,.2);padding:10px 4px">
-        <div style="font-family:'Roboto Condensed',sans-serif;font-size:26px;font-weight:700;color:var(--yellow)" id="cd-s">0</div>
-        <div style="font-size:9px;color:#4A6080;letter-spacing:1px;text-transform:uppercase">Seg</div>
+      <div class="prog-item">
+        <div class="prog-label"><span>Reconocimiento internacional (objetivo: que Rusia sepa su nombre)</span><span class="prog-val">3%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-width="3" style="width:0%;background:var(--red)"></div></div>
       </div>
     </div>
-    <p style="font-size:10px;color:#2A4060;text-align:center;margin-top:8px;letter-spacing:1px">Semana <span id="week-badge" style="color:var(--yellow)">—</span> · Actualización automática</p>
   </div>
 
-</div><!-- /RIGHT COLUMN -->
-</div><!-- /MAIN GRID -->
+  <div class="pills">
+    <div class="pill ee"><span class="pill-val">7.000</span> soldados</div>
+    <div class="pill ee"><span class="pill-val">318m</span> "montaña" más alta</div>
+    <div class="pill ee"><span class="pill-val">–20%</span> población desde 1991</div>
+    <div class="pill ee"><span class="pill-val">0</span> Nobel en 33 años</div>
+    <div class="pill ee"><span class="pill-val">14%</span> muro hecho</div>
+    <div class="pill ee"><span class="pill-val">12 min</span> aviones rusos sin detectar</div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card ee"><div class="card-icon">😂</div><div class="card-title">El Ministro Invasor</div><div class="card-body">Febrero 2026. El ministro Tsahkna prometió "llevar el combate a territorio ruso". The Telegraph tituló: "Estonia lista para autodestruirse". 7.000 soldados vs 900.000. El Kremlin no se reunió de urgencia. Nadie se reunió de urgencia. Tampoco de no-urgencia.</div><div class="card-date">★ FEBRERO 2026 · The Telegraph</div></div>
+    <div class="card ee"><div class="card-icon">🧱</div><div class="card-title">El Gran Muro (14% Completado)</div><div class="card-body">294 km de frontera con Rusia. Llevan 3 años construyendo. Han hecho ~40 km. El presupuesto se agota continuamente. Plan B: 600 búnkeres subterráneos para 2027. Plan C: rezar. Con la demografía actual, los búnkeres tendrán sitio de sobra.</div><div class="card-date">★ AGOSTO 2025 · AP News</div></div>
+    <div class="card ee"><div class="card-icon">✈️</div><div class="card-title">12 Minutos de Terror Aéreo</div><div class="card-body">Septiembre 2025. Tres aviones rusos sobrevolaron Estonia 12 minutos sin ser detectados a tiempo. Se convocó al embajador. Se emitieron comunicados. Los aviones ya aterrizaban en Moscú cuando empezó la rueda de prensa estonia. Defensa aérea: en revisión.</div><div class="card-date">★ SEPTIEMBRE 2025 · AP News</div></div>
+    <div class="card ee"><div class="card-icon">🔦</div><div class="card-title">La Ley del Reflector</div><div class="card-body">En Estonia es OBLIGATORIO por ley llevar un reflector en la ropa al caminar de noche. Multa si no lo haces. El peligro existencial más inmediato para el ciudadano estonio medio en 2026 no es Rusia: es que el del coche no te vea en la curva.</div><div class="card-date">★ LEY VIGENTE · Código Penal Estonio</div></div>
+    <div class="card ee"><div class="card-icon">📉</div><div class="card-title">La Hemorragia Demográfica</div><div class="card-body">Estonia ha perdido más del 20% de su población desde 1991. Los propios estonios emigran. A Finlandia, Noruega, Alemania. Los 600 búnkeres para 2027 probablemente tendrán espacio de sobra porque para entonces habrá menos gente que esconder.</div><div class="card-date">★ 1991–2026 · Eurostat / Statistics Estonia</div></div>
+    <div class="card ee"><div class="card-icon">🌐</div><div class="card-title">El E-Estado (lo que Sí Hacen Bien)</div><div class="card-body">Justo es reconocerlo: Estonia tiene el sistema de gobierno digital más avanzado del mundo. Votación online, firma digital universal, sanidad digital. Es decir: son tan pocos y están tan dispersos que necesitaron digitalizar todo para funcionar. La necesidad crea ingenio.</div><div class="card-date">★ 2005–2026 · e-Estonia.com</div></div>
+    <div class="card ee"><div class="card-icon">🚢</div><div class="card-title">La Gran Operación Naval</div><div class="card-body">Febrero 2026: Estonia detuvo un carguero con marineros rusos en el Báltico. Descrito como "histórico" por la prensa local. Rusia lo mencionó 48 horas después en el párrafo 4 de un comunicado de trámite. El carguero fue liberado días después. Épico.</div><div class="card-date">★ FEBRERO 2026 · AP News</div></div>
+    <div class="card ee"><div class="card-icon">🏔️</div><div class="card-title">Suur Munamägi: La Gran Montaña</div><div class="card-body">El punto más alto de Estonia se llama Suur Munamägi y tiene 318 metros de altitud. Es el punto más elevado de los tres países bálticos. En España sería una pista de senderismo de nivel principiante. El Elbrús ruso tiene 5.642 metros. Para comparar.</div><div class="card-date">★ PERMANENTE · Geografía</div></div>
+  </div>
+</section>
+
+<!-- VEREDICTO -->
+<section id="veredicto">
+  <div class="section-header dark">
+    <span style="font-size:32px;color:var(--gold)">★</span>
+    <div>
+      <div class="section-title" style="color:var(--gold)">VEREDICTO FINAL DEL TRIBUNAL</div>
+      <div class="section-sub">Análisis objetivo · Datos irrefutables · Resultado histórico</div>
+    </div>
+  </div>
+  <div class="chart-wrap">
+    <p class="chart-title">★ Marcador por categorías — Puntuación final ★</p>
+    <canvas id="scoreChart" height="180"></canvas>
+  </div>
+  <table class="score-table">
+    <thead>
+      <tr><th>Categoría</th><th>☭ Rusia</th><th>🇪🇪 Estonia</th><th>★ Ganador</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Superficie</td><td class="ru-val">17.098.242 km²</td><td class="ee-val">45.228 km²</td><td>RUSIA ×378</td></tr>
+      <tr><td>Población</td><td class="ru-val">144 millones</td><td class="ee-val">1,37 millones</td><td>RUSIA ×105</td></tr>
+      <tr><td>PIB Total</td><td class="ru-val">$2.240.000 M</td><td class="ee-val">$38.000 M</td><td>RUSIA ×59</td></tr>
+      <tr><td>Premios Nobel</td><td class="ru-val">32</td><td class="ee-val">0</td><td>RUSIA ∞</td></tr>
+      <tr><td>Ejército activo</td><td class="ru-val">900.000</td><td class="ee-val">7.000</td><td>RUSIA ×129</td></tr>
+      <tr><td>Arsenal nuclear</td><td class="ru-val">6.257 ojivas</td><td class="ee-val">0</td><td>RUSIA ∞</td></tr>
+      <tr><td>GPS soberano</td><td class="ru-val">☭ GLONASS</td><td class="ee-val">Apple Maps</td><td>RUSIA</td></tr>
+      <tr><td>Veto en ONU</td><td class="ru-val">☭ Miembro P5</td><td class="ee-val">No</td><td>RUSIA</td></tr>
+      <tr><td>Punto más alto</td><td class="ru-val">Elbrús 5.642m</td><td class="ee-val">Munamägi 318m</td><td>RUSIA ×17,7</td></tr>
+      <tr><td>Reactor nuclear flotante</td><td class="ru-val">☭ Akademik Lomonosov</td><td class="ee-val">No existe</td><td>RUSIA</td></tr>
+      <tr><td>Wifi / E-gobierno</td><td class="ru-val">Mejorable</td><td class="ee-val" style="color:#3FB950">✅ Top mundial</td><td style="color:#aaa">Estonia</td></tr>
+      <tr><td>Corrupción (baja)</td><td class="ru-val">Puesto 141°</td><td class="ee-val" style="color:#3FB950">✅ Puesto 14°</td><td style="color:#aaa">Estonia</td></tr>
+      <tr class="total"><td>☭ MARCADOR FINAL</td><td>10 victorias</td><td>2 victorias</td><td>RUSIA 10 – 2 ESTONIA</td></tr>
+    </tbody>
+  </table>
+
+  <div class="final-box" style="margin-top:40px">
+    <div class="final-stars">★ ★ ★ ★ ★</div>
+    <div class="final-score"><span class="ru">10</span><span class="sep">–</span><span class="ee">2</span></div>
+    <p class="final-quote">"Estonia es un país encantador para vivir.<br>Rusia es un país para existir en la historia."</p>
+    <p class="final-sub">☭ No es lo mismo. Nunca lo fue. ☭</p>
+    <p class="final-note">Informe elaborado con fines humorísticos entre amigos. Estonia es estupenda. Simplemente no es Rusia. Наша страна самая лучшая.</p>
+  </div>
+</section>
+
+<!-- MUSIC BAR -->
+<div class="music-bar">
+  <span style="font-size:22px">☭</span>
+  <div class="music-title">♪ Himno de la URSS — "Союз нерушимый республик свободных" (1944)</div>
+  <button class="music-btn" onclick="toggleMusic()" id="music-btn">▶ HIMNO SOVIÉTICO</button>
+  <span class="music-note">* Música oficial. Escuchar a máximo volumen.</span>
+</div>
 
 <footer>
-  <div class="footer-logo">GNN WORLD</div>
-  <p>Global News Network · Cobertura Especial Rusia vs Estonia · Marzo 2026</p>
-  <p style="margin-top:6px">Fuentes: World Bank · SIPRI · Eurostat · IMF · AP News · The Telegraph · Statistics Estonia · Rosstat</p>
-  <p style="margin-top:10px;color:#0A1628">Elaborado con fines humorísticos entre amigos · Estonia es un país estupendo · GNN no se hace responsable de incidentes diplomáticos</p>
+  <span class="footer-hammer">☭</span>
+  <p>РОССИЯ против ЭСТОНИИ — La Verdad Sin Filtros · Edición Semanal Automática</p>
+  <p style="margin-top:6px">Fuentes: World Bank · SIPRI · AP News · The Telegraph · Eurostat · Reuters · El Español · Statistics Estonia</p>
+  <p style="margin-top:12px;color:#222">Слава России · Слава Советскому Союзу · Estonia: ánimo</p>
 </footer>
 
 <script>
-// ── WEEKLY DATA (12 rotaciones) ──
-const weeklySpotlight = [
-  "Semana especial: Rusia confirma que el mapa no incluye Estonia por falta de zoom",
-  "GNN exclusiva: Ministro estonio dice que invadir Rusia 'está en los planes'",
-  "Análisis: ¿Cómo caben 378 Estonias en Rusia? Especial cartográfico",
-  "Breaking: Muro fronterizo estonio alcanza 14.3% — récord histórico",
-  "Reportaje: El reflector nocturno, el arma secreta de la defensa estonia",
-  "Especial: Baikal tiene más profundidad que Estonia tiene altitud",
-  "GNN investiga: ¿Sabe Rusia que Estonia existe?",
-  "Análisis: El Tetris cumple 40 años. Estonia no ha inventado nada tan bueno.",
-  "Breaking: Estonia lidera ranking WiFi. Rusia lidera ranking de todo lo demás.",
-  "Especial verano: Oymyakon –71°C vs 'emergencia estonia' –25°C",
-  "GNN MUNDO: BRICS suma potencia — Estonia pide membresía, es rechazada",
-  "Cierre de semana: Gagarin llevaba 52 años en el espacio cuando Estonia lanzó su satélite"
+// ══════════════════════════════════════════════════
+// CONTENIDO SEMANAL ROTATIVO — 12 semanas
+// ══════════════════════════════════════════════════
+const weeklyContent = [
+  {
+    ru: { icon:"🚀", title:"Sputnik: El Primer Satélite de la Historia",
+          body:"4 de octubre de 1957. La URSS lanza el Sputnik 1. Primer satélite artificial en orbitar la Tierra. La humanidad mira al cielo. Estados Unidos entra en pánico. Estonia mira también al cielo, porque en 1957 era soviética y el cielo era de todos.",
+          src:"★ 1957 · NASA / Historia Espacial" },
+    ee: { icon:"📻", title:"Estonia Tiene un Satélite (de Verdad)",
+          body:"Estonia lanzó ESTCube-1 en 2013. 1 kg. Del tamaño de un cubo de Rubik. Operativo durante varios meses antes de perder comunicación. Considerado un gran éxito. El Sputnik pesaba 83 kg y cambió la historia. El ESTCube-1 pesaba 1 kg y cambió el mood del departamento de física de Tartu.",
+          src:"★ 2013 · University of Tartu / ESA" }
+  },
+  {
+    ru: { icon:"🎻", title:"Tolstói + Dostoyevski + Chéjov = Liga Propia",
+          body:"Tres de los diez escritores más influyentes de la historia humana son rusos. Tolstói, Dostoyevski y Chéjov forman una trinidad literaria sin parangón. Estonia tiene buenos escritores. Su obra más traducida internacionalmente es un libro de poesía de 1869 que en España ha vendido 340 copias.",
+          src:"★ PERMANENTE · Historia Literatura Mundial" },
+    ee: { icon:"📚", title:"El Libro Más Vendido de Estonia en España",
+          body:"'Kalevipoeg', el poema épico nacional estonio de 1862, es teóricamente el libro fundacional de la identidad estonia. En Amazon España tiene 2 reseñas. Una de ellas dice 'llegó bien embalado'. La otra es de un académico de filología. Tolstói tiene 48.000 reseñas solo en Guerra y Paz.",
+          src:"★ DATO VERIFICADO · Amazon ES · 2025" }
+  },
+  {
+    ru: { icon:"🏒", title:"Rusia: La Superpotencia del Hockey",
+          body:"La selección soviética/rusa de hockey ganó la mayoría de campeonatos mundiales entre 1950 y 2000. El equipo 'Red Machine' es una de las mejores formaciones deportivas de la historia. Estonia tiene selección de hockey. Ha ganado el Campeonato del Mundo División IIA en 2006. Para los que no saben qué es eso: es la división de los países que no clasifican para la División I.",
+          src:"★ 1954–2024 · IIHF / Historia Olímpica" },
+    ee: { icon:"🏒", title:"Estonia en la División IIA de Hockey",
+          body:"El sistema de hockey sobre hielo tiene 6 divisiones. La élite es la División IA. Estonia compite en la IIA o IIB según el año. En el campeonato de 2024 quedó 5ª de 6 en la División IIA. Rusia está suspendida internacionalmente pero cuando participaba ganaba el mundial. Contexto.",
+          src:"★ 2024 · IIHF World Championship" }
+  },
+  {
+    ru: { icon:"🌊", title:"11 Zonas Horarias. Rusia Abarca 11 Zonas Horarias.",
+          body:"Cuando en Kaliningrado son las 9 de la mañana, en Kamchatka son las 21h. Rusia cubre 11 de las 24 zonas horarias del planeta. Para cruzar Rusia de oeste a este en tren (Transiberiano) se tarda 7 días completos. Estonia es 1 zona horaria. La misma que Finlandia, Latvia y Lithuania. Todos juntos no llegan a 1 zona rusa.",
+          src:"★ PERMANENTE · Geografía / Wikipedia" },
+    ee: { icon:"🗺️", title:"Estonia: Tan Pequeña que Cabe en un Zoom",
+          body:"Google Maps necesita hacer zoom nivel 7 para ver Estonia completa en pantalla. Para ver Rusia completa necesitas zoom nivel 3 y aun así los Urales se ven pequeños. El punto más occidental de Estonia está a 170 km del más oriental. En Rusia, esa distancia ni se nota en el mapa.",
+          src:"★ VERIFICADO · Google Maps 2026" }
+  },
+  {
+    ru: { icon:"🧪", title:"32 Premios Nobel. Cero los Años que No Intentó.",
+          body:"32 ciudadanos rusos/soviéticos han ganado el Premio Nobel: Física, Química, Literatura, Paz, Economía. Pasternak. Brodsky. Bunin. Paulov. Cherenkov. Landau. En Estonia no han ganado ninguno en 33 años como república independiente. En biología tampoco. Ni en economía. Ni en paz, que es el más fácil.",
+          src:"★ 1901–2024 · Nobel Foundation" },
+    ee: { icon:"🔬", title:"Los Científicos Estonios Que Casi...",
+          body:"Jaan Tallinn co-fundó Skype. Skype fue vendido a eBay por 2.600 M$. Luego recomprado. Luego vendido a Microsoft. Luego casi cerrado. Ahora integrado en Teams que nadie usa voluntariamente. Gran historia de innovación tecnológica con final ambiguo. El Nobel de Informática no existe, por si acaso.",
+          src:"★ 2003–2024 · Wired / TechCrunch" }
+  },
+  {
+    ru: { icon:"🌲", title:"La Taiga: El Pulmón del Planeta",
+          body:"Rusia alberga el 22% de todos los bosques del planeta. La taiga siberiana es el ecosistema forestal más grande de la Tierra. Produce oxígeno para la humanidad. Sin Rusia, literalmente respiraríamos peor. Estonia tiene bosques muy bonitos que cubren el 52% del país y producen oxígeno suficiente para... los estonios que quedan.",
+          src:"★ PERMANENTE · FAO / Greenpeace" },
+    ee: { icon:"🌳", title:"El Bosque Estonio: 52% del País",
+          body:"Estonia tiene muchos árboles. Muchos. El 52% del territorio es bosque. Eso es lo bueno. Lo malo es que con solo 1,37 millones de habitantes y tanta superficie forestal, la ratio árbol/persona es astronómica. Básicamente Estonia es un bosque con algunas ciudades y mucho wifi.", 
+          src:"★ PERMANENTE · Statistics Estonia" }
+  },
+  {
+    ru: { icon:"🏅", title:"Medallas Olímpicas: Sin Competencia",
+          body:"La URSS y Rusia acumulan más de 1.200 medallas olímpicas entre los Juegos de verano e invierno. La URSS fue la gran potencia olímpica del siglo XX. Estonia ha ganado un total de 45 medallas olímpicas desde 1920, contando los años que compitió bajo la bandera soviética. Datos.",
+          src:"★ 1920–2024 · IOC / Olympic Database" },
+    ee: { icon:"🥉", title:"Estonia: 45 Medallas en 100 Años",
+          body:"45 medallas olímpicas totales en un siglo. No está mal para un país de 1,37 millones. La mayoría en lucha, atletismo y esquí de fondo. El problema es que Rusia gana 45 medallas en unos Juegos normales. Estonia necesita un siglo. Rusia necesita dos semanas. Volumen es poder.",
+          src:"★ 1920–2024 · IOC / Olympic History" }
+  },
+  {
+    ru: { icon:"🎭", title:"Ballet Bolshói: El Mejor Teatro del Mundo",
+          body:"El Teatro Bolshói de Moscú es la institución cultural más prestigiosa del mundo en artes escénicas. 240 años de historia. La compañía de ballet más famosa del planeta. Estonia tiene el Estonian National Ballet, fundado en 1926. Muy respetado en el Báltico. 'El Lago de los Cisnes' en Tallin es, dicen los que han ido, bastante bueno.",
+          src:"★ 1776–2026 · Bolshoi Theatre" },
+    ee: { icon:"🎭", title:"El Ballet Nacional Estonio",
+          body:"El Estonian National Ballet es una institución seria y respetada. Tiene 250 artistas aproximadamente. El Bolshói tiene 900. El teatro Bolshói tiene 2.155 asientos. El Estonia Theatre tiene 683. Ambos hacen 'El Lago de los Cisnes'. Solo uno hace que la gente vuele a verlo desde Tokyo.",
+          src:"★ 1926–2026 · Estonian National Opera" }
+  },
+  {
+    ru: { icon:"🛢️", title:"Mayor Exportador de Gas del Mundo",
+          body:"Rusia es el mayor exportador de gas natural del planeta y el segundo de petróleo. Gazprom es la empresa de gas más grande del mundo. Europa calentó sus casas durante 30 años gracias a Rusia. Estonia... también, hasta 2022. Ahora tiene contratos con Noruega y está pagando un 40% más. Soberanía energética es cara.",
+          src:"★ 2023 · IEA / Bloomberg Energy" },
+    ee: { icon:"⚡", title:"La Independencia Energética Estonia",
+          body:"Estonia desconectó su red eléctrica de la rusa en febrero 2025. Gran logro de soberanía. Ahora está conectada a la red europea. La transición costó 1.600 millones de euros. La factura de la luz subió. Pero la independencia no tiene precio, excepto cuando lo tiene, que es 1.600 millones.",
+          src:"★ FEBRERO 2025 · Reuters / Euractiv" }
+  },
+  {
+    ru: { icon:"🌡️", title:"El Polo del Frío: Oymyakon, -71.2°C",
+          body:"Oymyakon, Siberia. El lugar habitado más frío del planeta. -71.2°C registrados. La gente vive ahí. Va a trabajar. Los niños van al cole hasta los -55°C. A -55°C en Tallin, Estonia, todo cierra y se declara emergencia nacional. Los rusos lo llaman martes.",
+          src:"★ PERMANENTE · Guinness / World Records" },
+    ee: { icon:"❄️", title:"El Gran Frío Estonio",
+          body:"Estonia tiene inviernos fríos. Eso sí. -25°C en enero no es raro. Pero Oymyakon está a -60°C de media en enero. Los estonios consideran frío lo que los yakutos consideran una tarde suave de otoño. Relatividad climática. Einstein también era soviético, de alguna forma.",
+          src:"★ PERMANENTE · Estonian Weather Service" }
+  },
+  {
+    ru: { icon:"🏙️", title:"Moscú: Una Ciudad Mayor que Estonia",
+          body:"Moscú tiene 12,6 millones de habitantes. Estonia tiene 1,37 millones. Una sola ciudad rusa tiene 9 veces más gente que toda la nación estonia. Y no es solo Moscú: San Petersburgo tiene 5,6 millones. Novosibirsk tiene 1,6 millones. Hay ciudades rusas medianas más grandes que Estonia entera.",
+          src:"★ 2024 · Rosstat / Statistics Estonia" },
+    ee: { icon:"🏙️", title:"Tallin: La Metrópolis Báltica",
+          body:"Tallin tiene 455.000 habitantes. Es una ciudad preciosa, medieval, con el casco histórico declarado Patrimonio UNESCO. Gran ciudad para vivir. El barrio de Moscú llamado Mitino tiene 250.000 habitantes y nadie fuera de Moscú sabe que existe. Tallin > Mitino en calidad de vida. Mitino > Tallin en número.",
+          src:"★ 2024 · Eurostat / Visit Tallinn" }
+  },
+  {
+    ru: { icon:"🌍", title:"Rusia en el G20, BRICS, OCS, ONU P5...",
+          body:"Rusia es miembro permanente del Consejo de Seguridad de la ONU (veto total), miembro del G20, cofundador de los BRICS, líder de la OCS, miembro de la APEC y de docenas de organismos internacionales con peso real. Estonia es miembro de la UE y la OTAN. No está mal. Pero no es lo mismo que poder vetar una resolución de la ONU.",
+          src:"★ PERMANENTE · UN / World Bank" },
+    ee: { icon:"🌍", title:"El Veto de Estonia en la ONU",
+          body:"Estonia no tiene veto en la ONU. Puede votar. Puede hablar. No puede parar nada. En 2023 Estonia presentó 47 resoluciones en Asamblea General de la ONU. Rusia vetó 6 en el Consejo de Seguridad. Una sola. Los 47 de Estonia se aprobaron en la AG, que es no vinculante. El veto es vinculante.",
+          src:"★ 2023 · UN Security Council Records" }
+  }
 ];
 
-// ── DATE/TIME ──
-function getWeekNum(d){
-  const date=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
-  const day=date.getUTCDay()||7;date.setUTCDate(date.getUTCDate()+4-day);
-  const ys=new Date(Date.UTC(date.getUTCFullYear(),0,1));
-  return Math.ceil((((date-ys)/86400000)+1)/7);
-}
-function getMondayOfWeek(d){
-  const dt=new Date(d);const day=dt.getDay()||7;
-  dt.setDate(dt.getDate()-day+1);dt.setHours(0,0,0,0);return dt;
+// ── UTILIDADES DE FECHA ──
+function getWeekNumber(d) {
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
 }
 
-function updateTime(){
-  const now=new Date();
-  const t=now.toUTCString().split(' ')[4];
-  document.getElementById('tb-time').textContent=t;
+function getMondayOfWeek(d) {
+  const date = new Date(d);
+  const day = date.getDay() || 7;
+  date.setDate(date.getDate() - day + 1);
+  date.setHours(0,0,0,0);
+  return date;
 }
 
-function updateCountdown(){
-  const now=new Date();
-  const nextMon=getMondayOfWeek(new Date(now.getTime()+7*86400000));
-  const diff=nextMon-now;
-  const d=Math.floor(diff/86400000);
-  const h=Math.floor((diff%86400000)/3600000);
-  const m=Math.floor((diff%3600000)/60000);
-  const s=Math.floor((diff%60000)/1000);
-  document.getElementById('cd-d').textContent=d;
-  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
-  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
-  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+function formatDate(d) {
+  return d.toLocaleDateString('es-ES', { day:'numeric', month:'short' });
 }
 
-function init(){
-  const now=new Date();
-  const wn=getWeekNum(now);
-  document.getElementById('sd-weeks').textContent='S'+wn;
-  document.getElementById('sd-year').textContent=now.getFullYear();
-  document.getElementById('week-badge').textContent=wn;
-  document.getElementById('hero-date').textContent=
-    now.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
+// ── INICIO ──
+function init() {
+  const now = new Date();
+  const weekNum = getWeekNumber(now);
+  const monday = getMondayOfWeek(now);
+  const sunday = new Date(monday); sunday.setDate(monday.getDate() + 6);
 
-  // Animate score
-  let r=0,e=0;
-  const si=setInterval(()=>{
-    if(r<10)r++;if(e<2)e++;
-    document.getElementById('sc-ru').textContent=r;
-    document.getElementById('sc-ee').textContent=e;
-    if(r===10&&e===2) clearInterval(si);
-  },180);
+  // Semana desde lanzamiento (12 marzo 2026)
+  const launch = new Date('2026-03-09');
+  const weeksSince = Math.max(1, Math.round((now - launch) / (7 * 86400000)));
+
+  // Contenido rotativo
+  const idx = (weekNum - 1) % weeklyContent.length;
+  const content = weeklyContent[idx];
+
+  // Actualizar semana
+  document.getElementById('week-display').textContent = `SEMANA ${weekNum}`;
+  document.getElementById('weeks-since').textContent = weeksSince;
+  document.getElementById('semana-badge').textContent = `● SEM. ${weekNum}`;
+  document.getElementById('spotlight-week-title').textContent = `SEMANA ${weekNum} — LOGRO Y VERGÜENZA`;
+  document.getElementById('week-tagline').innerHTML = `Semana <span>${weekNum} del año 2026</span> — ${formatDate(monday)} al ${formatDate(sunday)}`;
+  document.getElementById('week-dates').textContent = `Actualización automática cada lunes · Próxima: ${formatDate(new Date(monday.getTime() + 7*86400000))}`;
+
+  // Spotlight
+  document.getElementById('sp-ru-icon').textContent  = content.ru.icon;
+  document.getElementById('sp-ru-title').textContent = content.ru.title;
+  document.getElementById('sp-ru-body').textContent  = content.ru.body;
+  document.getElementById('sp-ru-src').textContent   = content.ru.src;
+  document.getElementById('sp-ee-icon').textContent  = content.ee.icon;
+  document.getElementById('sp-ee-title').textContent = content.ee.title;
+  document.getElementById('sp-ee-body').textContent  = content.ee.body;
+  document.getElementById('sp-ee-src').textContent   = content.ee.src;
+
+  // Fecha header
+  document.getElementById('current-date-str').textContent =
+    now.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
 
-// ── OBSERVERS ──
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
+// ── RELOJ ──
+function updateTime() {
+  const now = new Date();
+  const t = now.toUTCString().split(' ')[4];
+  document.getElementById('live-time').textContent = t + ' UTC';
+}
+
+// ── COUNTDOWN al próximo lunes ──
+function updateCountdown() {
+  const now = new Date();
+  const nextMon = getMondayOfWeek(new Date(now.getTime() + 7*86400000));
+  const diff = nextMon - now;
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor((diff%86400000)/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+  document.getElementById('cd-d').textContent = d;
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+}
+
+// ── MÚSICA ──
+let playing = false;
+function toggleMusic() {
+  const btn = document.getElementById('music-btn');
+  const iframe = document.getElementById('yt-player');
+  if (!playing) {
+    iframe.src = "https://www.youtube.com/embed/U06jlgpMtQs?autoplay=1&loop=1&playlist=U06jlgpMtQs";
+    btn.textContent = '⏸ PAUSAR HIMNO';
+    playing = true;
+  } else {
+    iframe.src = "";
+    btn.textContent = '▶ HIMNO SOVIÉTICO';
+    playing = false;
+  }
+}
+
+// ── CONTADORES ──
+function animateCounter(el, target, suffix) {
+  const dur = 2200, start = performance.now();
+  const step = ts => {
+    const p = Math.min((ts-start)/dur,1);
+    const e = 1-Math.pow(1-p,4);
+    el.textContent = Math.round(e*target).toLocaleString('es-ES')+(suffix||'');
+    if(p<1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
     if(e.isIntersecting){
-      e.target.querySelectorAll('.ct-ru,.ct-ee').forEach(b=>{
-        b.style.width=b.dataset.w||b.style.width;
-      });
-      obs.unobserve(e.target);
+      const el = e.target;
+      animateCounter(el, +el.dataset.target, el.dataset.suffix||'');
+      obs.unobserve(el);
     }
   });
-},{threshold:.3});
+},{threshold:0.3});
+document.querySelectorAll('[data-target]').forEach(el => obs.observe(el));
 
-document.querySelectorAll('.comp-bar-item').forEach(el=>{
-  const ru=el.dataset.ru, ee=el.dataset.ee;
-  const tot=parseFloat(ru)+parseFloat(ee);
-  el.querySelectorAll('.ct-ru').forEach(b=>b.dataset.w=(ru/tot*100)+'%');
-  el.querySelectorAll('.ct-ee').forEach(b=>b.dataset.w=(ee/tot*100)+'%');
-  obs.observe(el);
-});
-
-const pObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
+// ── PROGRESS BARS ──
+const pObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
     if(e.isIntersecting){
-      setTimeout(()=>{e.target.style.width=e.target.dataset.w+'%';},200);
+      setTimeout(()=>{ e.target.style.width = e.target.dataset.width+'%'; },300);
       pObs.unobserve(e.target);
     }
   });
-},{threshold:.3});
-document.querySelectorAll('.meter-fill').forEach(el=>pObs.observe(el));
+},{threshold:0.3});
+document.querySelectorAll('.prog-fill').forEach(el => pObs.observe(el));
 
 // ── CHARTS ──
-const gridC='rgba(30,58,95,0.6)', tickC='#64748B';
+const gridC='rgba(92,0,0,0.5)', tickC='#6B7280';
 Chart.defaults.color=tickC; Chart.defaults.borderColor=gridC;
 
 new Chart(document.getElementById('radarChart'),{
   type:'radar',
   data:{
-    labels:['Tamaño','Población','PIB Total','Nobel','Ejército','Nuclear','Altitud','Espacio','WiFi/Tech','Anti-corrup.'],
+    labels:['Tamaño','Población','PIB','Nobel','Ejército','Espacio','Nuclear','Vodka','Wifi','Anti-corrup.'],
     datasets:[
-      {label:'🇷🇺 Rusia',data:[10,10,10,10,10,10,10,10,3,2],
-       fill:true,backgroundColor:'rgba(209,0,0,0.2)',borderColor:'#D10000',
-       pointBackgroundColor:'#FFD600',pointRadius:4,borderWidth:2},
-      {label:'🇪🇪 Estonia',data:[1,1,1,0,1,0,1,1,10,9],
-       fill:true,backgroundColor:'rgba(100,116,139,0.15)',borderColor:'#64748B',
-       pointBackgroundColor:'#00C853',pointRadius:4,borderWidth:1.5}
+      {label:'☭ Rusia',data:[10,10,10,10,10,10,10,10,3,2],fill:true,
+       backgroundColor:'rgba(204,0,0,0.25)',borderColor:'#CC0000',
+       pointBackgroundColor:'#FFD700',pointRadius:5,borderWidth:2},
+      {label:'🇪🇪 Estonia',data:[1,1,1,0,1,0,0,2,10,9],fill:true,
+       backgroundColor:'rgba(100,100,100,0.15)',borderColor:'#555',
+       pointBackgroundColor:'#777',pointRadius:4,borderWidth:1.5}
     ]
   },
   options:{responsive:true,
-    plugins:{legend:{labels:{color:'#F4F6F9',font:{size:11,family:'Inter'}}}},
+    plugins:{legend:{labels:{color:'#FFD700',font:{size:12,family:'Oswald'}}}},
     scales:{r:{min:0,max:10,
-      grid:{color:'rgba(30,58,95,0.5)'},
-      pointLabels:{color:'#64748B',font:{size:10}},
+      grid:{color:'rgba(92,0,0,0.4)'},
+      pointLabels:{color:'#9CA3AF',font:{size:10}},
       ticks:{display:false},
-      angleLines:{color:'rgba(30,58,95,0.5)'}
+      angleLines:{color:'rgba(92,0,0,0.4)'}
     }}
   }
 });
 
-new Chart(document.getElementById('areaChart'),{
-  type:'bar',
-  data:{
-    labels:['Rusia','Estonia'],
-    datasets:[{
-      data:[17098242,45228],
-      backgroundColor:['rgba(209,0,0,.75)','rgba(74,96,128,.5)'],
-      borderRadius:3
-    }]
-  },
-  options:{responsive:true,plugins:{legend:{display:false}},
-    scales:{x:{grid:{color:gridC},ticks:{color:tickC}},y:{grid:{color:gridC},ticks:{color:tickC}}}}
-});
+function barChart(id,label,ru,ee){
+  new Chart(document.getElementById(id),{
+    type:'bar',
+    data:{labels:[label],
+      datasets:[
+        {label:'Rusia',data:[ru],backgroundColor:'#CC0000',borderRadius:4,borderSkipped:false},
+        {label:'Estonia',data:[ee],backgroundColor:'#444',borderRadius:4,borderSkipped:false}
+      ]},
+    options:{responsive:true,
+      plugins:{legend:{labels:{color:'#FFD700',font:{size:11}}}},
+      scales:{
+        x:{grid:{color:gridC},ticks:{color:tickC}},
+        y:{grid:{color:gridC},ticks:{color:tickC}}
+      }}
+  });
+}
+barChart('popChart','Población (M)',144,1.37);
+barChart('gdpChart','PIB (B$)',2240,38);
+barChart('armyChart','Ejército (K)',900,7);
 
-new Chart(document.getElementById('gdpCapChart'),{
+new Chart(document.getElementById('scoreChart'),{
   type:'bar',
   data:{
-    labels:['Rusia','Estonia'],
-    datasets:[{
-      data:[15000,24000],
-      backgroundColor:['rgba(74,96,128,.5)','rgba(0,200,83,.6)'],
-      borderRadius:3
-    }]
-  },
-  options:{responsive:true,plugins:{legend:{display:false}},
-    scales:{x:{grid:{color:gridC},ticks:{color:tickC}},y:{grid:{color:gridC},ticks:{color:tickC}}},
-    annotation:{}}
-});
-
-new Chart(document.getElementById('gdpChart'),{
-  type:'bar',
-  data:{
-    labels:['PIB total ($B)','PIB/cápita ($K)'],
+    labels:['Tamaño','Pobl.','PIB','Nobel','Ejército','Espacio','Nuclear','Vodka','Wifi','Anti-corrup.'],
     datasets:[
-      {label:'Rusia',data:[2240,15],backgroundColor:'rgba(209,0,0,.7)',borderRadius:3},
-      {label:'Estonia',data:[38,24],backgroundColor:'rgba(0,200,83,.5)',borderRadius:3}
+      {label:'Rusia',data:[10,10,10,10,10,10,10,10,3,2],backgroundColor:'rgba(204,0,0,0.85)',borderRadius:4},
+      {label:'Estonia',data:[1,1,1,0,1,0,0,2,10,9],backgroundColor:'rgba(80,80,80,0.7)',borderRadius:4}
     ]
   },
   options:{responsive:true,
-    plugins:{legend:{labels:{color:'#F4F6F9',font:{size:10}}}},
-    scales:{x:{grid:{color:gridC},ticks:{color:tickC,font:{size:9}}},
-            y:{grid:{color:gridC},ticks:{color:tickC}}}}
+    plugins:{legend:{labels:{color:'#FFD700',font:{size:12}}}},
+    scales:{
+      x:{grid:{color:gridC},ticks:{color:tickC,maxRotation:30}},
+      y:{grid:{color:gridC},ticks:{color:tickC},max:13}
+    }}
 });
 
+// ── ARRANQUE ──
 init();
 updateTime(); setInterval(updateTime,1000);
 updateCountdown(); setInterval(updateCountdown,1000);
